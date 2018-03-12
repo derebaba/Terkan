@@ -1,0 +1,100 @@
+.widget .card-body { padding:0px; }
+.widget .card-title { display:inline; }
+.widget .badge-info { float: right; }
+.widget li.list-group-item {border-radius: 0;border: 0;border-top: 0.0625rem solid #ddd;}
+.widget { background-color: rgba(86,61,124,.1); }
+.widget .mic-info { color: #666666;font-size: 0.6875rem; }
+.widget .action { margin-top:0.3125rem; }
+.widget .comment-text { font-size: 0.75rem; }
+.widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
+.review-form .review-button { float: left; }
+.center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.jumbotron, .card-header, #genres-title {
+	background-color: #E56612 ; color:white; 
+}
+
+/* users.followers */
+.jumbotron a, .card-header a, #genres-title a { color: lightgreen; }
+
+body { 
+	background-color: darkgray !important; 
+	padding-bottom:60px;   /* Height of the footer */ 
+}
+#app {
+    min-height: calc(100vh - 4rem - 4rem);
+}
+#footer {
+	margin-left: 10px;
+    height: 4rem;
+}
+
+/* search */
+.poster {
+	margin: 10px;
+    width: 154px;
+    height: 231px;
+	position:relative;
+	display: inline-block; 
+	white-space: nowrap;
+}
+.poster:hover > .overlay {
+    width:100%;
+    height:100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.reviewable-name {
+	color: rgba(255, 255, 255, 1);
+	visibility: hidden;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: 'Open Sans', sans-serif;
+	white-space: pre-wrap;      /* CSS3 */   
+   	white-space: -moz-pre-wrap; /* Firefox */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+	width: 90%;
+}
+
+.poster:hover .reviewable-name {
+	visibility: visible;
+}
+
+/* home */
+figure {
+	background-color: #fff;
+	padding: 5px;
+	font-size: .875em;
+	display: table;
+ }
+ 
+figure img {
+	display: block;
+	width: 100%;
+}
+ 
+figcaption {
+	display: table-caption;
+	caption-side: bottom;
+	background: #fff;
+	padding: 0 5px 5px;
+}
+
+/*
+#terkan-promotion {
+	background-image: url('/images/a.jpg');
+	background-image: linear-gradient(to bottom, rgba(134, 61, 12, 0.667) 0%,rgba(117, 53, 11, 0.667) 100%), url('/images/at.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}*/

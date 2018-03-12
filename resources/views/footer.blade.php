@@ -1,0 +1,35 @@
+<script>
+
+$('#average-rating').barrating({
+	theme: 'fontawesome-stars-o',
+	showSelectedRating: true,
+	initialRating: window.averageRating,
+	readonly: true
+});
+
+$('#star-rating').barrating({
+	theme: 'fontawesome-stars-o',
+	showSelectedRating: true,
+	initialRating: 0
+});
+
+//	reviews.edit
+$('#edit-star-rating').barrating({
+	theme: 'fontawesome-stars-o',
+	showSelectedRating: true,
+	initialRating: window.stars,
+});
+
+//	search
+if ($('#star-rating-0').length) {
+	for (i = 0; i < 40; i++) {
+		$('#star-rating-' + i).barrating({
+			theme: 'fontawesome-stars-o',
+			showSelectedRating: true,
+			initialRating: window.stars[i],
+			readonly: true
+		});
+	}
+}
+
+</script>
