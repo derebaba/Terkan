@@ -10,7 +10,7 @@ class Reviewable extends Model
 {
 	//public $id, $name, $poster, $type;	//	$type is either movie or tv
 	protected $fillable = [
-		'id', 'name', 'poster', 'type', 'vote_average',
+		'id', 'name', 'poster', 'type', 'vote_average', 'vote_count'
 	];
 	
 	public static function createReviewableFromReview($review) {
@@ -27,10 +27,11 @@ class Reviewable extends Model
 		$ret->id = $review->reviewable_id;
 		$ret->type = $review->reviewable_type;
 		$ret->poster = $reviewable['poster_path'];
-		$ret->vote_average = Review::where('reviewable_type', $ret->type)
-									->where('reviewable_id', $ret->id)
-									->avg('stars');
 
+		$reviews = Review::where('reviewable_type', $ret->type)->where('reviewable_id', $ret->id);
+
+		$ret->vote_count = $reviews->count() == 0 ? 0 : $reviews->count();
+		$ret->vote_average = $reviews->avg('stars');
 		return $ret;
 	}
 

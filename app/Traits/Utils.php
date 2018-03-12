@@ -23,8 +23,11 @@ trait Utils {
 				'poster' => $result['poster_path'],
 				'type' => $result['media_type'],
 				'vote_average' => Review::where('reviewable_type', $result['media_type'])
+				->where('reviewable_id', $result['id'])->count() == 0 ? 0 : Review::where('reviewable_type', $result['media_type'])
 						->where('reviewable_id', $result['id'])
-						->avg('stars')
+						->avg('stars'),
+				'vote_count' => Review::where('reviewable_type', $result['media_type'])
+						->where('reviewable_id', $result['id'])->count()
 			]);
 		}, $results));
 

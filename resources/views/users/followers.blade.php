@@ -18,7 +18,7 @@
     <tbody>
       @foreach($followers as $follower)
       <tr>
-        <th scope="row"><a href="users/{{ $follower->id }}">{{ $follower->id }}</a></th>
+        <th scope="row"><a href="/users/{{ $follower->id }}">{{ $follower->id }}</a></th>
         <td>{{ $follower->name }}</td>
         <td>{{ $follower->created_at }}</td>
       </tr>

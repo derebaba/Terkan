@@ -8,6 +8,45 @@
 			<div class="card">
 				<div class="card-header font-weight-bold">Search results on '{{$query}}'</div>
 			</div>
+
+			<ul class="list-group">
+				@foreach($reviewables as $reviewable)
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-sm-4 col-lg-3 text-center">
+								<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
+									title="{{ $reviewable->name }}">
+									{!! $image->getHtml($reviewable->poster, 'w92') !!}
+								</a>
+								<div class="row text-xs-center center-block">
+									<a class="text-xs-center" href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}">
+										{{ $reviewable->name }}
+									</a>
+								</div>
+							</div>
+							<div class="col-sm-8 col-lg-9">
+								<h5>
+									{{ $loop->index + 1 }}. {{ $reviewable->name }}
+								</h5>
+								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off" style="display: inline;">
+									<option value=""></option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+								<small>
+									{{ $reviewable->vote_average }} / 5 ({{ $reviewable->vote_count }} votes)
+								</small>
+								<p>{{ $response['results'][$loop->index]['overview'] }}</p>
+							</div>
+						</div>
+					</li>
+				@endforeach	
+			</ul>
+
+				{{--
 			<div class="row">
 				
 				<div class="container-fluid text-center">
@@ -29,11 +68,9 @@
 							</div>
 						</a>
 
-						{{--<span class="font-italic">({{ date("Y", strtotime($result['release_date'])) }})</span>--}}
-
 					@endforeach
 				</div>
-			</div>
+			</div>--}}
 			<div class="row d-flex justify-content-center">
 				<nav aria-label="Search pagination">
 					<ul class="pagination">
