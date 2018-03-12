@@ -22,7 +22,7 @@ class HomeController extends Controller
 		if (!Auth::check())
 			return $this->welcome();
 		//	TODO: arkadaşlarının reviewlarını al
-		$reviews = Review::all()->take(-10)->reverse()->values();
+		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->get()->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 		/*
 		Tmdb api kullanmanın alternatif yolu
@@ -42,7 +42,8 @@ class HomeController extends Controller
 		$recommendations = $this->getReviewablesFromResults($movies);
 
 		JavaScript::put([
-			'stars' => $recommendations->pluck('vote_average')
+			'recommendationStars' => $recommendations->pluck('vote_average'),
+			'stars' => $reviews->pluck('stars')
 		]);
 
 		
@@ -52,7 +53,7 @@ class HomeController extends Controller
 			'genre_id' => -1,
 			'genres' =>	$genres,
 			'recommendations' => $recommendations
-	]	);
+		]);
 		
 	}
 

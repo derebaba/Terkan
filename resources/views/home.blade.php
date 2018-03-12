@@ -24,7 +24,7 @@
 							<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}">
 								{{ $recommendation->name }}
 							</a>
-							<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
+							<select id="recommendation-rating-{{$loop->index}}" name="recommendation-rating" autocomplete="off">
 								<option value=""></option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -77,8 +77,29 @@
 				<div class="card-header text-center">
 					<h5 class="card-title" aria-hidden="true"><i class="fas fa-users"></i> News feed</h5>
 				</div>
-				<div class="card-body">
-				</div>
+					<ul class="list-group">
+						@foreach($reviewables as $reviewable)
+							<li class="list-group-item">
+								<div class="row">
+									<div class="col-sm-4 col-lg-3 text-center">
+										<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
+											title="{{ $reviewable->name }}">
+											{!! $image->getHtml($reviewable->poster, 'w92') !!}
+										</a>
+										<div class="row text-xs-center center-block">
+											<a class="text-xs-center" href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}">
+												{{ $reviewable->name }}
+											</a>
+										</div>
+									</div>
+									<div class="col-sm-8 col-lg-9">
+										@php ($review = $reviews[$loop->index])
+										@include('partials.review')
+									</div>
+								</div>
+							</li>
+						@endforeach	
+					</ul>
 			</div>
 		</div>
 		<div class="col-md-3 col-lg-2 sidebar-offcanvas">
