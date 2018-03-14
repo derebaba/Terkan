@@ -21,6 +21,7 @@
 /* users.followers */
 .jumbotron a, .card-header a, #genres-title a { color: lightgreen; }
 
+/* layouts.app */
 body { 
 	background-color: darkgray !important; 
 	padding-bottom:60px;   /* Height of the footer */ 
@@ -29,10 +30,11 @@ body {
     min-height: calc(100vh - 4rem - 4rem);
 }
 #footer {
-	margin-left: 10px;
-    height: 4rem;
+	padding-left: 4rem;
 }
-
+#footer a {
+	color: grey;
+}
 /* search */
 .poster {
 	margin: 10px;

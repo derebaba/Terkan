@@ -124,9 +124,18 @@
 			
 		</div>
 
+		</hr>
 		<div class="container">
 			<div id="footer">
-				<small><a href="/info/privacypolicy">Privacy policy</a></small>
+				<small>
+					<a href="/info/privacypolicy">Privacy policy</a>
+					<span class="pull-right">
+						This product uses the TMDb API but is not endorsed or certified by TMDb.
+						<a href="https://www.themoviedb.org/" style="display: inline;">
+							<img height="30px" src="https://www.themoviedb.org/static_cache/v4/logos/powered-by-rectangle-green-dcada16968ed648d5eb3b36bbcfdd8cdf804f723dcca775c8f2bf4cea025aad6.svg">
+						</a>
+					</span>
+				</small>
 			</div>
 		</div>
 		<!-- Scripts; jQuery first, then Popper.js, then Bootstrap JS -->
