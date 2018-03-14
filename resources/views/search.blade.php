@@ -28,7 +28,7 @@
 								<h5>
 									{{ $loop->index + 1 }}. {{ $reviewable->name }}
 								</h5>
-								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off" style="display: inline;">
+								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
 									<option value=""></option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -37,7 +37,7 @@
 									<option value="5">5</option>
 								</select>
 								<small>
-									{{ $reviewable->vote_average }} / 5 ({{ $reviewable->vote_count }} votes)
+									{{ sprintf ("%.2f", $reviewable->vote_average) }} / 5 ({{ $reviewable->vote_count }} votes)
 								</small>
 								<p>{{ $response['results'][$loop->index]['overview'] }}</p>
 							</div>
@@ -82,13 +82,13 @@
 						@for ($i = 1; $i <= $max_pages; $i++)
 							@if ($i == $response['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{ route('browseByGenre', ['genre' => $genre_id, 'page' => $i]) }}">
+									<a class="page-link" href="{{route('browseByGenre', ['genre' => $genre_id, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{ route('browseByGenre', ['genre' => $genre_id, 'page' => $i]) }}">
+									<a class="page-link" href="{{route('browseByGenre', ['genre' => $genre_id, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
