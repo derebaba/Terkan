@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-<link rel="stylesheet" href="/css/bootstrap-social.css">
+
 @endsection
 
 @section('content')
