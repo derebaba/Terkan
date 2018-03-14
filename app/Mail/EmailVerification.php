@@ -31,6 +31,6 @@ class EmailVerification extends Mailable
     {
         return $this->view('emails.verify')->with([
 			'email_token' => $this->user->email_token,
-			]);
+		]);
     }
 }

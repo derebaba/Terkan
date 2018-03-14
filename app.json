@@ -1,0 +1,71 @@
+{
+	"name": "Terkan",
+	"scripts": {},
+	"env": {
+	  "APP_KEY": {
+		"required": true
+	  },
+	  "APP_LOG": {
+		"required": true
+	  },
+	  "DB_DATABASE": {
+		"required": true
+	  },
+	  "DB_HOST": {
+		"required": true
+	  },
+	  "DB_PASSWORD": {
+		"required": true
+	  },
+	  "DB_PORT": {
+		"required": true
+	  },
+	  "DB_USERNAME": {
+		"required": true
+	  },
+	  "FB_ID": {
+		"required": true
+	  },
+	  "FB_SECRET": {
+		"required": true
+	  },
+	  "MAILGUN_API_KEY": {
+		"required": true
+	  },
+	  "MAILGUN_DOMAIN": {
+		"required": true
+	  },
+	  "MAILGUN_PUBLIC_KEY": {
+		"required": true
+	  },
+	  "MAILGUN_SMTP_LOGIN": {
+		"required": true
+	  },
+	  "MAILGUN_SMTP_PASSWORD": {
+		"required": true
+	  },
+	  "MAILGUN_SMTP_PORT": {
+		"required": true
+	  },
+	  "MAILGUN_SMTP_SERVER": {
+		"required": true
+	  },
+	  "TMDB_KEY": {
+		"required": true
+	  }
+	},
+	"formation": {
+	  "web": {
+		"quantity": 1
+	  }
+	},
+	"addons": [
+	  "mailgun",
+	  "heroku-postgresql"
+	],
+	"buildpacks": [
+	  {
+		"url": "heroku/php"
+	  }
+	]
+  }

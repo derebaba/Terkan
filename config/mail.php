@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.sendgrid.net'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('SENDGRID_USERNAME'),
+    'username' => env('MAILGUN_SMTP_LOGIN'),
 
-    'password' => env('SENDGRID_PASSWORD'),
+    'password' => env('MAILGUN_SMTP_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------
