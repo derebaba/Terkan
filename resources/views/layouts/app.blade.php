@@ -124,7 +124,7 @@
 			
 		</div>
 
-		</hr>
+		<hr>
 		<div class="container">
 			<div id="footer">
 				<small>
