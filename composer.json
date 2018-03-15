@@ -21,7 +21,8 @@
         "php-tmdb/laravel": "~1.0",
         "ramsey/uuid-doctrine": "^1.4",
         "sendgrid/sendgrid": "~5.0.9",
-        "zizaco/entrust": "dev-master"
+		"zizaco/entrust": "dev-master",
+		"acoustep/entrust-gui": "@dev"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

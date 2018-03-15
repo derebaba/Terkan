@@ -157,6 +157,7 @@ return [
 		Tmdb\Laravel\TmdbServiceProvider::class,
 		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		Acoustep\EntrustGui\EntrustGuiServiceProvider::class,
 		/*
 			* Application Service Providers...
 			*/
