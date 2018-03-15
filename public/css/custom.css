@@ -3,7 +3,12 @@
 .widget .badge-info { float: right; }
 .widget li.list-group-item {border-radius: 0;border: 0;border-top: 0.0625rem solid #ddd;}
 .widget { background-color: rgba(86,61,124,.1); }
-.widget .mic-info { color: #666666;font-size: 0.6875rem; }
+/* partials.review */
+.mic-info {
+	color: #666666;
+	font-size: 0.6875rem;
+	margin-bottom: 5px;
+}
 .widget .action { margin-top:0.3125rem; }
 .widget .comment-text { font-size: 0.75rem; }
 .widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
@@ -89,6 +94,10 @@ figcaption {
 	padding: 0 5px 5px;
 }
 
+img.w92 {
+	height: 138px;
+	width: 92px;
+}
 /*
 #terkan-promotion {
 	background-image: url('/images/a.jpg');

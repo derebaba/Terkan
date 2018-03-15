@@ -89,22 +89,29 @@
 									<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
 										<i class="far fa-user"></i> {{ Auth::user()->name }}
 									</a>
-
 									<div class="dropdown-menu" aria-labelled-by="dropdown-corner">
+										@role('admin')
+										<a href="/admin" class="dropdown-item">
+											<i class="fas fa-cogs"></i>
+											Admin panel
+										</a>
+										@endrole
 										<a href="{{ route('users.show', Auth::user()->id) }}" class="dropdown-item">
 											<i class="fas fa-user fa-fw"></i>
 											My profile
 										</a>
+
 										<a href="{{ route('logout') }}" class="dropdown-item"
 											onclick="event.preventDefault();
 														document.getElementById('logout-form').submit();">
 											<i class="fas fa-sign-out-alt fa-fw"></i>
 											Logout
 										</a>
-										
 										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 											{{ csrf_field() }}
 										</form>
+
+										
 									</div>
 								</li>
 							@endguest

@@ -16,7 +16,7 @@
 							<div class="col-sm-4 col-lg-3 text-center">
 								<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
 									title="{{ $reviewable->name }}">
-									{!! $image->getHtml($reviewable->poster, 'w92') !!}
+									<img class="w92" src="{!! $image->getUrl($reviewable->poster, 'w92') !!}">
 								</a>
 								<div class="row text-xs-center center-block">
 									<a class="text-xs-center" href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}">

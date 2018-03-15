@@ -18,7 +18,7 @@
 					<figure class="figure center-block">
 						<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}" 
 							title="{{ $recommendation->name }}" style="">
-							{!! $image->getHtml($recommendation->poster, 'w92') !!}
+							<img class="w92 center-block" src="{!! $image->getUrl($recommendation->poster, 'w92') !!}">
 						</a>
 						<figcaption class="figure-caption text-center">
 							<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}">
@@ -84,7 +84,7 @@
 									<div class="col-sm-4 col-lg-3 text-center">
 										<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
 											title="{{ $reviewable->name }}">
-											{!! $image->getHtml($reviewable->poster, 'w92') !!}
+											<img class="w92" src="{!! $image->getUrl($reviewable->poster, 'w92') !!}">
 										</a>
 										<div class="row text-xs-center center-block">
 											<a class="text-xs-center" href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}">
