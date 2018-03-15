@@ -22,7 +22,8 @@
         "ramsey/uuid-doctrine": "^1.4",
         "sendgrid/sendgrid": "~5.0.9",
 		"zizaco/entrust": "dev-master",
-		"acoustep/entrust-gui": "@dev"
+		"appzcoder/laravel-admin": "dev-master",
+		"appzcoder/crud-generator": "@dev"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

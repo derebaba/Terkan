@@ -39,3 +39,11 @@ Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallba
 Route::get('/info/privacypolicy', function () {
 	return view('/info/privacypolicy');
 });
+
+// Check role in route middleware
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+	Route::get('/', ['uses' => 'AdminController@index']);
+	Route::resource('permissions', 'PermissionsController');
+	Route::resource('roles', 'RolesController');
+	Route::resource('users', 'UsersController');
+ });

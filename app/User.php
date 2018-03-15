@@ -12,9 +12,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+	use Notifiable, HasRoles;
 	use CanFollow, CanBeFollowed, CanLike;
-	use EntrustUserTrait;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -36,9 +35,5 @@ class User extends Authenticatable
 
 	public function reviews() {
 		return $this->hasMany('App\Review');
-	}
-
-	public function roles() {
-		return $this->belongsToMany(Role::class);
 	}
 }
