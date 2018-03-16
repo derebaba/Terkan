@@ -41,17 +41,19 @@ body {
 	color: grey;
 }
 .cookie-consent {
-	border-radius: 10px;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	width: 50%;
+	width: 100%;
 	background-color: green;
 	color: white;
 	text-align: center;
 	opacity: 0.8;
+	font-size: 13px;
 }
-
+#cookie-agree-button {
+	font-size: .75rem;
+}
 /* search */
 .poster {
 	margin: 10px;
