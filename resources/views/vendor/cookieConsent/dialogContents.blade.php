@@ -1,4 +1,4 @@
-<div class="js-cookie-consent cookie-consent">
+<div class="js-cookie-consent cookie-consent offset-3">
 
     <span class="cookie-consent__message">
         {!! trans('cookieConsent::texts.message') !!}
