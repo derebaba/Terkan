@@ -40,6 +40,18 @@ body {
 #footer a {
 	color: grey;
 }
+.cookie-consent {
+	border-radius: 10px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 50%;
+	background-color: green;
+	color: white;
+	text-align: center;
+	opacity: 0.8;
+}
+
 /* search */
 .poster {
 	margin: 10px;

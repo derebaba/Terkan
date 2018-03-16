@@ -131,6 +131,7 @@
 			
 		</div>
 
+		@include('cookieConsent::index')
 		<hr>
 		<div class="container">
 			<div id="footer">
