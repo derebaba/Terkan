@@ -47,6 +47,7 @@ class UsersController extends Controller
 			'stars' => $reviews->pluck('stars')
 		]);
 		
+		$user->pic = file_get_contents($user->pic);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
