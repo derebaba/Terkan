@@ -48,7 +48,6 @@ class UsersController extends Controller
 		]);
 		
 		$user->pic = file_get_contents($user->pic);
-		dd($user->pic);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
@@ -91,12 +90,15 @@ class UsersController extends Controller
 
 			$image = $request->file('pic');
 
-			$filename  = $user->id . time() . '.' . $image->getClientOriginalExtension();
+			$filename  = $user->id . '.' . $image->getClientOriginalExtension();
 
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . $filename);
 
 			Image::make($image->getRealPath())->resize(200, 200)->save($path);
-			$user->pic = $path;
+
+			Cloudder::upload($path, $user->id, [], ['upload']);
+			$user->pic = Cloudder::show($user->id);
+			unlink($path);
 			$user->save();
 		}
 
