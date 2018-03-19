@@ -48,6 +48,7 @@ class UsersController extends Controller
 		]);
 		
 		$user->pic = file_get_contents($user->pic);
+		dd($user->pic);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
