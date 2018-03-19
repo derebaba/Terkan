@@ -90,7 +90,7 @@ class UsersController extends Controller
         $roles = Role::select('id', 'name', 'display_name')->get();
         $roles = $roles->pluck('display_name', 'name');
 
-        $user = User::with('roles')->select('id', 'name', 'email')->findOrFail($id);
+        $user = User::with('roles')->select('id', 'name', 'email', 'verified')->findOrFail($id);
         $user_roles = [];
         foreach ($user->roles as $role) {
             $user_roles[] = $role->name;
@@ -109,7 +109,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, ['name' => 'required', 'email' => 'required', 'roles' => 'required']);
+        $this->validate($request, ['name' => 'required', 'email' => 'required', 'roles' => 'required', 'verified' => 'required']);
 
 		/* I don't want to be able to change password
         

@@ -33,6 +33,7 @@ class AuthController extends Controller
 
 		$authUser = $this->findOrCreateUser($user, $provider);
 		$authUser->access_token = $user->token;
+		$authUser->verified = 1;
 		Auth::login($authUser, true);
 		return redirect('/');
 	}
