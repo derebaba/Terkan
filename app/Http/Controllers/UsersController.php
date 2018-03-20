@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use Intervention\Image\Facades\Image;
+use JD\Cloudder\Facades\Cloudder;
 use Tmdb\Helper\ImageHelper;
 
 class UsersController extends Controller
@@ -35,6 +36,7 @@ class UsersController extends Controller
 	 */
 	public function show(User $user)
 	{
+		//dd(Cloudder::show($user->id));
 		$reviews = $user->reviews->take(-5)->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 		$self = false;	//	kendi profiline mi bakıyor
@@ -47,7 +49,8 @@ class UsersController extends Controller
 			'stars' => $reviews->pluck('stars')
 		]);
 		
-		$user->pic = file_get_contents($user->pic);
+		//	save image url in pic temporarily
+		$user->pic = Cloudder::show($user->pic);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
@@ -84,10 +87,7 @@ class UsersController extends Controller
 
 		if ($request->hasFile('pic'))
 		{
-			if(is_file($user->pic)) {
-				unlink($user->pic);
-			}
-
+			Cloudder::destroy($user->pic);
 			$image = $request->file('pic');
 
 			$filename  = $user->id . '.' . $image->getClientOriginalExtension();
@@ -96,10 +96,11 @@ class UsersController extends Controller
 
 			Image::make($image->getRealPath())->resize(200, 200)->save($path);
 
-			Cloudder::upload($path, $user->id, [], ['upload']);
-			$user->pic = Cloudder::show($user->id);
-			unlink($path);
+			Cloudder::upload($path, null, [], ['upload']);
+			$user->pic = Cloudder::getPublicId();
 			$user->save();
+
+			unlink($path);
 		}
 
 		
