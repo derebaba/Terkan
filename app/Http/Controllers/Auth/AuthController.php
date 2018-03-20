@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use JD\Cloudder\Facades\Cloudder;
+use File;
 use Socialite;
 
 class AuthController extends Controller
@@ -34,6 +36,16 @@ class AuthController extends Controller
 		$authUser = $this->findOrCreateUser($user, $provider);
 		$authUser->access_token = $user->token;
 		$authUser->verified = 1;
+
+		if (!$authUser->pic) {
+			$fileContents = file_get_contents($authUser->getAvatar());
+			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp.jpg');
+			File::put($path, $fileContents);
+			Cloudder::upload($path, null, [], ['facebook']);
+			$authUser->pic = Cloudder::getPublicId();
+
+			unlink($path);
+		}
 		$authUser->save();
 		Auth::login($authUser, true);
 		return redirect('/');
@@ -50,10 +62,6 @@ class AuthController extends Controller
 	{
 		$authUser = User::where('email', $user->email)->first();
 		if ($authUser) {
-			if(!is_file($authUser->pic)) {
-				$authUser->pic = $user->getAvatar();
-				$authUser->save();
-			}
 			return $authUser;
 		}
 	
@@ -61,8 +69,7 @@ class AuthController extends Controller
 			'name'     => $user->name,
 			'email'    => $user->email,
 			'provider' => $provider,
-			'provider_id' => $user->id,
-			'pic' => $user->getAvatar()
+			'provider_id' => $user->id
 		]);
 	}
 }

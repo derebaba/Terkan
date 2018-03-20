@@ -90,7 +90,7 @@ class UsersController extends Controller
 			Cloudder::destroy($user->pic);
 			$image = $request->file('pic');
 
-			$filename  = $user->id . '.' . $image->getClientOriginalExtension();
+			$filename  = 'temp.' . $image->getClientOriginalExtension();
 
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . $filename);
 
