@@ -10,9 +10,9 @@
 		<div class="col-md-3">
 			<div class="row text-center center-block">
 				@if ($user->pic != null)
-					<img src={{ $user->pic }} class="img-fluid img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
+					<img src={{ $user->pic }} class="img-fluid img-thumbnail rounded-circle" alt="profil-resmi" height="160px" width="160px">
 				@else
-					<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
+					<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" alt="profil-resmi" height="160px" width="160px">
 				@endif
 			</div>
 			<div class="row center-block">

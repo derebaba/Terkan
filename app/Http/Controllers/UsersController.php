@@ -49,8 +49,10 @@ class UsersController extends Controller
 		]);
 		
 		//	save image url in pic temporarily
-		if ($user->pic != null)
+		if ($user->pic != null) {
 			$user->pic = Cloudder::secureShow($user->pic);
+		}
+			
 		//dd([file_exists(trim($user->pic, '"')), trim($user->pic, '"'), $user->pic]);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,

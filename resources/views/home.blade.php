@@ -7,7 +7,7 @@
 @section('content')
 	@inject('image', 'Tmdb\Helper\ImageHelper')
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-3 d-none d-md-block">
 			<div class="card">
 				<div class="card-header text-center">
 					<h5 class="card-title font-italic" aria-hidden="true">
