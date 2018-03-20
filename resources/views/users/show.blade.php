@@ -12,7 +12,7 @@
 				@if ($user->pic != null)
 					<img src={{ $user->pic }} class="img-fluid img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
 				@else
-					<img src="http://via.placeholder.com/200x200" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
+					<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
 				@endif
 			</div>
 			<div class="row center-block">
