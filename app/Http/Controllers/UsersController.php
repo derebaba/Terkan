@@ -36,7 +36,6 @@ class UsersController extends Controller
 	 */
 	public function show(User $user)
 	{
-		//dd(Cloudder::show($user->id));
 		$reviews = $user->reviews->take(-5)->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 		$self = false;	//	kendi profiline mi bakıyor
@@ -50,7 +49,7 @@ class UsersController extends Controller
 		]);
 		
 		//	save image url in pic temporarily
-		$user->pic = Cloudder::show($user->pic);
+		$user->pic = Cloudder::secureShow($user->pic);
 		return view('users.show', ['user' => $user, 
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
