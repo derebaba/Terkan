@@ -18,9 +18,9 @@
 					<figure class="figure center-block">
 						<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}" 
 							title="{{ $recommendation->name }}" style="">
-							<img class="w92 center-block" src="{!! $image->getUrl($recommendation->poster, 'w92') !!}">
+							<img class="img-fluid w154 center-block" src="{!! $image->getUrl($recommendation->poster, 'w154') !!}">
 						</a>
-						<figcaption class="figure-caption text-center">
+						<figcaption class="figure-caption text-center center-block">
 							<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}">
 								{{ $recommendation->name }}
 							</a>
