@@ -157,6 +157,7 @@ return [
 		Tmdb\Laravel\TmdbServiceProvider::class,
 		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
+		'JD\Cloudder\CloudderServiceProvider',
 		/*
 			* Application Service Providers...
 			*/
@@ -216,6 +217,7 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 
 		//	packagelardan gelen classlar
+		'Cloudder' => 'JD\Cloudder\Facades\Cloudder',
 		'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,

@@ -9,8 +9,8 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="row text-center center-block">
-				@if (is_file($user->pic))
-					<img src="{{ $user->pic }}" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
+				@if ($user->pic)
+					<img src={{ $user->pic }} class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
 				@else
 					<img src="http://via.placeholder.com/200x200" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 200px; height: 200px;">
 				@endif
@@ -46,7 +46,7 @@
 						@foreach($reviewables as $reviewable)
 							<li class="list-group-item">
 								<div class="row">
-									<div class="col-sm-4 col-md-3 text-center">
+									<div class="col-sm-4 text-center">
 										<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
 											title="{{ $reviewable->name }}">
 											<img class="w92" src="{!! $image->getUrl($reviewable->poster, 'w92') !!}">
@@ -57,8 +57,8 @@
 											</a>
 										</div>
 									</div>
-									<div class="col-sm-8 col-md-9">
-										@php ($review = $reviews[$loop->index])
+									<div class="col-sm-8">
+										@php ($review = $reviews[$loop->index]) @endphp
 										@include('partials.review')
 									</div>
 								</div>
