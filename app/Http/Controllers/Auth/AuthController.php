@@ -37,7 +37,7 @@ class AuthController extends Controller
 		$authUser->access_token = $user->token;
 		$authUser->verified = 1;
 
-		if (!$authUser->pic) {
+		if ($authUser->pic == null) {
 			$fileContents = file_get_contents($authUser->getAvatar());
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
 			File::put($path, $fileContents);
