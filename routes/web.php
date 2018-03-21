@@ -80,6 +80,9 @@ Route::get('/info/privacypolicy', function () {
 // Check role in route middleware
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
 	Route::get('/', ['uses' => 'AdminController@index']);
+	Route::get('/generator', function () {
+		return view('vendor.laravel-admin.generator');
+	});
 	Route::resource('permissions', 'PermissionsController');
 	Route::resource('roles', 'RolesController');
 	Route::resource('users', 'UsersController', ['as' => 'admin']);

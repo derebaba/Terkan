@@ -18,6 +18,13 @@
 		{!! Form::select('roles[]', $roles, isset($user_roles) ? $user_roles : [], ['class' => 'form-control', 'multiple' => true]) !!}
 	</div>
 </div>
+<div class="form-group{{ $errors->has('pic') ? ' has-error' : ''}}">
+	{!! Form::label('pic', 'pic: ', ['class' => 'col-md-4 control-label']) !!}
+	<div class="col-md-6">
+			{!! Form::text('pic', null, ['class' => 'form-control']) !!}
+			{!! $errors->first('pic', '<p class="help-block">:message</p>') !!}
+	</div>
+</div>
 <div class="form-group{{ $errors->has('verified') ? ' has-error' : ''}}">
 	{!! Form::label('verified', 'Verified (0 or 1): ', ['class' => 'col-md-4 control-label']) !!}
 	<div class="col-md-6">

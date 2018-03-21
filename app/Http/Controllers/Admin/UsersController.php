@@ -90,7 +90,7 @@ class UsersController extends Controller
         $roles = Role::select('id', 'name', 'display_name')->get();
         $roles = $roles->pluck('display_name', 'name');
 
-        $user = User::with('roles')->select('id', 'name', 'email', 'verified')->findOrFail($id);
+        $user = User::with('roles')->select('id', 'name', 'email', 'pic', 'verified')->findOrFail($id);
         $user_roles = [];
         foreach ($user->roles as $role) {
             $user_roles[] = $role->name;
