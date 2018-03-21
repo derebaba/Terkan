@@ -51,7 +51,7 @@
 						<!-- Left Side Of Navbar -->
 						<ul class="navbar-nav mr-auto center-block">
 							<li class="nav-item center-block">
-								<form id="search-form" class="form-inline" method="get" action="/search">
+								<form id="search-form" class="form-inline" method="get" action="/search/movie">
 									<div class="input-group">
 										<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, etc..." 
 										size="30" required>

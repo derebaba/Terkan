@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // Authentication Routes...
 Route::get('login', [
 	'as' => 'login',
@@ -61,13 +62,16 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::resource('movies', 'MoviesController');
+Route::get('tvs/{id}', 'TvsController@show')->name('tvs.show');
+
 Route::resource('users', 'UsersController');
 Route::get('/users/{user}/followers', 'UsersController@followers');
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
-Route::get('/search', ['uses' => 'SearchController@search', 'as' => 'search']);
+
+//	Search
+Route::get('/search/movie', ['uses' => 'SearchController@searchMovies', 'as' => 'searchMovies']);
 Route::get('/browse/genre/{genre}/{page}', 'SearchController@browseByGenre')->name('browseByGenre');
-Route::get('tvs/{id}', 'TvsController@show')->name('tvs.show');
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
@@ -77,7 +81,7 @@ Route::get('/info/privacypolicy', function () {
 	return view('/info/privacypolicy');
 });
 
-// Check role in route middleware
+// Admin routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
 	Route::get('/', ['uses' => 'AdminController@index']);
 	Route::get('/generator', function () {

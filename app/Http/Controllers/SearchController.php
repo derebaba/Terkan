@@ -13,6 +13,7 @@ class SearchController extends Controller
 {
 	use Utils;
 
+	//	TODO: Reviewable classını komple kaldır (?)
 	/**
 	 * Undocumented function
 	 *
@@ -56,7 +57,7 @@ class SearchController extends Controller
 		$genres = Tmdb::getGenresApi()->getGenres();
 		$genres = collect($genres['genres']);
 		
-		return view('search', [
+		return view('browse', [
 			'reviewables' => $reviewables, 
 			'query' => $query['name'],
 			'genre_id' => $genre_id,
@@ -66,7 +67,7 @@ class SearchController extends Controller
 		]);
 	}
 
-	public function search(Request $request) {
+	public function oldsearch(Request $request) {
 		
 		$query =  $request->q;
 		$page = $request->page;
@@ -89,6 +90,30 @@ class SearchController extends Controller
 			'genres' =>	$genres,
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response
+		]);
+	}
+
+	public function searchMovies(Request $request) {
+		$query =  $request->q;
+		$page = $request->page;
+
+		$response = Tmdb::getSearchApi()->searchMovies($query, [
+			'page' => $page,
+		]);
+
+		$results = $response['results'];
+		foreach ($results as &$result)
+			$result['media_type'] = 'movie';
+
+		$reviewables = $this->getReviewablesFromResults($results);
+		JavaScript::put([
+			'stars' => $reviewables->pluck('vote_average')
+		]);
+
+		return view('search.movie', [
+			'query' => $query,
+			'response' => $response,
+			'results' => $results,
 		]);
 	}
 }
