@@ -21,8 +21,8 @@ return [
 
     'scaling'    => [
         'format' => 'jpg',
-        'width'  => 160,
-        'height' => 160,
+        'width'  => 200,
+        'height' => 200,
         'crop'   => 'fit',
         'effect' => null
     ],

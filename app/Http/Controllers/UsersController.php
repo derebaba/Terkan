@@ -97,7 +97,7 @@ class UsersController extends Controller
 
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . $filename);
 
-			Image::make($image->getRealPath())->resize(200, 200)->save($path);
+			Image::make($image->getRealPath())->save($path);
 
 			Cloudder::upload($path, null, [], ['upload']);
 			$user->pic = Cloudder::getPublicId();
