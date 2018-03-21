@@ -32,7 +32,7 @@ class AuthController extends Controller
 	public function handleProviderCallback($provider)
 	{
 		$user = Socialite::driver($provider)->user();
-
+		dd($user->getAvatar());
 		$authUser = $this->findOrCreateUser($user, $provider);
 		$authUser->access_token = $user->token;
 		$authUser->verified = 1;
