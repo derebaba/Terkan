@@ -38,7 +38,7 @@ class AuthController extends Controller
 		$authUser->verified = 1;
 
 		if ($authUser->pic == null) {
-			$fileContents = file_get_contents($authUser->getAvatar());
+			$fileContents = file_get_contents($user->getAvatar());
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
 			File::put($path, $fileContents);
 			Cloudder::upload($path, null, [], ['facebook']);
