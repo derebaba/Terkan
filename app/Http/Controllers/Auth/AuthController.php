@@ -32,13 +32,13 @@ class AuthController extends Controller
 	public function handleProviderCallback($provider)
 	{
 		$user = Socialite::driver($provider)->user();
-		dd($user->getAvatar());
+
 		$authUser = $this->findOrCreateUser($user, $provider);
 		$authUser->access_token = $user->token;
 		$authUser->verified = 1;
 
 		if ($authUser->pic == null) {
-			$fileContents = file_get_contents($user->getAvatar());
+			$fileContents = file_get_contents($user->avatar_original);
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
 			File::put($path, $fileContents);
 			Cloudder::upload($path, null, [], ['facebook']);
