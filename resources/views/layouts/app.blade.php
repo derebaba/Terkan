@@ -53,12 +53,12 @@
 							<li class="nav-item center-block">
 								<form id="search-form" class="form-inline" method="get" action="/search/movie">
 									<div class="input-group">
-										@if ($query != null)
+										@if (!empty($query))
 											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, etc..." 
 											size="30" required value="{{$query}}">
 										@else
 											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, etc..." 
-											size="30" required value="{{$query}}">
+											size="30" required>
 										@endif
 										<input type="hidden" name="page" value="1">
 										<span class="input-group-btn">
