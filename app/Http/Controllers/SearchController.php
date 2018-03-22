@@ -68,32 +68,6 @@ class SearchController extends Controller
 		]);
 	}
 
-	public function oldsearch(Request $request) {
-		
-		$query =  $request->q;
-		$page = $request->page;
-		//dd($query);
-		$response = Tmdb::getSearchApi()->searchMulti($query);
-		$results = $response['results'];
-		$reviewables = $this->getReviewablesFromResults($results);
-
-		JavaScript::put([
-			'stars' => $reviewables->pluck('vote_average')
-		]);
-		
-		$genres = Tmdb::getGenresApi()->getGenres();
-		$genres = collect($genres['genres']);
-		
-		return view('search', [
-			'reviewables' => $reviewables, 
-			'query' => $query, 
-			'genre_id' => -1,
-			'genres' =>	$genres,
-			'max_pages' => min(5, $response['total_pages']),
-			'response' => $response
-		]);
-	}
-
 	public function searchMovies(Request $request) {
 		$query =  $request->q;
 		$page = $request->page;
@@ -103,6 +77,8 @@ class SearchController extends Controller
 		]);
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
+
+		$peopleResults = User::search($query)->get();
 
 		$results = $response['results'];
 		foreach ($results as &$result) {
@@ -117,6 +93,7 @@ class SearchController extends Controller
 
 		return view('search.movie', [
 			'query' => $query,
+			'peopleResults' => $peopleResults,
 			'response' => $response,
 			'results' => $results,
 			'tvResponse' => $tvResponse
@@ -126,12 +103,12 @@ class SearchController extends Controller
 	public function searchPeople(Request $request) {
 		$query =  $request->q;
 		$page = $request->page;
-
+		
 		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$results = User::where('name', 'LIKE', $query)->get();
+		$results = User::search($query)->get();
 
 		return view('search.people', [
 			'query' => $query,
@@ -151,6 +128,8 @@ class SearchController extends Controller
 			'page' => $page,
 		]);
 
+		$peopleResults = User::search($query)->get();
+
 		$results = $response['results'];
 		foreach ($results as &$result) {
 			$reviews = Review::where('reviewable_type', 'tv')->where('reviewable_id', $result['id']);
@@ -165,6 +144,7 @@ class SearchController extends Controller
 		return view('search.tv', [
 			'movieResponse' => $movieResponse,
 			'query' => $query,
+			'peopleResults' => $peopleResults,
 			'response' => $response,
 			'results' => $results,
 		]);
