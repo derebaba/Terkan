@@ -8,13 +8,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
+use Sofa\Eloquence\Eloquence;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
 	use Notifiable, HasRoles;
 	use CanFollow, CanBeFollowed, CanLike;
+	use Eloquence;
 
+	// no need for this, but you can define default searchable columns:
+	protected $searchableColumns = ['name', 'email'];
+	
 	/**
 	 * The attributes that are mass assignable.
 	 *

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\User;
 use App\Traits\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,7 @@ class SearchController extends Controller
 {
 	use Utils;
 
+	//	TODO: Reviewable classını komple kaldır (?)
 	/**
 	 * Undocumented function
 	 *
@@ -56,7 +58,7 @@ class SearchController extends Controller
 		$genres = Tmdb::getGenresApi()->getGenres();
 		$genres = collect($genres['genres']);
 		
-		return view('search', [
+		return view('browse', [
 			'reviewables' => $reviewables, 
 			'query' => $query['name'],
 			'genre_id' => $genre_id,
@@ -66,29 +68,85 @@ class SearchController extends Controller
 		]);
 	}
 
-	public function search(Request $request) {
-		
+	public function searchMovies(Request $request) {
 		$query =  $request->q;
 		$page = $request->page;
-		//dd($query);
-		$response = Tmdb::getSearchApi()->searchMulti($query);
+
+		$response = Tmdb::getSearchApi()->searchMovies($query, [
+			'page' => $page,
+		]);
+
+		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
+
+		$peopleResults = User::search($query)->get();
+
 		$results = $response['results'];
-		$reviewables = $this->getReviewablesFromResults($results);
+		foreach ($results as &$result) {
+			$reviews = Review::where('reviewable_type', 'movie')->where('reviewable_id', $result['id']);
+			$result['vote_count'] = $reviews->count();
+			$result['vote_average'] = $reviews->avg('stars');
+		}
 
 		JavaScript::put([
-			'stars' => $reviewables->pluck('vote_average')
+			'stars' => array_column($results, 'vote_average')
 		]);
+
+		return view('search.movie', [
+			'query' => $query,
+			'peopleResults' => $peopleResults,
+			'response' => $response,
+			'results' => $results,
+			'tvResponse' => $tvResponse
+		]);
+	}
+
+	public function searchPeople(Request $request) {
+		$query =  $request->q;
+		$page = $request->page;
 		
-		$genres = Tmdb::getGenresApi()->getGenres();
-		$genres = collect($genres['genres']);
-		
-		return view('search', [
-			'reviewables' => $reviewables, 
-			'query' => $query, 
-			'genre_id' => -1,
-			'genres' =>	$genres,
-			'max_pages' => min(5, $response['total_pages']),
-			'response' => $response
+		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
+
+		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
+
+		$results = User::search($query)->get();
+
+		return view('search.people', [
+			'query' => $query,
+			'movieResponse' => $movieResponse,
+			'results' => $results,
+			'tvResponse' => $tvResponse
+		]);
+	}
+
+	public function searchTv(Request $request) {
+		$query =  $request->q;
+		$page = $request->page;
+
+		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
+
+		$response = Tmdb::getSearchApi()->searchTv($query, [
+			'page' => $page,
+		]);
+
+		$peopleResults = User::search($query)->get();
+
+		$results = $response['results'];
+		foreach ($results as &$result) {
+			$reviews = Review::where('reviewable_type', 'tv')->where('reviewable_id', $result['id']);
+			$result['vote_count'] = $reviews->count();
+			$result['vote_average'] = $reviews->avg('stars');
+		}
+
+		JavaScript::put([
+			'stars' => array_column($results, 'vote_average')
+		]);
+
+		return view('search.tv', [
+			'movieResponse' => $movieResponse,
+			'query' => $query,
+			'peopleResults' => $peopleResults,
+			'response' => $response,
+			'results' => $results,
 		]);
 	}
 }
