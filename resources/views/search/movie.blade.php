@@ -83,6 +83,8 @@
 					class="list-group-item list-group-item-action active">Movies ({{$response['total_results']}})</a>
 				<a href="{{ route('search.tv', ['page' => $response['page'], 'q' => $query]) }}"
 					class="list-group-item list-group-item-action">Tv ({{$tvResponse['total_results']}})</a>
+				<a href="{{ route('search.people', ['page' => $response['page'], 'q' => $query]) }}"
+					class="list-group-item list-group-item-action">People ()</a>
 			</div>
 		</div>
 	</div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\User;
 use App\Traits\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -117,6 +118,24 @@ class SearchController extends Controller
 		return view('search.movie', [
 			'query' => $query,
 			'response' => $response,
+			'results' => $results,
+			'tvResponse' => $tvResponse
+		]);
+	}
+
+	public function searchPeople(Request $request) {
+		$query =  $request->q;
+		$page = $request->page;
+
+		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
+
+		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
+
+		$results = User::where('name', 'LIKE', $query)->get();
+
+		return view('search.people', [
+			'query' => $query,
+			'movieResponse' => $movieResponse,
 			'results' => $results,
 			'tvResponse' => $tvResponse
 		]);

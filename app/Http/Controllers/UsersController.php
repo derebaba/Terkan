@@ -47,11 +47,6 @@ class UsersController extends Controller
 		JavaScript::put([
 			'stars' => $reviews->pluck('stars')
 		]);
-		
-		//	save image url in pic temporarily
-		if ($user->pic != null) {
-			$user->pic = Cloudder::secureShow($user->pic);
-		}
 			
 		//dd([file_exists(trim($user->pic, '"')), trim($user->pic, '"'), $user->pic]);
 		return view('users.show', ['user' => $user, 

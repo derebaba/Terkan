@@ -7,7 +7,7 @@
 		<div class="col-md-9">
 			<div class="card">
 				<div class="card-header font-weight-bold">
-					Search movies: {{$query}} ({{ $response['total_results'] }} results)
+					Search TV: {{$query}} ({{ $response['total_results'] }} results)
 				</div>
 			</div>
 
@@ -83,6 +83,8 @@
 					class="list-group-item list-group-item-action">Movies ({{$movieResponse['total_results']}})</a>
 				<a href="{{ route('search.tv', ['page' => $response['page'], 'q' => $query]) }}"
 					class="list-group-item list-group-item-action active">Tv ({{$response['total_results']}})</a>
+				<a href="{{ route('search.people', ['page' => $response['page'], 'q' => $query]) }}"
+					class="list-group-item list-group-item-action">People ()</a>
 			</div>
 		</div>
 	</div>
