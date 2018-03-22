@@ -70,7 +70,8 @@ Route::get('/users/{user}/followers', 'UsersController@followers');
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 //	Search
-Route::get('/search/movie', ['uses' => 'SearchController@searchMovies', 'as' => 'searchMovies']);
+Route::get('/search/movie', ['uses' => 'SearchController@searchMovies', 'as' => 'search.movie']);
+Route::get('/search/tv', ['uses' => 'SearchController@searchTv', 'as' => 'search.tv']);
 Route::get('/browse/genre/{genre}/{page}', 'SearchController@browseByGenre')->name('browseByGenre');
 
 // OAuth Routes

@@ -17,14 +17,14 @@
 						<div class="row">
 							<div class="col-sm-4 col-lg-3 text-center">
 								<a href="{{ route('movies.show', $result['id']) }}" 
-									title="{{ $result['original_title'] }}">
+									title="{{ $result['original_name'] }}">
 									<img class="w154" src="{!! $image->getUrl($result['poster_path'], 'w154') !!}">
 								</a>
 							</div>
 							<div class="col-sm-8 col-lg-9">
 								<h5>
-									{{ $loop->index + 1 }}. {{ $result['original_title'] }}
-									<small>({{$result['release_date']}})</small>
+									{{ $loop->index + 1 }}. {{ $result['original_name'] }} 
+									<small>(First aired on: {{$result['first_air_date']}})</small>
 								</h5>
 								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
 									<option value=""></option>
@@ -80,9 +80,9 @@
 		<div class="col-md-3">
 			<div class="list-group">
 				<a href="{{ route('search.movie', ['page' => $response['page'], 'q' => $query]) }}"
-					class="list-group-item list-group-item-action active">Movies ({{$response['total_results']}})</a>
+					class="list-group-item list-group-item-action">Movies ({{$movieResponse['total_results']}})</a>
 				<a href="{{ route('search.tv', ['page' => $response['page'], 'q' => $query]) }}"
-					class="list-group-item list-group-item-action">Tv ({{$tvResponse['total_results']}})</a>
+					class="list-group-item list-group-item-action active">Tv ({{$response['total_results']}})</a>
 			</div>
 		</div>
 	</div>
