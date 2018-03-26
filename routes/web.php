@@ -62,8 +62,11 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::resource('movies', 'MoviesController');
+
+//	TV
 Route::get('tvs/{id}', 'TvsController@show')->name('tvs.show');
 
+//	Users
 Route::resource('users', 'UsersController');
 Route::get('/users/{user}/followers', 'UsersController@followers');
 

@@ -12,6 +12,11 @@
 			</div>
 
 			<ul class="list-group">
+				@if ($results->isEmpty())
+					<li class="list-group-item">
+						Nobody found.
+					</li>
+				@endif
 				@foreach($results as $result)
 					<li class="list-group-item">
 						<div class="row">

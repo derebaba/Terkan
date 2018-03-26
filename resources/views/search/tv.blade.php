@@ -12,6 +12,11 @@
 			</div>
 
 			<ul class="list-group">
+				@if (empty($results))
+					<li class="list-group-item">
+						No TV shows found.
+					</li>
+				@endif
 				@foreach($results as $result)
 					<li class="list-group-item">
 						<div class="row">
