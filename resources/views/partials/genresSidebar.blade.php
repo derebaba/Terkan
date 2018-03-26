@@ -1,5 +1,5 @@
 <ul class="list-group">
-	<li class="list-group-item" id="genres-title"> Browse by genre</li>
+	<li class="list-group-item list-group-header"> Browse by genre</li>
 	@for ($i = 0; $i < 19; $i++)
 		
 		@if ($genre_id == $genres[$i]['id'])

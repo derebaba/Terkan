@@ -21,7 +21,7 @@
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-sm-4 col-lg-3 text-center">
-								<a href="{{ route('movies.show', $result['id']) }}" 
+								<a href="{{ route('tvs.show', $result['id']) }}" 
 									title="{{ $result['original_name'] }}">
 									<img class="w154" src="{!! $image->getUrl($result['poster_path'], 'w154') !!}">
 								</a>

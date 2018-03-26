@@ -33,4 +33,21 @@ class TvsController extends Controller
 		
 		return view('tvs.show', ['tv' => $tv, 'reviews' => $reviews, 'userReview' => $userReview]);
 	}
+
+	public function getSeason($id, $season_number) {
+		$tv = Tmdb::getTvApi()->getTvshow($id);
+		$season = Tmdb::getTvSeasonApi()->getSeason($id, $season_number);
+		$episodes = $season['episodes'];
+
+		/*
+		JavaScript::put([
+			'stars' => array_column($episodes, 'vote_average')
+		]);
+*/
+		return view('tvs.season', [
+			'episodes' => $episodes,
+			'season' => $season,
+			'tv' => $tv
+		]);
+	}
 }

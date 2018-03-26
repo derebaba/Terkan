@@ -19,13 +19,13 @@
 	margin-right: auto;
 }
 
-.jumbotron, .card-header, #genres-title {
+.jumbotron, .card-header, .list-group-header {
 	background-color: #E56612 ; color:white; 
 }
 
-/* users.followers */
-.jumbotron a, .card-header a, #genres-title a { color: lightgreen; }
-
+/* users.followers 
+.jumbotron a, .card-header a, .list-group-header a { color: lightgreen; }
+*/
 /* layouts.app */
 body { 
 	background-color: darkgray !important; 
