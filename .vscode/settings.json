@@ -8,6 +8,8 @@
 	"editor.minimap.enabled": false,
 	"editor.detectIndentation": false,
 	"editor.scrollBeyondLastLine": false,
+	"editor.wordWrap": "on",
+	"php.suggest.basic": false,
 	"highlight-matching-tag.leftStyle": {
 		"borderWidth": "0 0 1px 0",
 		"borderStyle": "groove",
