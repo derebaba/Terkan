@@ -65,7 +65,7 @@ Route::resource('movies', 'MoviesController');
 
 //	TV
 Route::get('tvs/{id}', 'TvsController@show')->name('tvs.show');
-Route::get('tvs/{id}/season/{season_number}', 'TvsController@getSeason')->name('tvs.season');
+Route::get('tvs/{id}/season/{season_number?}', 'TvsController@getSeason')->name('tvs.season');
 
 //	Users
 Route::resource('users', 'UsersController');

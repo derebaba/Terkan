@@ -28,7 +28,9 @@
 							</div>
 							<div class="col-sm-8 col-lg-9">
 								<h5>
-									{{ $loop->index + 1 }}. {{ $result['original_name'] }} 
+										<a href="{{ route('tvs.show', $result['id']) }}">
+											{{ $loop->index + 1 }}. {{ $result['original_name'] }} 
+										</a>
 									<small>(First aired on: {{$result['first_air_date']}})</small>
 								</h5>
 								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">

@@ -34,7 +34,7 @@ class TvsController extends Controller
 		return view('tvs.show', ['tv' => $tv, 'reviews' => $reviews, 'userReview' => $userReview]);
 	}
 
-	public function getSeason($id, $season_number) {
+	public function getSeason($id, $season_number = 1) {
 		$tv = Tmdb::getTvApi()->getTvshow($id);
 		$season = Tmdb::getTvSeasonApi()->getSeason($id, $season_number);
 		$episodes = $season['episodes'];

@@ -8,6 +8,9 @@
 			<div class="col-sm-7 col-lg-9">
 				<h1>{{ $tv['original_name'] }}</h1>
 				<p>{{ $tv['overview'] }}</p>
+				<a href="{{ route('tvs.season', ['id' => $tv['id']]) }}" role="button" class="btn btn-light">
+					Episode list
+				</a>
 			</div>
 			<div class="col-sm-5 col-lg-3">
 				<div class="float-right">
