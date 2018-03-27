@@ -72,7 +72,7 @@ class SearchController extends Controller
 		$query =  $request->q;
 		$page = $request->page;
 
-		$response = Tmdb::getSearchApi()->searchMovies($query, [
+		$movieResponse = Tmdb::getSearchApi()->searchMovies($query, [
 			'page' => $page,
 		]);
 
@@ -80,7 +80,7 @@ class SearchController extends Controller
 
 		$peopleResults = User::search($query)->get();
 
-		$results = $response['results'];
+		$results = $movieResponse['results'];
 		foreach ($results as &$result) {
 			$reviews = Review::where('reviewable_type', 'movie')->where('reviewable_id', $result['id']);
 			$result['vote_count'] = $reviews->count();
@@ -94,7 +94,7 @@ class SearchController extends Controller
 		return view('search.movie', [
 			'query' => $query,
 			'peopleResults' => $peopleResults,
-			'response' => $response,
+			'movieResponse' => $movieResponse,
 			'results' => $results,
 			'tvResponse' => $tvResponse
 		]);
@@ -108,12 +108,12 @@ class SearchController extends Controller
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$results = User::search($query)->get();
+		$peopleResults = User::search($query)->get();
 
 		return view('search.people', [
 			'query' => $query,
 			'movieResponse' => $movieResponse,
-			'results' => $results,
+			'peopleResults' => $peopleResults,
 			'tvResponse' => $tvResponse
 		]);
 	}
@@ -124,13 +124,13 @@ class SearchController extends Controller
 
 		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
 
-		$response = Tmdb::getSearchApi()->searchTv($query, [
+		$tvResponse = Tmdb::getSearchApi()->searchTv($query, [
 			'page' => $page,
 		]);
 
 		$peopleResults = User::search($query)->get();
 
-		$results = $response['results'];
+		$results = $tvResponse['results'];
 		foreach ($results as &$result) {
 			$reviews = Review::where('reviewable_type', 'tv')->where('reviewable_id', $result['id']);
 			$result['vote_count'] = $reviews->count();
@@ -145,7 +145,7 @@ class SearchController extends Controller
 			'movieResponse' => $movieResponse,
 			'query' => $query,
 			'peopleResults' => $peopleResults,
-			'response' => $response,
+			'tvResponse' => $tvResponse,
 			'results' => $results,
 		]);
 	}

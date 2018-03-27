@@ -4,6 +4,7 @@
 	},
 	"editor.tabSize": 4,
 	"git.enableSmartCommit": true,
+	"editor.formatOnPaste": true,
 	"editor.insertSpaces": false,
 	"editor.minimap.enabled": false,
 	"editor.detectIndentation": false,

@@ -113,6 +113,21 @@ img.w154 {
 	/* height: 231px; */
 	width: 154px;
 }
+
+/*	search.* */
+#navbar-list {
+    display:table;
+    width:100%;
+    margin: 0;
+}
+#navbar-list > li {
+    float:none;
+    display:table-cell;
+    text-align:center;
+}
+#search-navbar {
+	width: 100%;
+}
 /*
 #terkan-promotion {
 	background-image: url('/images/a.jpg');
