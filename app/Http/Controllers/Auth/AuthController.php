@@ -34,8 +34,6 @@ class AuthController extends Controller
 		$user = Socialite::driver($provider)->user();
 		
 		$authUser = $this->findOrCreateUser($user, $provider);
-		$authUser->access_token = $user->token;
-		$authUser->verified = 1;
 
 		if ($authUser->pic == null) {
 			$fileContents = file_get_contents($user->avatar_original);
@@ -46,7 +44,7 @@ class AuthController extends Controller
 
 			unlink($path);
 		}
-		$authUser->save();
+
 		Auth::login($authUser, true);
 		return redirect('/');
 	}
@@ -64,12 +62,23 @@ class AuthController extends Controller
 		if ($authUser) {
 			return $authUser;
 		}
-	
+
+		$fileContents = file_get_contents($user->avatar_original);
+		$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
+		File::put($path, $fileContents);
+		Cloudder::upload($path, null, [], ['facebook']);
+		$pic = Cloudder::getPublicId();
+
+		unlink($path);
+
 		return User::create([
 			'name'     => $user->name,
 			'email'    => $user->email,
 			'provider' => $provider,
-			'provider_id' => $user->id
+			'provider_id' => $user->id,
+			'access_token' => $user->token,
+			'verified' => 1,
+			'pic' => $pic
 		]);
 	}
 }
