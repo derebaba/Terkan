@@ -35,6 +35,7 @@ class AuthController extends Controller
 		
 		$authUser = $this->findOrCreateUser($user, $provider);
 
+		$authUser->update(['access_token' => $user->token]);
 		if ($authUser->pic == null) {
 			$fileContents = file_get_contents($user->avatar_original);
 			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
@@ -76,7 +77,6 @@ class AuthController extends Controller
 			'email'    => $user->email,
 			'provider' => $provider,
 			'provider_id' => $user->id,
-			'access_token' => $user->token,
 			'verified' => 1,
 			'pic' => $pic
 		]);
