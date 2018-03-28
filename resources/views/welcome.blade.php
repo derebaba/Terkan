@@ -17,7 +17,7 @@
 					<ul>
 						<li>Rate movies</li>
 						<li>Share your reviews</li>
-						<li>Suggest movies to your friends <i>(Coming soon!)</i></li>
+						<li>Follow your friends</li>
 					</ul>
 				</div>
 			</div>

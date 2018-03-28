@@ -74,7 +74,9 @@
 		<div class="col-md-3 sidebar-offcanvas">
 			<div class="list-group">
 				<a href="{{$user->id}}/followers" class="list-group-item list-group-item-action "><i class="fas fa-users fa-fw"></i> Followers</a>
-				<a href="#" class="list-group-item list-group-item-action "><i class="fas fa-film fa-fw"></i> Tüm izlenenler</a>
+				<a href="#" class="list-group-item list-group-item-action disabled">
+					<i class="fas fa-film fa-fw"></i> Watchlist (coming soon)
+				</a>
 				@if (Auth::check() && $self)
 					<a class="list-group-item list-group-item-action" href="{{ route('users.edit',[$user->id]) }}">
 						<i class="fas fa-pencil-alt fa-fw"></i> Edit profile
