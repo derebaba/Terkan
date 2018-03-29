@@ -8,6 +8,18 @@
 	  "APP_LOG": {
 		"required": true
 	  },
+	  "CLOUDINARY_API_KEY": {
+		"required": true
+		},
+		"CLOUDINARY_API_SECRET": {
+			"required": true
+		},
+		"CLOUDINARY_CLOUD_NAME": {
+			"required": true
+		},
+		"CLOUDINARY_URL": {
+			"required": true
+		},
 	  "DB_DATABASE": {
 		"required": true
 	  },
@@ -61,7 +73,8 @@
 	},
 	"addons": [
 	  "mailgun",
-	  "heroku-postgresql"
+	  "heroku-postgresql",
+	  "cloudinary"
 	],
 	"buildpacks": [
 	  {
