@@ -29,7 +29,7 @@
 							<td>
 								<a href="{{ route('movies.show', $movie['id']) }}" 
 									title="{{ $movie['original_title'] }}">
-									<img class="w154" src="{!! $image->getUrl($movie['poster_path'], 'w154') !!}">
+									<img class="img-fluid w154" src="{!! $image->getUrl($movie['poster_path'], 'w154') !!}">
 								</a>
 							</td>
 							<td>
@@ -68,7 +68,7 @@
 							<td>
 								<a href="{{ route('tvs.show', $tv['id']) }}" 
 									title="{{ $tv['original_name'] }}">
-									<img class="w154" src="{!! $image->getUrl($tv['poster_path'], 'w154') !!}">
+									<img class="img-fluid w154" src="{!! $image->getUrl($tv['poster_path'], 'w154') !!}">
 								</a>
 							</td>
 							<td>
