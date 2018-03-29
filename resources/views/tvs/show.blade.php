@@ -13,7 +13,7 @@
 						<form method="POST" action="/addToWatchlist" class="review-form" style="">
 							@method('put')
 							{{ csrf_field() }}
-							<button type="submit" class="btn btn-dark btn-sm review-button" title="Watchlist"> 
+							<button type="submit" class="btn btn-dark review-button" title="Watchlist"> 
 								<i class="far fa-square"></i> Add to watchlist
 							</button>
 							<input type="hidden" name="reviewable_id" value="{{ $tv['id'] }}">
@@ -24,7 +24,7 @@
 						<form method="POST" action="/removeFromWatchlist" class="review-form" style="">
 							@method('put')
 							{{ csrf_field() }}
-							<button type="submit" class="btn btn-light btn-sm review-button" title="Unwatchlist"> 
+							<button type="submit" class="btn btn-light review-button" title="Unwatchlist"> 
 								<i class="far fa-check-square"></i> Remove from watchlist
 							</button>
 							<input type="hidden" name="reviewable_id" value="{{ $tv['id'] }}">

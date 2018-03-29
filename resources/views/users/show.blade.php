@@ -74,7 +74,7 @@
 		<div class="col-md-3 sidebar-offcanvas">
 			<div class="list-group">
 				<a href="{{$user->id}}/followers" class="list-group-item list-group-item-action "><i class="fas fa-users fa-fw"></i> Followers</a>
-				<a href="{{ route(users.watchlist, $user) }}" class="list-group-item list-group-item-action">
+				<a href="{{ route('users.watchlist', $user) }}" class="list-group-item list-group-item-action">
 					<i class="fas fa-film fa-fw"></i> Watchlist (coming soon)
 				</a>
 				@if (Auth::check() && $self)
