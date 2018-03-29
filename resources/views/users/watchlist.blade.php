@@ -39,7 +39,7 @@
 							</td>
 							<td>
 								@foreach($movie['genres'] as $genre)
-									{{ $genre['name'] }}
+									{{ $genre['name'] }},
 								@endforeach
 							</td>
 						</tr>
