@@ -18,7 +18,7 @@
 							</button>
 							<input type="hidden" name="reviewable_id" value="{{ $tv['id'] }}">
 							<input type="hidden" name="reviewable_type" value="tv">
-							<input type="hidden" name="name" value="{{ $movie['original_name'] }}">
+							<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
 						</form>
 					@else
 						<form method="POST" action="/removeFromWatchlist" class="review-form" style="">

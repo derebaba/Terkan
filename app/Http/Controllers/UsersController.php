@@ -13,6 +13,7 @@ use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use Intervention\Image\Facades\Image;
 use JD\Cloudder\Facades\Cloudder;
 use Tmdb\Helper\ImageHelper;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class UsersController extends Controller
 {
@@ -182,11 +183,11 @@ class UsersController extends Controller
 		$movies = [];
 		$tvs = [];
 		foreach ($watchlist as $item) {
-			if ($item['reviewable_type'] === 'movie') {
-				array_push($movies, Tmdb::getMoviesApi()->getMovie($item['reviewable_id']));
+			if ($item->reviewable_type === 'movie') {
+				array_push($movies, Tmdb::getMoviesApi()->getMovie($item->reviewable_id));
 			}
 			else {
-				array_push($tvs, Tmdb::getTvApi()->getTvshow($item['reviewable_id']));
+				array_push($tvs, Tmdb::getTvApi()->getTvshow($item->reviewable_id));
 			}
 		}
 		return view('users.watchlist', [
