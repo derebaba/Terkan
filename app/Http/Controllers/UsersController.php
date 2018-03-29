@@ -50,7 +50,9 @@ class UsersController extends Controller
 		]);
 			
 		//dd([file_exists(trim($user->pic, '"')), trim($user->pic, '"'), $user->pic]);
-		return view('users.show', ['user' => $user, 
+		return view('users.show', [
+			'user' => $user, 
+			'page_title' => $user->name,
 			'reviewables' => $reviewables,
 			'reviews' => $reviews, 
 			'self' => $self

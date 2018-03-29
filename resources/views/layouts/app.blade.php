@@ -8,7 +8,7 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title>{{ config('app.name', 'Terkan') }}</title>
+		<title>{{ isset($page_title) ? $page_title . ' - ' : '' }}{{ config('app.name', 'Terkan') }}</title>
 
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="/favicon.ico" type="image/x-icon">
