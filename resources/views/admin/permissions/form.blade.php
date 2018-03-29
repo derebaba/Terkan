@@ -5,11 +5,11 @@
         {!! $errors->first('name', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-<div class="form-group{{ $errors->has('label') ? ' has-error' : ''}}">
-    {!! Form::label('label', 'Label: ', ['class' => 'col-md-4 control-label']) !!}
+<div class="form-group">
+    {!! Form::label('display_name', 'Display name: ', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('label', null, ['class' => 'form-control']) !!}
-        {!! $errors->first('label', '<p class="help-block">:message</p>') !!}
+        {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
+        {!! $errors->first('display_name', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 <div class="form-group">

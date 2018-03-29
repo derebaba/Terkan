@@ -31,12 +31,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>ID.</th> <th>Name</th><th>Label</th>
+                                        <th>ID.</th> <th>Name</th><th>Description</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{ $permission->id }}</td> <td> {{ $permission->name }} </td><td> {{ $permission->label }} </td>
+                                        <td>{{ $permission->id }}</td> <td> {{ $permission->name }} </td>
+																				<td> {{ $permission->display_name }} </td>
                                     </tr>
                                 </tbody>
                             </table>
