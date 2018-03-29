@@ -94,7 +94,7 @@
 									<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
 										<i class="far fa-user"></i> {{ Auth::user()->name }}
 									</a>
-									<div class="dropdown-menu" aria-labelled-by="dropdown-corner">
+									<div class="dropdown-menu" aria-labelled-by="dropdown-corner" style="right:0; left:auto;">
 										@role('admin')
 										<a href="/admin" class="dropdown-item">
 											<i class="fas fa-cogs"></i>
