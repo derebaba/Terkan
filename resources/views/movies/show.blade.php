@@ -77,7 +77,7 @@
 							</div>
 
 							<div class="form-group row">
-								<label for="star-rating" class="col-1 offset-1">Stars: </label>
+								<label for="star-rating" class="col-2 col-lg-1 offset-1">Stars: </label>
 								<select id="star-rating" class="col-2" name="stars" autocomplete="off">
 									<option value=""></option>
                   <option value="1">1</option>
@@ -86,7 +86,7 @@
                   <option value="4">4</option>
                   <option value="5">5</option>
                 </select>
-								<button type="submit" class="btn btn-primary offset-1 col-1 align-self-end">Submit</button>
+								<button type="submit" class="btn btn-primary offset-1 align-self-end">Submit</button>
 							</div>
 
 							<input type="hidden" name="reviewable_id" value="{{ $movie['id'] }}">
