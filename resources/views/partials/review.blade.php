@@ -36,7 +36,6 @@
 	@if (Auth::check())
 		<form method="GET" action="/reviews/{{$review->id}}/like" class="review-form" style="">
 			{{ csrf_field() }}
-			<input type="hidden" name="liker_id" value="{{ Auth()->user()->id }}">
 			@if (!Auth::user()->hasLiked($review))
 				<button type="submit" class="btn btn-success btn-sm review-button" title="Approve"> 
 					<i class="far fa-thumbs-up"></i> Approve

@@ -128,6 +128,9 @@ img.w154 {
 #search-navbar {
 	width: 100%;
 }
+.bar-button {
+	padding: 5px;
+}
 /*
 #terkan-promotion {
 	background-image: url('/images/a.jpg');

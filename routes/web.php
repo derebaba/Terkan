@@ -70,6 +70,9 @@ Route::get('tvs/{id}/season/{season_number?}', 'TvsController@getSeason')->name(
 //	Users
 Route::resource('users', 'UsersController');
 Route::get('/users/{user}/followers', 'UsersController@followers');
+Route::get('/users/{user}/watchlist', 'UsersController@watchlist')->name('users.watchlist');
+Route::put('/addToWatchlist', 'UsersController@addToWatchlist')->name('users.addToWatchlist');
+Route::put('/removeFromWatchlist', 'UsersController@removeFromWatchlist')->name('users.removeFromWatchlist');
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 

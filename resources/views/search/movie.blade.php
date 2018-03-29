@@ -21,17 +21,19 @@
 						<li>
 							<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
 								class="list-group-item list-group-item-action bar-button active">
-								Movies ({{$movieResponse['total_results']}})
+								Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
 							</a>
 						</li>
 						<li>
 							<a href="{{ route('search.tv', ['page' => 1, 'q' => $query]) }}"
-								class="list-group-item list-group-item-action bar-button">TV shows ({{$tvResponse['total_results']}})
+								class="list-group-item list-group-item-action bar-button">
+								TV shows <span class="badge badge-primary">{{$tvResponse['total_results']}}</span>
 							</a>
 						</li>
 						<li>
 							<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
-								class="list-group-item list-group-item-action bar-button">People ({{$peopleResults->count()}})
+								class="list-group-item list-group-item-action bar-button">
+								People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 							</a>
 						</li>
 					</ul>
@@ -119,11 +121,17 @@
 			<div class="list-group d-none d-md-block">
 				<div class="list-group-item bg-secondary text-white"> Jump to:</div>
 				<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
-					class="list-group-item list-group-item-action active">Movies ({{$movieResponse['total_results']}})</a>
+					class="list-group-item list-group-item-action active">
+					Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
+				</a>
 				<a href="{{ route('search.tv', ['page' => 1, 'q' => $query]) }}"
-					class="list-group-item list-group-item-action">TV shows ({{$tvResponse['total_results']}})</a>
+					class="list-group-item list-group-item-action">
+					TV shows <span class="badge badge-primary">{{$tvResponse['total_results']}}</span>
+				</a>
 				<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
-					class="list-group-item list-group-item-action">People ({{$peopleResults->count()}})</a>
+					class="list-group-item list-group-item-action">
+					People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
+				</a>
 			</div>
 		</div>
 	</div>

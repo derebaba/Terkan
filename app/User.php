@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -40,5 +41,16 @@ class User extends Authenticatable
 
 	public function reviews() {
 		return $this->hasMany('App\Review');
+	}
+
+	public function getWatchlist() {
+		return DB::table('watchlists')->where('user_id', $this->id)->get();
+	}
+
+	public function hasWatchlisted($id, $type) {
+		$item = DB::table('watchlists')->where('reviewable_type', $type)
+									->where('user_id', $this->id)
+									->where('reviewable_id', $id)->get()->first();
+		return $item ? true : false;
 	}
 }
