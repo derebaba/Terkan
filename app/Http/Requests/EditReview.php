@@ -26,7 +26,6 @@ class EditReview extends FormRequest
     {
         return [
 			'stars' => 'required',
-			'body' => 'required',
         ];
     }
 }
