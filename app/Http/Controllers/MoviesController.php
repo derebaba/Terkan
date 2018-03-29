@@ -59,7 +59,11 @@ class MoviesController extends Controller
 				$reviews->push($userReview)->reverse();
 		}
 		
-		return view('movies.show', ['movie' => $movie, 'reviews' => $reviews, 'userReview' => $userReview]);
+		return view('movies.show', [
+			'movie' => $movie, 
+			'page_title' => $movie['original_title'],
+			'reviews' => $reviews, 
+			'userReview' => $userReview]);
 	}
 
 }

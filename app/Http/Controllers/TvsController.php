@@ -31,7 +31,11 @@ class TvsController extends Controller
 				$reviews->push($userReview)->reverse();
 		}
 		
-		return view('tvs.show', ['tv' => $tv, 'reviews' => $reviews, 'userReview' => $userReview]);
+		return view('tvs.show', [
+			'tv' => $tv, 
+			'page_title' => $tv['original_name'],
+			'reviews' => $reviews, 
+			'userReview' => $userReview]);
 	}
 
 	public function getSeason($id, $season_number = 1) {
