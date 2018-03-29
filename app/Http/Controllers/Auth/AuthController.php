@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use JD\Cloudder\Facades\Cloudder;
 use File;
 use Socialite;
+use App\Traits\Utils;
 
 class AuthController extends Controller
 {
