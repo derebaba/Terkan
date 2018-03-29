@@ -8,6 +8,31 @@
 			<div class="col-sm-7 col-lg-9">
 				<h1>{{ $movie['original_title'] }}</h1>
 				<p>{{ $movie['overview'] }}</p>
+				@auth
+					@if (!Auth::user()->hasWatchlisted($movie['id'], 'movie'))
+						<form method="POST" action="/addToWatchlist" class="review-form" style="">
+							@method('put')
+							{{ csrf_field() }}
+							<button type="submit" class="btn btn-dark btn-sm review-button" title="Watchlist"> 
+								<i class="far fa-square"></i> Add to watchlist
+							</button>
+							<input type="hidden" name="reviewable_id" value="{{ $movie['id'] }}">
+							<input type="hidden" name="reviewable_type" value="movie">
+							<input type="hidden" name="name" value="{{ $movie['original_title'] }}">
+						</form>
+					@else
+						<form method="POST" action="/removeFromWatchlist" class="review-form" style="">
+							@method('put')
+							{{ csrf_field() }}
+							<button type="submit" class="btn btn-light btn-sm review-button" title="Unwatchlist"> 
+								<i class="far fa-check-square"></i> Remove from watchlist
+							</button>
+							<input type="hidden" name="reviewable_id" value="{{ $movie['id'] }}">
+							<input type="hidden" name="reviewable_type" value="movie">
+							<input type="hidden" name="name" value="{{ $movie['original_title'] }}">
+						</form>
+					@endif
+				@endauth
 			</div>
 			<div class="col-sm-5 col-lg-3">
 				<div class="float-right">
@@ -98,7 +123,7 @@
 												<img src="/profilepics/{{ $review->user->pic }}" class="img-thumbnail rounded-circle" 
 													alt="profil-resmi" style="width: 80px; height: 80px;">
 											@else
-												<img src="http://via.placeholder.com/80" class="img-thumbnail rounded-circle" 
+												<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" 
 													alt="profil-resmi" style="width: 80px; height: 80px;">
 											@endif
 										</div>

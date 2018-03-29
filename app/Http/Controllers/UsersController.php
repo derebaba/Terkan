@@ -139,4 +139,60 @@ class UsersController extends Controller
 	public function followers(User $user) {
 		return view('users.followers', ['followers' => $user->followers, 'user' => $user]);
 	}
+
+
+	public function addToWatchlist(Request $request) {
+		if (Auth::check()) {
+			DB::table('watchlists')->insert([
+				'user_id' => Auth::user()->id,
+				'reviewable_id' => $request->reviewable_id,
+				'reviewable_type' => $request->reviewable_type	
+			]);
+			return back()->withSuccess($request->name . ' is added to watchlist');
+		}
+		return back()->withErrors(['You must be logged in for this action']);
+	}
+
+	public function removeFromWatchlist(Request $request) {
+		if (Auth::check()) {
+			$delete = DB::table('watchlists')->where([
+				'user_id' => Auth::user()->id,
+				'reviewable_id' => $request->reviewable_id,
+				'reviewable_type' => $request->reviewable_type
+			])->delete();
+			if ($delete) {
+				return back()->withSuccess($request->name . ' is removed from watchlist');
+			}
+			else {
+				return back()->withErrors([$request->name . ' cannot be removed from watchlist']);
+			}
+		}
+		return back()->withErrors(['You must be logged in for this action']);
+	}
+
+	/**
+	 * Shows the watchlist of $user
+	 *
+	 * @param User $user
+	 * @return void
+	 */
+	public function watchlist(User $user) {
+		//dd($user->getWatchlist());
+		$watchlist = $user->getWatchlist();
+		$movies = [];
+		$tvs = [];
+		foreach ($watchlist as $item) {
+			if ($item['reviewable_type'] === 'movie') {
+				array_push($movies, Tmdb::getMoviesApi()->getMovie($item['reviewable_id']));
+			}
+			else {
+				array_push($tvs, Tmdb::getTvApi()->getTvshow($item['reviewable_id']));
+			}
+		}
+		return view('users.watchlist', [
+			'movies' => $movies, 
+			'tvs' => $tvs,
+			'user' => $user
+		]);
+	}
 }

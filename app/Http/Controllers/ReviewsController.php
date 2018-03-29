@@ -108,8 +108,7 @@ class ReviewsController extends Controller
 	}
 
 	public function like(Request $request, Review $review) {
-		$user = User::find($request->liker_id);
-		if ($user->toggleLike($review))
+		if (Auth::user()->toggleLike($review))
 			return back();
 		
 		return back()->with('errors', 'Error liking');

@@ -8,8 +8,33 @@
 			<div class="col-sm-7 col-lg-9">
 				<h1>{{ $tv['original_name'] }}</h1>
 				<p>{{ $tv['overview'] }}</p>
+				@auth
+					@if (!Auth::user()->hasWatchlisted($tv['id'], 'tv'))
+						<form method="POST" action="/addToWatchlist" class="review-form" style="">
+							@method('put')
+							{{ csrf_field() }}
+							<button type="submit" class="btn btn-dark btn-sm review-button" title="Watchlist"> 
+								<i class="far fa-square"></i> Add to watchlist
+							</button>
+							<input type="hidden" name="reviewable_id" value="{{ $tv['id'] }}">
+							<input type="hidden" name="reviewable_type" value="tv">
+							<input type="hidden" name="name" value="{{ $movie['original_name'] }}">
+						</form>
+					@else
+						<form method="POST" action="/removeFromWatchlist" class="review-form" style="">
+							@method('put')
+							{{ csrf_field() }}
+							<button type="submit" class="btn btn-light btn-sm review-button" title="Unwatchlist"> 
+								<i class="far fa-check-square"></i> Remove from watchlist
+							</button>
+							<input type="hidden" name="reviewable_id" value="{{ $tv['id'] }}">
+							<input type="hidden" name="reviewable_type" value="tv">
+							<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
+						</form>
+					@endif
+				@endauth
 				<a href="{{ route('tvs.season', ['id' => $tv['id']]) }}" role="button" class="btn btn-light">
-					Episode list
+					See episode list
 				</a>
 			</div>
 			<div class="col-sm-5 col-lg-3">
