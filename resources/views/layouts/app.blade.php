@@ -92,7 +92,7 @@
 								@endrole--}}
 								<li class="dropdown nav-item" id="dropdown-corner">
 									<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-										<i class="far fa-user"></i> {{ Auth::user()->name }}
+										<i class="far fa-user d-none d-sm-inline-block"></i> {{ Auth::user()->name }}
 									</a>
 									<div class="dropdown-menu" aria-labelled-by="dropdown-corner" style="right:0; left:auto;">
 										@role('admin')
