@@ -66,7 +66,7 @@
 						<tr>
 							<th scope="row">{{ $loop->iteration }}</th>
 							<td>
-								<a href="{{ route('tvs.show', $movtvie['id']) }}" 
+								<a href="{{ route('tvs.show', $tv['id']) }}" 
 									title="{{ $tv['original_name'] }}">
 									<img class="w154" src="{!! $image->getUrl($tv['poster_path'], 'w154') !!}">
 								</a>
