@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6">
+		<div class="col-md-6">
 			<table class="table table-striped">
 				<thead>
 					<th colspan="4">Movies</th>
@@ -48,7 +48,7 @@
 			</table>
 		</div>
 
-		<div class="col-6">
+		<div class="col-md-6">
 			<table class="table table-striped">
 				<thead>
 					<th colspan="4">TV shows</th>
@@ -78,7 +78,7 @@
 							</td>
 							<td>
 								@foreach($tv['genres'] as $genre)
-									{{ $genre['name'] }}
+									{{ $genre['name'] }},
 								@endforeach
 							</td>
 						</tr>
