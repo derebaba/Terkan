@@ -72,7 +72,6 @@
 	  }
 	},
 	"addons": [
-	  "mailgun",
 	  "heroku-postgresql",
 	  "cloudinary"
 	],
