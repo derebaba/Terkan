@@ -9,7 +9,7 @@
 
 					<div class="card-body">
 						<div class="alert alert-warning" role="alert">
-							This feature does not work yet!
+							This feature does not work for Hotmail yet!
 						</div>
 						@if (session('status'))
 							<div class="alert alert-success">
