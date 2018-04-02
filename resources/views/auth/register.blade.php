@@ -68,13 +68,11 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-6 offset-1">
-								<button type="submit" class="btn btn-primary">
-									Register
-								</button>
-							</div>
+							<button type="submit" class="btn btn-primary" style="width: 100%;">
+								Register
+							</button>
 						</div>
-						<hr>
+						<div class="hr-text">or</div>
 
 						@include('partials.facebookButton')
 					</form>
