@@ -20,7 +20,7 @@
 						</li>
 						<li>
 							<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
-								class="list-group-item list-group-item-action bar-button active">
+								class="list-group-item list-group-item-action bar-button">
 								Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
 							</a>
 						</li>
@@ -32,7 +32,7 @@
 						</li>
 						<li>
 							<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
-								class="list-group-item list-group-item-action bar-button">
+								class="list-group-item list-group-item-action bar-button active">
 								People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 							</a>
 						</li>
@@ -79,7 +79,7 @@
 			<div class="list-group">
 				<div class="list-group-item bg-secondary text-white"> Jump to:</div>
 				<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
-					class="list-group-item list-group-item-action active">
+					class="list-group-item list-group-item-action">
 					Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
 				</a>
 				<a href="{{ route('search.tv', ['page' => 1, 'q' => $query]) }}"
@@ -87,7 +87,7 @@
 					TV shows <span class="badge badge-primary">{{$tvResponse['total_results']}}</span>
 				</a>
 				<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
-					class="list-group-item list-group-item-action">
+					class="list-group-item list-group-item-action active">
 					People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 				</a>
 			</div>
