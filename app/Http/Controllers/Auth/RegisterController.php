@@ -82,6 +82,9 @@ class RegisterController extends Controller
 	*/
 	public function register(Request $request)
 	{
+		if (strpos($request->email, 'hotmail') !== false) {
+			return back()->withInput()->withErrors(['email' => 'We are experiencing deliverability issues with Hotmail. Please sign up with another email address or continue with facebook.']);
+		}
 		$this->validator($request->all())->validate();
 		event(new Registered($user = $this->create($request->all())));
 		dispatch(new SendVerificationEmail($user));

@@ -50,7 +50,7 @@
                                 <label for="relationships" class="col-md-4 col-form-label text-right">Relationships</label>
                                 <div class="col-md-6">
                                     <input type="text" name="relationships" class="form-control" id="relationships" placeholder="comments#hasMany#App\Comment">
-                                    <p class="help-block">method#relationType#Model</p>
+                                    <p class="form-text">method#relationType#Model</p>
                                 </div>
                             </div>
                             <div class="form-group row">
