@@ -6,6 +6,7 @@ use App\Review;
 use App\User;
 use App\Traits\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use Tmdb\Laravel\Facades\Tmdb;
@@ -55,7 +56,7 @@ class SearchController extends Controller
 
 		$query = Tmdb::getGenresApi()->getGenre($genre_id);
 
-		$genres = Tmdb::getGenresApi()->getGenres();
+		$genres = Tmdb::getGenresApi()->getMovieGenres();
 		$genres = collect($genres['genres']);
 		
 		return view('browse', [
@@ -66,6 +67,15 @@ class SearchController extends Controller
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
 		]);
+	}
+
+	public function searchAutocomplete(Request $request) {
+		$query =  $request->q;
+
+		$response = Tmdb::getSearchApi()->searchMovies($query);
+		$response = array_slice($response, 0, 10);
+
+		return Response::json($response, 200, array('Content-Type' => 'application/javascript'));
 	}
 
 	public function searchMovies(Request $request) {

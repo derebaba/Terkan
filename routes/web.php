@@ -81,6 +81,7 @@ Route::get('/search/movie', ['uses' => 'SearchController@searchMovies', 'as' => 
 Route::get('/search/people', ['uses' => 'SearchController@searchPeople', 'as' => 'search.people']);
 Route::get('/search/tv', ['uses' => 'SearchController@searchTv', 'as' => 'search.tv']);
 Route::get('/browse/genre/{genre}/{page}', 'SearchController@browseByGenre')->name('browseByGenre');
+Route::get('/search/autocomplete', 'SearchController@searchAutocomplete');
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
