@@ -39,17 +39,23 @@ class AuthController extends Controller
 
 		$authUser->access_token = $user->token;
 		if ($authUser->pic == null) {
-			$fileContents = file_get_contents($user->avatar_original);
-			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
-			File::put($path, $fileContents);
-			Cloudder::upload($path, null, [], ['facebook']);
-			$authUser->pic = Cloudder::getPublicId();
-			unlink($path);
+			try {
+				$fileContents = file_get_contents($user->avatar_original);
+				$path = public_path('profilepics' . DIRECTORY_SEPARATOR . 'temp');
+				File::put($path, $fileContents);
+				Cloudder::upload($path, null, [], [$provider]);
+				$authUser->pic = Cloudder::getPublicId();
+				unlink($path);
+			} 
+			catch (\Exception $e) {
+				//	user does not have an avatar
+			}
 		}
 		
 		$authUser->save();
 		$authUser->update([
 			'provider' => $provider,
+			'provider_id' => $user->getId(),
 			'provider_name' => $user->getName(),
 			'verified' => 1,
 		]);

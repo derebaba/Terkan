@@ -25,7 +25,16 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-
+	@auth
+		@if (Auth::user()->getWatchlist()->isEmpty())
+			<div class="alert alert-primary alert-dismissible fade show" role="alert">
+				Your watchlist is empty. Search movies and save them in your watchlist to watch them later.
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		@endif
+	@endauth
 	<div class="card" style="width: 100%;">
 		<div class="card-header">
 			{{ $user->name }}'s watchlist

@@ -73,9 +73,17 @@
 			</div>
 		</div>--}}
 		<div class="col-md-6 col-lg-7">
-			@if (Auth::user()->followings()->get()->count() == 0)
+			@if (Auth::user()->followings()->get()->isEmpty())
 				<div class="alert alert-primary alert-dismissible fade show" role="alert">
 					You are not following anyone. Search their name in order to follow someone.
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			@endif
+			@if (Auth::user()->getWatchlist()->isEmpty())
+				<div class="alert alert-primary alert-dismissible fade show" role="alert">
+					Your <a href="{{ route('users.watchlist', Auth::user()) }}">watchlist</a> is empty. Save movies in your watchlist to watch them later.
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
