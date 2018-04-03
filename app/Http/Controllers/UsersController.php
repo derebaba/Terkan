@@ -191,12 +191,12 @@ class UsersController extends Controller
 			if ($item->reviewable_type === 'movie') {
 				$movie = Tmdb::getMoviesApi()->getMovie($item->reviewable_id);
 				array_push($movies, $movie);
-				$fb_movie_list .= ($index + 1) . " " . $movie['original_title'] . "\n";
+				$fb_movie_list .= ($index + 1) . ". " . $movie['original_title'] . "\n";
 			}
 			else {
 				$tv = Tmdb::getTvApi()->getTvshow($item->reviewable_id);
 				array_push($tvs, $tv);
-				$fb_tv_list .= ($index + 1) . " " . $tv['original_name'] . "\n";
+				$fb_tv_list .= ($index + 1) . ". " . $tv['original_name'] . "\n";
 			}
 		}
 		$fb_description = $fb_movie_list . $fb_tv_list;
