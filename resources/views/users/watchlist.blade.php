@@ -8,6 +8,7 @@
   <meta property="og:title"         content="{{ $user->name }}'s watchlist" />
   <meta property="og:description"   content="{{ $fb_description }}" />
   <meta property="og:image"         content={{ Cloudder::secureShow($user->pic) }} />
+	<meta property="fb:app_id" 				content="{{ env('FB_ID') }}" />
 @endsection
 
 @section('content')
