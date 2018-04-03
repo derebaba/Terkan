@@ -50,7 +50,7 @@ class AuthController extends Controller
 		$authUser->update([
 			'access_token' => $user->token,
 			'provider' => $provider,
-			'provider_name' => $user->name,
+			'provider_name' => $user->getName(),
 			'verified' => 1,
 		]);
 

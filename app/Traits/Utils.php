@@ -40,10 +40,10 @@ trait Utils {
 		}
 
 		return User::create([
-			'name'     => $user->name,
-			'email'    => $user->email,
+			'name'     => $user->getName(),
+			'email'    => $user->getEmail(),
 			'provider' => $provider,
-			'provider_id' => $user->id,
+			'provider_id' => $user->getId(),
 			'verified' => 1,
 			'pic' => $pic
 		]);
