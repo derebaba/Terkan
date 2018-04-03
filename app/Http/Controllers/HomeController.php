@@ -32,7 +32,7 @@ class HomeController extends Controller
 		$genre      = $repository->load(28);
 		*/
 
-		$genres = Tmdb::getGenresApi()->getGenres();
+		$genres = Tmdb::getGenresApi()->getMovieGenres();
 		$genres = collect($genres['genres']);	//	19 ve sonrası tv
 		//dd($genres);
 		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
