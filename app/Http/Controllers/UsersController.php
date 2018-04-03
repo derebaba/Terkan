@@ -184,15 +184,25 @@ class UsersController extends Controller
 		$watchlist = $user->getWatchlist();
 		$movies = [];
 		$tvs = [];
-		foreach ($watchlist as $item) {
+		
+		$fb_movie_list = "Movies:\n";
+		$fb_tv_list = "TV shows:\n";
+		foreach ($watchlist as $index => $item) {
 			if ($item->reviewable_type === 'movie') {
-				array_push($movies, Tmdb::getMoviesApi()->getMovie($item->reviewable_id));
+				$movie = Tmdb::getMoviesApi()->getMovie($item->reviewable_id);
+				array_push($movies, $movie);
+				$fb_movie_list .= ($index + 1) . " " . $movie['original_title'] . "\n";
 			}
 			else {
-				array_push($tvs, Tmdb::getTvApi()->getTvshow($item->reviewable_id));
+				$tv = Tmdb::getTvApi()->getTvshow($item->reviewable_id);
+				array_push($tvs, $tv);
+				$fb_tv_list .= ($index + 1) . " " . $tv['original_name'] . "\n";
 			}
 		}
+		$fb_description = $fb_movie_list . $fb_tv_list;
+
 		return view('users.watchlist', [
+			'fb_description' => $fb_description,
 			'movies' => $movies, 
 			'tvs' => $tvs,
 			'user' => $user

@@ -5,8 +5,8 @@
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
   <meta property="og:url"           content="{{ URL::current() }}" />
   <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Terkan" />
-  <meta property="og:description"   content="{{ $user->name }}'s watchlist" />
+  <meta property="og:title"         content="{{ $user->name }}'s watchlist" />
+  <meta property="og:description"   content="{{ $fb_description }}" />
   <meta property="og:image"         content={{ Cloudder::secureShow($user->pic) }} />
 @endsection
 
