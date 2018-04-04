@@ -101,3 +101,5 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 	Route::resource('roles', 'RolesController');
 	Route::resource('users', 'UsersController', ['as' => 'admin']);
 });
+
+Route::post('/email/pipe', 'MailController@pipeEmail');
