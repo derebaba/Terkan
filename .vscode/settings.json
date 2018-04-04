@@ -11,6 +11,8 @@
 	"editor.scrollBeyondLastLine": false,
 	"editor.wordWrap": "on",
 	"php.suggest.basic": false,
+	// Whether the linter is run on save or on type.
+	"php.validate.run": "onType",
 	"highlight-matching-tag.leftStyle": {
 		"borderWidth": "0 0 1px 0",
 		"borderStyle": "groove",

@@ -101,8 +101,8 @@
 			@endif
 		@else
 			<div class="container text-center">
-				<i class=""><a href="{{ route('login') }}" class="link-primary">Login</a> or 
-				<a href="{{ route('register') }}" class="">register</a> to write a review</i>
+				<a href="{{ route('login') }}" class="link-primary">Login</a> or 
+				<a href="{{ route('register') }}" class="">register</a> to write a review
 			</div>
 			<br>
 		@endif
@@ -117,6 +117,11 @@
 				</div>
 				<div class="card-body">
 					<ul class="list-group">
+						@if ($reviews->isEmpty())
+							<li class="list-group-item font-italic">
+								There are no reviews for this movie. Be the first to write!
+							</li>
+						@endif
 						@foreach($reviews as $review)
 							<li class="list-group-item">
 								<div class="row">
