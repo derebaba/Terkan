@@ -35,7 +35,7 @@ class HandleIncomingEmail implements ShouldQueue
     public function handle()
     {
 		$mail = new SendgridParse($this->request);
-		Mail::send([], [], function ($message) {
+		Mail::send([], [], function ($message) use ($mail) {
 			$message->to('erdemderebaba@gmail.com')
 				->from($mail->from['email'], $mail->from['name'])
 				->subject($mail->subject)
