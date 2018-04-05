@@ -10,13 +10,13 @@ use App\Models\SendgridParse;
 class MailController extends Controller
 {
     public function pipeEmail(Request $request) {
-		$mail = new SendgridParse($request);
-		dd($mail);
+		//$mail = new SendgridParse($request);
+		
 		$to = $request->input('to');
 		$from = $request->input('from');
 		$html = $request->input('html');
 		$subject = $request->input('subject');
-		dispatch(new HandleIncomingEmail($mail));
+		dispatch(new HandleIncomingEmail($request));
 
 		return response()->json(['success' => 'success'], 200);
 	}
