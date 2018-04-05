@@ -12,15 +12,15 @@ class HandleIncomingEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-	protected $request;
+	protected $mail;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($mail)
     {
-        $this->request = $request;
+        $this->mail = $mail;
     }
 
     /**
@@ -30,6 +30,6 @@ class HandleIncomingEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('erdemderebaba@gmail.com')->subject($request->input('subject'))->send($request->input('text'));
+        Mail::to('erdemderebaba@gmail.com')->subject($mail->subject)->send($mail->text);
     }
 }
