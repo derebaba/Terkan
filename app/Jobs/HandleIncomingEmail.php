@@ -7,6 +7,7 @@ use App\Mail\IncomingEmail;
 use Illuminate\Queue\InteractsWithQueue;
 use Mail;
 use Illuminate\Bus\Queueable;
+use App\Models\SendgridParse;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -33,11 +34,12 @@ class HandleIncomingEmail implements ShouldQueue
      */
     public function handle()
     {
+		$mail = new SendgridParse($this->request);
 		Mail::send([], [], function ($message) {
 			$message->to('erdemderebaba@gmail.com')
-				->from($this->request['from'])
-				->subject($this->request['subject'])
-				->setBody($this->request['html'], 'text/html');
+				->from($mail->from['email'], $mail->from['name'])
+				->subject($mail->subject)
+				->setBody($mail->html, 'text/html');
 		});
     }
 }
