@@ -33,7 +33,8 @@
 						</form>
 					@endif
 				@endauth
-				<a href="{{ route('tvs.season', ['id' => $tv['id']]) }}" role="button" class="btn btn-light">
+				<a href="{{ route('tvs.season', ['id' => $tv['id']]) }}" role="button" class="btn btn-dark" 
+				style="margin-left: 10px;">
 					See episode list
 				</a>
 			</div>
@@ -130,7 +131,7 @@
 											@if (is_file('profilepics' . DIRECTORY_SEPARATOR . $review->user->pic))
 												<img src="/profilepics/{{ $review->user->pic }}" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 80px; height: 80px;">
 											@else
-												<img src="http://via.placeholder.com/80" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 80px; height: 80px;">
+												<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 80px; height: 80px;">
 											@endif
 										</div>
 										<div class="row text-center center-block">

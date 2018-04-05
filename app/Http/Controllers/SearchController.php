@@ -73,7 +73,7 @@ class SearchController extends Controller
 		$query =  $request->q;
 
 		$response = Tmdb::getSearchApi()->searchMovies($query);
-		$response = array_slice($response, 0, 10);
+		$response['results'] = array_slice($response['results'], 0, 10);
 
 		return Response::json($response, 200, array('Content-Type' => 'application/javascript'));
 	}

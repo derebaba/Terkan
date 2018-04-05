@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use \App\Jobs\HandleIncomingEmail;
+use App\Models\SendgridParse;
 use Illuminate\Http\Request;
 
 class MailController extends Controller
