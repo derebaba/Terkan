@@ -20,10 +20,9 @@ class IncomingEmail extends Mailable
 
     public function build()
     {
-        return $this->view($this->request->html)
-                    ->from($this->request->to)
-                    ->subject($this->request->subject)
-                    ->with([ 'data' => $data ]);
+        return $this->request['html']
+				->from($this->request['from'])
+				->subject($this->request['subject']);
     }
 
     private function asJSON($data)

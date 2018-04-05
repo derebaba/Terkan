@@ -33,7 +33,10 @@ class HandleIncomingEmail implements ShouldQueue
      */
     public function handle()
     {
-		$mail = new IncomingEmail($this->request);
-		Mail::to('erdemderebaba@gmail.com')->send($mail);
+		Mail::send([], [], function ($message) {
+			$message->to('erdemderebaba@gmail.com')
+				->subject($this->request['subject'])
+				->setBody($this->request['html'], 'text/html');
+		});
     }
 }
