@@ -87,9 +87,15 @@ Route::get('/search/autocomplete', 'SearchController@searchAutocomplete');
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
-Route::get('/info/privacypolicy', function () {
-	return view('/info/privacypolicy');
+Route::group(['prefix' => 'info'], function() {
+	Route::get('/contact', function () {
+		return view('info.contact');
+	});
+	Route::get('/privacypolicy', function () {
+		return view('info.privacypolicy');
+	});
 });
+
 
 // Admin routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {

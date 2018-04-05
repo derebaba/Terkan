@@ -142,6 +142,8 @@
 			<div id="footer">
 				<small>
 					<a href="/info/privacypolicy">Privacy policy</a>
+					|
+					<a href="/info/contact">Contact us</a>
 					<span class="pull-right">
 						This product uses the TMDb API but is not endorsed or certified by TMDb.
 						<a href="https://www.themoviedb.org/" style="display: inline;">

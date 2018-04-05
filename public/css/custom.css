@@ -35,6 +35,7 @@ body {
 	padding-left: 4rem;
 }
 #footer a {
+	margin: 20px;
 	color: grey;
 }
 .cookie-consent {
