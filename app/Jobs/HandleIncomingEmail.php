@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class HandleIncomingEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
 	protected $request;
     /**
@@ -30,6 +30,6 @@ class HandleIncomingEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('erdemderebaba@gmail.com')->subject($request->subject)->send($request->text);
+        Mail::to('erdemderebaba@gmail.com')->subject($this->request->subject)->send($this->request->text);
     }
 }
