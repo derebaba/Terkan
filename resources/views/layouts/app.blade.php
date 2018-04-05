@@ -124,6 +124,7 @@
 					</div>
 				</div>
 			</nav>
+			<a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
 			<div class="container">
 				
 					@include('partials.errors')
@@ -144,6 +145,9 @@
 					<a href="/info/privacypolicy">Privacy policy</a>
 					|
 					<a href="/info/contact">Contact us</a>
+					|
+					<a href="https://github.com/derebaba/Terkan"><i class="fab fa-github"></i> Github</a>
+
 					<span class="pull-right">
 						This product uses the TMDb API but is not endorsed or certified by TMDb.
 						<a href="https://www.themoviedb.org/" style="display: inline;">
