@@ -10,7 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class HandleIncomingEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable;
 
 	protected $request;
     /**
