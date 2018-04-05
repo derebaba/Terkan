@@ -35,6 +35,7 @@ class HandleIncomingEmail implements ShouldQueue
     {
 		Mail::send([], [], function ($message) {
 			$message->to('erdemderebaba@gmail.com')
+				->from($this->request['from'])
 				->subject($this->request['subject'])
 				->setBody($this->request['html'], 'text/html');
 		});
