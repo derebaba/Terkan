@@ -2,11 +2,14 @@
 
 namespace App\Jobs;
 
+use Illuminate\Foundation\Bus\Dispatchable;
+use App\Mail\IncomingEmail;
+use Illuminate\Queue\InteractsWithQueue;
+use Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+
 
 class HandleIncomingEmail implements ShouldQueue
 {
@@ -30,6 +33,7 @@ class HandleIncomingEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('erdemderebaba@gmail.com')->subject($this->request->subject)->send($this->request->text);
+		$mail = new IncomingEmail($this->request);
+		Mail::to('erdemderebaba@gmail.com')->send($mail);
     }
 }
