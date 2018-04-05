@@ -15,7 +15,8 @@ class MailController extends Controller
 		$from = $request->input('from');
 		$html = $request->input('html');
 		$subject = $request->input('subject');*/
-		dispatch(new HandleIncomingEmail($mail));
+		Mail::to('erdemderebaba@gmail.com')->subject($mail->subject)->send($mail->text);
+		//dispatch(new HandleIncomingEmail($mail));
 
 		return response()->json(['success' => 'success'], 200);
 	}
