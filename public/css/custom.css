@@ -31,10 +31,6 @@ body {
 #app {
     min-height: calc(100vh - 4rem - 4rem);
 }
-#footer {
-	/* padding-left: 4rem; */
-	
-}
 #footer a {
 	margin: 20px;
 	color: grey;
