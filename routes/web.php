@@ -58,7 +58,12 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/users/{followee}/follow', 'UsersController@follow')->name('users.follow');
 	
 	Route::get('/reviews/{review}/like', 'ReviewsController@like');
-    //Route::get('/movies/{id?}', 'MoviesController@review');
+	//Route::get('/movies/{id?}', 'MoviesController@review');
+	Route::put('/addToWatchlist', 'UsersController@addToWatchlist')->name('users.addToWatchlist');
+	Route::put('/removeFromWatchlist', 'UsersController@removeFromWatchlist')->name('users.removeFromWatchlist');
+
+	Route::post('/tvs/{tv_id}/follow', 'UsersController@followTv')->name('users.followTv');
+	Route::post('/tvs/{tv_id}/unfollow', 'UsersController@unfollowTv')->name('users.unfollowTv');
 });
 
 Route::resource('movies', 'MoviesController');
@@ -71,8 +76,6 @@ Route::get('tvs/{id}/season/{season_number?}', 'TvsController@getSeason')->name(
 Route::resource('users', 'UsersController');
 Route::get('/users/{user}/followers', 'UsersController@followers');
 Route::get('/users/{user}/watchlist', 'UsersController@watchlist')->name('users.watchlist');
-Route::put('/addToWatchlist', 'UsersController@addToWatchlist')->name('users.addToWatchlist');
-Route::put('/removeFromWatchlist', 'UsersController@removeFromWatchlist')->name('users.removeFromWatchlist');
 
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 

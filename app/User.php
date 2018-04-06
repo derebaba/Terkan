@@ -53,4 +53,8 @@ class User extends Authenticatable
 									->where('reviewable_id', $id)->get()->first();
 		return $item ? true : false;
 	}
+
+	public function isFollowingTv($tv_id) {
+		return DB::table('tv_user')->where(['user_id' => $this->id, 'tv_id' => $tv_id])->exists();
+	}
 }
