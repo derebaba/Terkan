@@ -37,25 +37,7 @@
 				style="margin-left: 10px;">
 					See episode list
 				</a>
-				@auth
-					
-					@if (!Auth::user()->isFollowingTv($tv['id']))
-						<form method="POST" action="{{ route('users.followTv', $tv['id']) }}" class="">
-							{{ csrf_field() }}
-							<button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="right" 
-							title="Click to get notified when new episodes are aired">
-								<i class="fas fa-eye"></i> Follow
-							</button>
-							<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
-						</form>
-					@else
-						<form method="POST" action="{{ route('users.unfollowTv', $tv['id']) }}" class="">
-							{{ csrf_field() }}
-							<button type="submit" class="btn btn-light"><i class="fas fa-eye-slash"></i> Unfollow</button>
-							<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
-						</form>
-					@endif
-				@endauth
+				
 			</div>
 			<div class="col-sm-5 col-lg-3">
 				<div class="float-right">
@@ -79,6 +61,26 @@
 					<div class="row center-block text-center">
 						<i>{{$reviews->count()}} votes</i>
 					</div>
+					<div class="row center-block text-center">
+						@auth
+							@if (!Auth::user()->isFollowingTv($tv['id']))
+								<form method="POST" action="{{ route('users.followTv', $tv['id']) }}" class="">
+									{{ csrf_field() }}
+									<button type="submit" class="btn btn-dark" data-toggle="tooltip" data-placement="right" 
+									title="Click to get notified when new episodes are aired">
+										<i class="fas fa-eye"></i> Follow
+									</button>
+									<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
+								</form>
+							@else
+								<form method="POST" action="{{ route('users.unfollowTv', $tv['id']) }}" class="">
+									{{ csrf_field() }}
+									<button type="submit" class="btn btn-light"><i class="fas fa-eye-slash"></i> Unfollow</button>
+									<input type="hidden" name="name" value="{{ $tv['original_name'] }}">
+								</form>
+							@endif
+						@endauth
+					</div>
 				</div>
 			</div>
 		</div>
@@ -96,11 +98,11 @@
 							{{ csrf_field() }}
 
 							<div class="form-group">
-								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (can be empty)" name="body"></textarea>
+								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (optional)" name="body"></textarea>
 							</div>
 
 							<div class="form-group row">
-								<label for="star-rating" class="col-2 col-lg-1 offset-1">Stars: </label>
+								<label for="star-rating" class="d-none d-sm-block col-3 col-lg-1 offset-1">Stars: </label>
 								<select id="star-rating" class="col-2" name="stars" autocomplete="off">
 									<option value=""></option>
                   <option value="1">1</option>

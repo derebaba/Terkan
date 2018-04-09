@@ -11,9 +11,9 @@
 </p>
 <div class="mic-info">
 	by <a href="{{ route('users.show', [$review->user->id]) }}">{{ $review->user->name }}</a>
-	on {{ $review->created_at->format('d M Y') }}
+	on {{ $review->created_at }}
 	@if ($review->created_at->ne($review->updated_at))
-		(edited on {{ $review->updated_at->format('d M Y') }})
+		(edited on {{ $review->updated_at }})
 	@endif
 </div>
 <div class="mic-info text-success font-weight-bold">
