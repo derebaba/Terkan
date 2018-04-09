@@ -119,6 +119,11 @@
 		<div class="col-md-3 sidebar-offcanvas">
 			<ul class="list-group">
 				<li class="list-group-item list-group-header"> Episodes aired last week</li>
+				@if (empty($newEpisodes))
+					<li class="list-group-item">
+						You are not following any TV shows. Follow TV shows to see recent episodes here.
+					</li>
+				@endif
 				@foreach ($newEpisodes as $episode)
 					<li class="list-group-item">
 						<a class="" href="{{ route('tvs.show', $newTvs[$loop->index]['id']) }}">
