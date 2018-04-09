@@ -72,7 +72,11 @@ class SearchController extends Controller
 	public function searchAutocomplete(Request $request) {
 		$query =  $request->q;
 
-		$response = Tmdb::getSearchApi()->searchMovies($query);
+		$response = Tmdb::getSearchApi()->searchMulti($query);
+		foreach ($response['results'] as $index => $item) {
+			if ($item['media_type'] === "person")
+				array_splice($item, $index, 1);
+		}
 		$response['results'] = array_slice($response['results'], 0, 10);
 
 		return Response::json($response, 200, array('Content-Type' => 'application/javascript'));
