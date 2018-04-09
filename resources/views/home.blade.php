@@ -7,12 +7,10 @@
 @section('content')
 	@inject('image', 'Tmdb\Helper\ImageHelper')
 	<div class="row">
-		<div class="col-md-3 d-none d-md-block">
+		<div class="col-md-3 col-lg-2 d-none d-md-block">
 			<div class="card">
 				<div class="card-header text-center">
-					<h5 class="card-title font-italic" aria-hidden="true">
-						<i class="fas fa-film"></i> Recommended for you
-					</h5>
+					<i class="fas fa-film" aria-hidden="true"></i> Recommended for you
 				</div>
 				@foreach ($recommendations as $recommendation)
 					<figure class="figure center-block">
@@ -118,8 +116,20 @@
 					</ul>
 			</div>
 		</div>
-		<div class="col-md-3 col-lg-2 sidebar-offcanvas">
-			@include('partials.genresSidebar')
+		<div class="col-md-3 sidebar-offcanvas">
+			<ul class="list-group">
+				<li class="list-group-item list-group-header"> Episodes aired last week</li>
+				@foreach ($newEpisodes as $episode)
+					<li class="list-group-item">
+						<a class="" href="{{ route('tvs.show', $newTvs[$loop->index]['id']) }}">
+							{{ $newTvs[$loop->index]['original_name'] }}
+						</a>
+						</br>
+						Season {{ $newTvs[$loop->index]['number_of_seasons'] }}, episode {{ $episode['episode_number'] }}
+						</br>
+						Aired on: {{ $episode['air_date'] }}
+					</li>
+				@endforeach
 		</div>
 	</div>
 @endsection

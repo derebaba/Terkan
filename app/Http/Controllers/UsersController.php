@@ -212,7 +212,7 @@ class UsersController extends Controller
 			'user_id' => Auth::user()->id,
 			'tv_id' => $tv_id
 		]);
-		return back()->withSuccess('You are now following ' . $request->name . '. Check your news feed for new episodes.');
+		return back()->withSuccess('You are now following ' . $request->name . '. Check your home page for new episodes.');
 	}
 
 	public function unfollowTv(Request $request, $tv_id) {
