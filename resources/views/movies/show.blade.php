@@ -73,11 +73,11 @@
 							{{ csrf_field() }}
 
 							<div class="form-group">
-								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (can be empty)" name="body"></textarea>
+								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (optional)" name="body"></textarea>
 							</div>
 
 							<div class="form-group row">
-								<label for="star-rating" class="col-2 col-lg-1 offset-1">Stars: </label>
+								<label for="star-rating" class="col-3 col-lg-1 offset-1">Stars: </label>
 								<select id="star-rating" class="col-2" name="stars" autocomplete="off">
 									<option value=""></option>
                   <option value="1">1</option>

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
-use App\Traits\Utils;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
+use Illuminate\Support\Facades\DB;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
+use Illuminate\Http\Request;
+use App\Review;
 use Tmdb\Laravel\Facades\Tmdb;
+use App\Traits\Utils;
+
 
 class HomeController extends Controller
 {
@@ -21,37 +24,47 @@ class HomeController extends Controller
 	public function home() {
 		if (!Auth::check())
 			return $this->welcome();
-		//	TODO: arkadaşlarının reviewlarını al
+
 		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->get()->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
-		/*
-		Tmdb api kullanmanın alternatif yolu
-		$token  = new \Tmdb\ApiToken(env('TMDB_KEY'));
-		$client = new \Tmdb\Client($token);
-		$repository = new \Tmdb\Repository\GenreRepository($client);
-		$genre      = $repository->load(28);
-		*/
 
 		$genres = Tmdb::getGenresApi()->getMovieGenres();
 		$genres = collect($genres['genres']);	//	19 ve sonrası tv
-		//dd($genres);
+		
 		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
 		foreach ($movies as &$movie)
 			$movie['media_type'] = 'movie';
 		
 		$recommendations = $this->getReviewablesFromResults($movies);
 
+		$followingTvs = DB::table('tv_user')->where('user_id', Auth::user()->id)->get();
+		$newEpisodes = [];
+		$newTvs = [];
+		foreach ($followingTvs as $followingTv) {
+			$tv = Tmdb::getTvApi()->getTvshow($followingTv->tv_id);
+			$now = new DateTime();
+			$lastEpisodeDate = new DateTime($tv['last_air_date']);
+			if (date_diff($now, $lastEpisodeDate)->format('%a') < 7) {
+				$season = Tmdb::getTvSeasonApi()->getSeason($followingTv->tv_id, $tv['number_of_seasons']);
+				$newEpisode = end($season['episodes']);
+				array_push($newEpisodes, $newEpisode);
+				array_push($newTvs, $tv);
+			}
+				
+		}
+
 		JavaScript::put([
 			'recommendationStars' => $recommendations->pluck('vote_average'),
 			'stars' => $reviews->pluck('stars')
 		]);
 
-		
 		return view('home', [
 			'reviews' => $reviews,
 			'reviewables' => $reviewables,
 			'genre_id' => -1,
 			'genres' =>	$genres,
+			'newEpisodes' => $newEpisodes,
+			'newTvs' => $newTvs,
 			'recommendations' => $recommendations
 		]);
 		

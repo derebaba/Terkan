@@ -23,7 +23,6 @@
 				@if (Auth::check() && !$self)
 					<form method="GET" action="{{ route('users.follow', $user) }}" class="">
 						{{ csrf_field() }}
-						<input type="hidden" name="follower_id" value="{{ Auth()->user()->id }}">
 						@if (!Auth::user()->isFollowing($user))
 							<button type="submit" class="btn btn-primary"><i class="fas fa-eye"></i> Follow</button>
 						@else

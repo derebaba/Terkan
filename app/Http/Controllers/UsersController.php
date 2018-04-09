@@ -130,9 +130,7 @@ class UsersController extends Controller
 	}
 
 	public function follow(Request $request, User $followee) {
-		$follower = User::find($request->follower_id);
-
-		if ($follower->toggleFollow($followee)) {
+		if (Auth::user()->toggleFollow($followee)) {
 			return redirect()->route('users.show', ['user' => $followee])
 			/*->with('success', 'You are now following ' . $followee->name)*/;
 		}
@@ -207,5 +205,21 @@ class UsersController extends Controller
 			'tvs' => $tvs,
 			'user' => $user
 		]);
+	}
+
+	public function followTv(Request $request, $tv_id) {
+		DB::table('tv_user')->insert([
+			'user_id' => Auth::user()->id,
+			'tv_id' => $tv_id
+		]);
+		return back()->withSuccess('You are now following ' . $request->name . '. Check your home page for new episodes.');
+	}
+
+	public function unfollowTv(Request $request, $tv_id) {
+		DB::table('tv_user')->where([
+			'user_id' => Auth::user()->id,
+			'tv_id' => $tv_id
+		])->delete();
+		return back()->withSuccess('You stopped following ' . $request->name);
 	}
 }
