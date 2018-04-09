@@ -145,7 +145,7 @@
 					|
 					<a href="/info/contact">Contact us</a>
 					|
-					<a href="https://github.com/derebaba/Terkan"><i class="fab fa-github"></i> Github</a>
+					<a href="https://github.com/derebaba/Terkan" target="_blank"><i class="fab fa-github"></i> Github</a>
 
 					<span class="pull-right">
 						This product uses the TMDb API but is not endorsed or certified by TMDb.
