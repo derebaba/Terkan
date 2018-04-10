@@ -218,6 +218,7 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 
 		//	packagelardan gelen classlar
+		'Clockwork' => Clockwork\Support\Laravel\Facade::class,
 		'Cloudder' => 'JD\Cloudder\Facades\Cloudder',
 		'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
