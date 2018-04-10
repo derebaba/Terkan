@@ -73,7 +73,7 @@
 							{{ csrf_field() }}
 
 							<div class="form-group">
-								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (optional)" name="body"></textarea>
+								<textarea rows="3" class="form-control autosize-target" placeholder="Enter review (optional)" name="body">{{ old('body') }}</textarea>
 							</div>
 
 							<div class="form-group row">
@@ -124,8 +124,8 @@
 								<div class="row">
 									<div class="col-4 col-sm-3">
 										<div class="row text-center center-block">
-											@if (is_file('profilepics' . DIRECTORY_SEPARATOR . $review->user->pic))
-												<img src="/profilepics/{{ $review->user->pic }}" class="img-thumbnail rounded-circle" 
+											@if ($review->user->pic != null)
+												<img src={{ Cloudder::secureShow($review->user->pic) }} class="img-thumbnail rounded-circle" 
 													alt="profil-resmi" style="width: 80px; height: 80px;">
 											@else
 												<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" 

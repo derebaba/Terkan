@@ -24,6 +24,9 @@ class ReviewsController extends Controller
 	public function store(Request $request)
 	{
 		if (Auth::check()) {
+			if (!isset($request->stars))
+				return back()->withInput()->withErrors(['You can\'t give 0 stars']);
+				
 			$review = Review::create([
 				'body' => $request->body, 
 				'stars' => $request->stars, 
@@ -86,6 +89,8 @@ class ReviewsController extends Controller
 	 */
 	public function update(EditReview $request, Review $review)
 	{
+		if (!isset($request->stars))
+			return back()->withInput()->withErrors(['You can\'t give 0 stars']);
 		$review->body = $request->body;
 		$review->stars = $request->stars;
 		$review->save();
