@@ -20,7 +20,7 @@
 				<div class="card-body">
 					<form method="post" action="{{ route('reviews.update', [$review]) }}">
 						{{ csrf_field() }}
-						{{ method_field('PUT') }}
+						{{ method_field('PATCH') }}
 
 						<div class="form-group">
 							<label for="body">Review</label>

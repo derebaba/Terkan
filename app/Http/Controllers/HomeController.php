@@ -76,7 +76,7 @@ class HomeController extends Controller
 		$reviewables = $this->getReviewables($reviews);
 
 		JavaScript::put([
-			'stars' => $reviewables->pluck('vote_average')
+			'stars' => $reviews->pluck('stars')
 		]);
 
 		$genres = Tmdb::getGenresApi()->getGenres();
