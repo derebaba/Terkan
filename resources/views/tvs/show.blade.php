@@ -150,9 +150,9 @@
 									<div class="col-2">
 										<div class="row text-center center-block">
 											@if ($review->user->pic != null)
-												<img src={{ Cloudder::secureShow($review->user->pic) }} class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 80px; height: 80px;">
+												<img src={{ Cloudder::secureShow($review->user->pic) }} class="img-fluid img-thumbnail rounded-circle" alt="profil-resmi" style="">
 											@else
-												<img src="/profilepics/generic_profile_pic.png" class="img-thumbnail rounded-circle" alt="profil-resmi" style="width: 80px; height: 80px;">
+												<img src="/profilepics/generic_profile_pic.png" class="img-fluid img-thumbnail rounded-circle" alt="profil-resmi" style="">
 											@endif
 										</div>
 										<div class="row text-center center-block">
