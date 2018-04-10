@@ -88,20 +88,13 @@ class UsersController extends Controller
 
 		if ($request->hasFile('pic'))
 		{
-			Cloudder::destroy($user->pic);
-			$image = $request->file('pic');
+			$oldPic = $user->pic;
 
-			$filename  = 'temp.' . $image->getClientOriginalExtension();
-
-			$path = public_path('profilepics' . DIRECTORY_SEPARATOR . $filename);
-
-			Image::make($image->getRealPath())->save($path);
-
-			Cloudder::upload($path, null, [], ['upload']);
+			Cloudder::upload($request->file('pic'), null, [], ['upload']);
 			$user->pic = Cloudder::getPublicId();
 			$user->save();
 
-			unlink($path);
+			Cloudder::destroy($oldPic);
 		}
 
 		
