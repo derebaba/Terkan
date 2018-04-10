@@ -42,15 +42,15 @@ class HomeController extends Controller
 		$newTvs = [];
 		foreach ($followingTvs as $followingTv) {
 			$tv = Tmdb::getTvApi()->getTvshow($followingTv->tv_id);
+			$season = Tmdb::getTvSeasonApi()->getSeason($followingTv->tv_id, $tv['number_of_seasons']);
 			$now = new DateTime();
-			$lastEpisodeDate = new DateTime($tv['last_air_date']);
-			if (date_diff($now, $lastEpisodeDate)->format('%a') < 7) {
-				$season = Tmdb::getTvSeasonApi()->getSeason($followingTv->tv_id, $tv['number_of_seasons']);
-				$newEpisode = end($season['episodes']);
-				array_push($newEpisodes, $newEpisode);
-				array_push($newTvs, $tv);
-			}
-				
+			foreach ($season['episodes'] as $episode) {
+				$diff = date_diff(new DateTime($episode['air_date']), $now)->format('%r%a');
+				if ($diff < 7 && $diff > 0) {
+					array_push($newEpisodes, $episode);
+					array_push($newTvs, $tv);
+				}
+			}	
 		}
 
 		JavaScript::put([
