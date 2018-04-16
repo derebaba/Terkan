@@ -2,13 +2,13 @@
 	"name": "Terkan",
 	"scripts": {},
 	"env": {
-	  "APP_KEY": {
+	  	"APP_KEY": {
 			"required": true
-	  },
+	 	},
 			"APP_LOG": {
 			"required": true
-	  },
-	  "CLOUDINARY_API_KEY": {
+	  	},
+	  	"CLOUDINARY_API_KEY": {
 			"required": true
 		},
 		"CLOUDINARY_API_SECRET": {
@@ -20,39 +20,42 @@
 		"CLOUDINARY_URL": {
 			"required": true
 		},
-	  "DB_DATABASE": {
+	  	"DB_DATABASE": {
 			"required": true
-	  },
-	  "DB_HOST": {
+	  	},
+	 	"DB_HOST": {
 			"required": true
-	  },
-	  "DB_PASSWORD": {
+	  	},
+	  	"DB_PASSWORD": {
 			"required": true
-	  },
-	  "DB_PORT": {
+	  	},
+	  	"DB_PORT": {
 			"required": true
-	  },
-	  "DB_USERNAME": {
+	  	},
+	  	"DB_USERNAME": {
 			"required": true
-	  },
-	  "FB_ID": {
+	  	},
+	  	"FB_ID": {
 			"required": true
-	  },
-	  "FB_SECRET": {
+	  	},
+	  	"FB_SECRET": {
 			"required": true
-	  },
-	  "MAIL_PASSWORD": {
+	  	},
+	  	"IMDB_API_KEY": {
 			"required": true
 		},
-	  "MAIL_USERNAME": {
+	  	"MAIL_PASSWORD": {
+			"required": true
+		},
+	  	"MAIL_USERNAME": {
 			"required": true
 		},
 		"SENDGRID_API_KEY": {
 			"required": true
 		},
-	  "TMDB_KEY": {
+	  	"TMDB_KEY": {
 			"required": true
-	  }
+	  	}
 	},
 	"formation": {
 	  "web": {

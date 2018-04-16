@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Movie;
-use App\Review;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Tmdb\Laravel\Facades\Tmdb;
-use Tmdb\Repository\MovieRepository;
+use GuzzleHttp\Client;
+use App\IMDbapi;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
+use App\Movie;
+use Tmdb\Repository\MovieRepository;
+use Illuminate\Http\Request;
+use App\Review;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class MoviesController extends Controller
 {
@@ -44,8 +46,16 @@ class MoviesController extends Controller
 		$reviews = Review::movie()->where('reviewable_id', $id)->get();
 		$userReview = null;
 
+		$client = new Client();
+		$res = $client->get('http://www.theimdbapi.org/api/movie?movie_id='. $movie['imdb_id']);
+		//$res->getStatusCode();
+		
+		$imdbData = json_decode($res->getBody());
+
+		//dd($imdbData);
 		JavaScript::put([
 			'averageRating' => $reviews->avg('stars'),
+			'imdb_stars' => $imdbData->rating / 2,
 			'stars' => $reviews->pluck('stars')
 		]);
 
