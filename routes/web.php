@@ -99,6 +99,9 @@ Route::group(['prefix' => 'info'], function() {
 	});
 });
 
+Route::group(['namespace' => 'Api', 'prefix' => 'api'], function() {
+	Route::get('/movies/popular', 'MoviesController@popular');
+});
 
 // Admin routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
