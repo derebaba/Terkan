@@ -41,7 +41,7 @@
 	  	"FB_SECRET": {
 			"required": true
 	  	},
-	  	"IMDB_API_KEY": {
+	  	"OMDB_API_KEY": {
 			"required": true
 		},
 	  	"MAIL_PASSWORD": {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
+use Illuminate\Http\Request;
+use App\Review;
 use Tmdb\Laravel\Facades\Tmdb;
 
 class TvsController extends Controller
@@ -15,6 +16,16 @@ class TvsController extends Controller
 		$tv = Tmdb::getTvApi()->getTvshow($id);
 		$reviews = Review::tv()->where('reviewable_id', $id)->get();
 		$userReview = null;
+
+		$externalIds = Tmdb::getTvApi()->getExternalIds($id);
+		$client = new Client();
+		$res = $client->get('http://www.omdbapi.com/?apikey=' . env('OMDB_API_KEY') . '&i='. $externalIds['imdb_id']);
+		$imdbData = json_decode($res->getBody());
+
+		JavaScript::put([
+			'averageRating' => $reviews->avg('stars'),
+			'stars' => $reviews->pluck('stars')
+		]);
 
 		JavaScript::put([
 			'averageRating' => $reviews->avg('stars'),
@@ -32,9 +43,10 @@ class TvsController extends Controller
 		}
 		
 		return view('tvs.show', [
-			'tv' => $tv, 
+			'imdbData' => $imdbData,
 			'page_title' => $tv['original_name'],
 			'reviews' => $reviews, 
+			'tv' => $tv, 
 			'userReview' => $userReview]);
 	}
 

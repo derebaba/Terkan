@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
-use App\IMDbapi;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Movie;
 use Tmdb\Repository\MovieRepository;
@@ -47,15 +46,11 @@ class MoviesController extends Controller
 		$userReview = null;
 
 		$client = new Client();
-		$res = $client->get('http://www.theimdbapi.org/api/movie?movie_id='. $movie['imdb_id']);
-		//$res->getStatusCode();
-		
+		$res = $client->get('http://www.omdbapi.com/?apikey=' . env('OMDB_API_KEY') . '&i='. $movie['imdb_id']);	
 		$imdbData = json_decode($res->getBody());
 
-		//dd($imdbData);
 		JavaScript::put([
 			'averageRating' => $reviews->avg('stars'),
-			'imdb_stars' => $imdbData->rating / 2,
 			'stars' => $reviews->pluck('stars')
 		]);
 
@@ -70,10 +65,12 @@ class MoviesController extends Controller
 		}
 		
 		return view('movies.show', [
+			'imdbData' => $imdbData,
 			'movie' => $movie, 
 			'page_title' => $movie['original_title'],
 			'reviews' => $reviews, 
-			'userReview' => $userReview]);
+			'userReview' => $userReview
+		]);
 	}
 
 }
