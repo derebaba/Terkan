@@ -21,7 +21,7 @@
 		{{--<link rel="stylesheet" href="/css/fontawesome-stars.css">  unused --}}
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
 		<link rel="stylesheet" href="/css/fontawesome-stars-o.css">
-		<link rel="stylesheet" href="/css/custom.css?v=1.0"> 
+		<link rel="stylesheet" href="/css/custom.css?v=1.1"> 
 
 		@yield('head')
 
