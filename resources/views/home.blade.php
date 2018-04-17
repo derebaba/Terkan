@@ -36,40 +36,7 @@
 				
 			</div>
 		</div>
-		{{--<div class="col-md-5">
-			<div class="card widget">
-				<div class="card-header text-center">
-					<h5 class="card-title" aria-hidden="true"><i class="fas fa-film"></i> Latest popular reviews</h5>
-					<span class="badge badge-info" data-toggle="tooltip" data-placement="auto bottom" title="Review count" 
-						id="reviewTooltip">{{ $reviews->count() }}</span>
-				</div>
-				<div class="card-body">
-					<ul class="list-group">
-						@foreach($reviewables as $reviewable)
-							<li class="list-group-item">
-								<div class="row">
-									<div class="col-sm-4 col-md-3 text-center">
-										<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
-											title="{{ $reviewable->name }}">
-											{!! $image->getHtml($reviewable->poster, 'w92') !!}
-										</a>
-										<div class="row text-xs-center center-block">
-											<a class="text-xs-center" href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}">
-												{{ $reviewable->name }}
-											</a>
-										</div>
-									</div>
-									<div class="col-sm-8 col-md-9">
-										@php ($review = $reviews[$loop->index])
-										@include('partials.review')
-									</div>
-								</div>
-							</li>
-						@endforeach	
-					</ul>
-				</div>
-			</div>
-		</div>--}}
+		
 		<div class="col-md-6 col-lg-7">
 			@if (Auth::user()->followings()->get()->isEmpty())
 				<div class="alert alert-primary alert-dismissible fade show" role="alert">

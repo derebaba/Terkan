@@ -71,23 +71,32 @@ class HomeController extends Controller
 		$reviews = Review::all()->take(-10)->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 
-		JavaScript::put([
-			'stars' => $reviews->pluck('stars')
-		]);
-
+		//	get genres for navbar
 		$movieGenres = Tmdb::getGenresApi()->getMovieGenres();
 		clock($movieGenres);
 		$movieGenres = $movieGenres['genres'];
 
-
 		$tvGenres = Tmdb::getGenresApi()->getMovieGenres();
 		$tvGenres = $tvGenres['genres'];
+
+		//	latest
+		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
+		foreach ($movies as &$movie)
+			$movie['media_type'] = 'movie';
+		
+		$recommendations = $this->getReviewablesFromResults($movies);
+
+		JavaScript::put([
+			'popularStars' => $recommendations->pluck('vote_average'),
+			'stars' => $reviews->pluck('stars')
+		]);
 
 		return view('welcome', [
 			'reviews' => $reviews,
 			'reviewables' => $reviewables,
 			'genre_id' => -1,
 			'movieGenres' => $movieGenres,
+			'recommendations' => $recommendations,
 			'tvGenres' => $tvGenres,
 		]);
 	}

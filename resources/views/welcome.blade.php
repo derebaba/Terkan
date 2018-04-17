@@ -86,7 +86,46 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
-			
+			<div class="card">
+				<div class="card-header text-center">
+					<i class="fas fa-film" aria-hidden="true"></i> Now popular
+				</div>
+				@foreach ($recommendations as $recommendation)
+					<figure class="figure center-block">
+						<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}" 
+							title="{{ $recommendation->name }}" style="">
+							<img class="img-fluid w154 center-block" src="{!! $image->getUrl($recommendation->poster, 'w154') !!}">
+						</a>
+						<figcaption class="figure-caption text-center center-block">
+							<a href="{{ route($recommendation->type . 's.show', [$recommendation->id]) }}">
+								{{ $recommendation->name }}
+							</a>
+							<select id="popular-rating-{{$loop->index}}" name="popular-rating" autocomplete="off">
+								<option value=""></option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+						</figcaption>
+					</figure>
+				@endforeach
+				
+			</div>
 		</div>
 	</div>
+@endsection
+
+@section('script')
+	<script>
+		for (i = 0; i < 40; i++) {
+			$('#popular-rating-' + i).barrating({
+				theme: 'fontawesome-stars-o',
+				showSelectedRating: true,
+				initialRating: window.popularStars[i],
+				readonly: true
+			});
+		}
+	</script>
 @endsection

@@ -164,7 +164,7 @@
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
 		{{--<script src="https://cdn.jsdelivr.net/npm/vue"></script>--}}
-
 		@include('footer')
+		@yield('script')
 	</body>
 </html>
