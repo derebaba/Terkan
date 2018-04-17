@@ -23,7 +23,7 @@
 	margin-right: auto;
 }
 
-.jumbotron, .card-header, .list-group-header {
+.card-header, .list-group-header {
 	background-color: #E56612 ; color:white; 
 }
 

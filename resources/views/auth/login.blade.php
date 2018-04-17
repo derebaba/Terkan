@@ -20,15 +20,6 @@
 
 								
 								<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-								{{--
-								@if ($errors->has('email'))
-									<span class="form-text">
-										<strong>{{ $errors->first('email') }}</strong>
-									</span>
-								@endif
-								--}}
-										
 								
 							</div>
 

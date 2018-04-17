@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Jobs\SendVerificationEmail;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -44,8 +46,13 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
 			if (Auth::user()->verified == 0) {
 				Auth::logout();
+
+				$user = User::where('email', $email);
+				dispatch(new SendVerificationEmail($user));
+
 				return back()->withInput()->withErrors([
-					'Email not verified. Verify your email by clicking the link in your email or continue with Facebook.']);
+					'Email not verified. Verify your email by clicking the link in your email or continue with Facebook.', 
+					'Confirmation email is resent, just in case you did not receive it before.']);
 			}
             return redirect()->intended('/');
 		}

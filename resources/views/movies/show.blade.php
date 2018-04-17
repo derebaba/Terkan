@@ -102,8 +102,8 @@
 			@endif
 		@else
 			<div class="container text-center">
-				<a href="{{ route('login') }}" class="link-primary">Login</a> or 
-				<a href="{{ route('register') }}" class="">register</a> to write a review
+				<i><a href="{{ route('login') }}" class="link-primary">Login</a> or 
+				<a href="{{ route('register') }}" class="">register</a> to write a review</i>
 			</div>
 			<br>
 		@endif
