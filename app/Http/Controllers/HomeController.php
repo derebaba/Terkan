@@ -47,6 +47,7 @@ class HomeController extends Controller
 			foreach ($season['episodes'] as $episode) {
 				$diff = date_diff(new DateTime($episode['air_date']), $now)->format('%r%a');
 				if ($diff < 7 && $diff > 0) {
+					$episode['days_ago'] = $diff;
 					array_push($newEpisodes, $episode);
 					array_push($newTvs, $tv);
 				}
