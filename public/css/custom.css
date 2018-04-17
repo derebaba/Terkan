@@ -129,7 +129,6 @@ img.w154 {
 #welcome-jumbotron {
 	position: relative;
 	overflow: hidden;
-	background: linear-gradient(to bottom right, lightyellow, #E56612);
 	font-size:  1.3rem;
 }
 
