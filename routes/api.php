@@ -21,7 +21,4 @@ Route::middleware('auth:api')->group( function () {
 });
 */
 
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function() {
-	Route::get('/movies/popular', 'MoviesController@popular');
-});
-
+Route::get('/movies/popular', 'MoviesController@popular');
