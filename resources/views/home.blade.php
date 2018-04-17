@@ -132,7 +132,11 @@
 						</br>
 						Season {{ $newTvs[$loop->index]['number_of_seasons'] }}, episode {{ $episode['episode_number'] }}
 						</br>
-						Aired {{ $episode['days_ago'] }} days ago
+						@if ($episode['days_ago'] != 1)
+							{{ $episode['days_ago'] }} days ago
+						@else 
+							{{ $episode['days_ago'] }} day ago
+						@endif
 					</li>
 				@endforeach
 		</div>
