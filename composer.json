@@ -18,6 +18,7 @@
         "jrm2k6/cloudder": "0.4.*",
         "laracasts/utilities": "~2.0",
         "laravel/framework": "5.6.*",
+        "laravel/passport": "^6.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "overtrue/laravel-follow": "^1.1",

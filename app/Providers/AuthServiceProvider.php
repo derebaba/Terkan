@@ -10,6 +10,7 @@ use App\Policies\UserPolicy;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+		Passport::routes();
+
+		Passport::tokensExpireIn(now()->addDays(15));
+
+		Passport::refreshTokensExpireIn(now()->addDays(30));
+	
 		//Gate::define('reviews.like', 'ReviewsController@like');
 		Gate::resource('reviews', 'ReviewPolicy');
 		Gate::resource('users', 'UserPolicy');

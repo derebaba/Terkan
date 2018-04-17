@@ -2,19 +2,19 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
+use Illuminate\Support\Facades\DB;
 use Sofa\Eloquence\Eloquence;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-	use Notifiable, HasRoles;
+	use HasApiTokens, Notifiable, HasRoles;
 	use CanFollow, CanBeFollowed, CanLike;
 	use Eloquence;
 
