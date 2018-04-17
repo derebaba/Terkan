@@ -8,7 +8,7 @@
 	@inject('image', 'Tmdb\Helper\ImageHelper')
 	<div class="row">
 		<div class="col-md-9">
-			<div class="jumbotron">
+			<div class="jumbotron" id="welcome-jumbotron">
 				<div class="container">
 					{{--<p class="pull-right d-block d-md-none">
 						<button type="button" class="btn btn-primary btn-sm" data-target="#genres" data-toggle="collapse">Browse by genres</button>

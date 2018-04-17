@@ -125,6 +125,32 @@ img.w154 {
 	width: 154px;
 }
 
+/* welcome */
+#welcome-jumbotron {
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(to bottom right, lightyellow, #E56612);
+	font-size:  1.3rem;
+}
+
+#welcome-jumbotron:before
+{
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 50%;
+    top: 60%;
+    left: 25%;
+    background: url('/tape.png');
+    background-position:  center;
+    background-size: contain;
+    -webkit-transform: rotate(130deg);
+    -moz-transform: rotate(130deg);
+    -ms-transform: rotate(130deg);
+    -o-transform: rotate(130deg);
+    transform: rotate(130deg);
+}
+
 /*	search.* */
 #navbar-list {
     display:table;
