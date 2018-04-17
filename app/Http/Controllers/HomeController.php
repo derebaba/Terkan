@@ -27,9 +27,6 @@ class HomeController extends Controller
 
 		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->get()->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
-
-		$genres = Tmdb::getGenresApi()->getMovieGenres();
-		$genres = collect($genres['genres']);	//	19 ve sonrası tv
 		
 		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
 		foreach ($movies as &$movie)
@@ -62,8 +59,6 @@ class HomeController extends Controller
 		return view('home', [
 			'reviews' => $reviews,
 			'reviewables' => $reviewables,
-			'genre_id' => -1,
-			'genres' =>	$genres,
 			'newEpisodes' => $newEpisodes,
 			'newTvs' => $newTvs,
 			'recommendations' => $recommendations
@@ -80,14 +75,20 @@ class HomeController extends Controller
 			'stars' => $reviews->pluck('stars')
 		]);
 
-		$genres = Tmdb::getGenresApi()->getGenres();
-		$genres = collect($genres['genres']);	//	19 ve sonrası tv
+		$movieGenres = Tmdb::getGenresApi()->getMovieGenres();
+		clock($movieGenres);
+		$movieGenres = $movieGenres['genres'];
+
+
+		$tvGenres = Tmdb::getGenresApi()->getMovieGenres();
+		$tvGenres = $tvGenres['genres'];
 
 		return view('welcome', [
 			'reviews' => $reviews,
 			'reviewables' => $reviewables,
 			'genre_id' => -1,
-			'genres' =>	$genres,
+			'movieGenres' => $movieGenres,
+			'tvGenres' => $tvGenres,
 		]);
 	}
 }

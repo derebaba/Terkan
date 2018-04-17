@@ -6,6 +6,36 @@
 
 @section('content')
 	@inject('image', 'Tmdb\Helper\ImageHelper')
+	<nav class="nav nav-pills nav-fill" style="padding: 3px;">
+		<a class="nav-item nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" id="movie-genres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-film"></i> Movies
+			</a>
+			<div class="dropdown-menu" aria-labelledby="movie-genres">
+				@foreach ($movieGenres as $genre)
+					<a href="{{ route('browseByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
+					class="dropdown-item">
+						<i class=""></i> {{ $genre['name'] }}
+					</a>
+				@endforeach
+			</div>
+		</li>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle disabled" href="#" id="movie-genres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<i class="fas fa-tv"></i> TV shows
+			</a>
+			<div class="dropdown-menu" aria-labelledby="movie-genres">
+				@foreach ($tvGenres as $genre)
+					<a href="{{ route('browseByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
+					class="dropdown-item">
+						<i class=""></i> {{ $genre['name'] }}
+					</a>
+				@endforeach
+			</div>
+		</li>
+	</nav>
+
 	<div class="row">
 		<div class="col-md-9">
 			<div class="jumbotron" id="welcome-jumbotron">
@@ -56,7 +86,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
-			@include('partials.genresSidebar')
+			
 		</div>
 	</div>
 @endsection

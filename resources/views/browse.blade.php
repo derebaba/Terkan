@@ -104,7 +104,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
-			@include('partials.genresSidebar')
+			
 		</div>
 	</div>
 	

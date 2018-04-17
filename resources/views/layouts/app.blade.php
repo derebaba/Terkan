@@ -41,11 +41,6 @@
 
 					<!-- Branding Image -->
 					<a href="/"><img src="/t.png" height="40px" width="40px"></a>
-					{{-- <a class="navbar-brand" href="{{ url('/') }}">
-						{{ config('app.name', 'Laravel') }}
-					</a>
-					--}}
-					
 
 					<div class="collapse navbar-collapse" id="app-navbar-collapse">
 						<!-- Left Side Of Navbar -->
@@ -54,10 +49,10 @@
 								<form id="search-form" class="form-inline" method="get" action="/search/movie">
 									<div class="input-group">
 										@if (!empty($query))
-											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, people" 
+											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, friends" 
 											size="30" required value="{{$query}}" id="search-bar">
 										@else
-											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, people" 
+											<input class="form-control" type="text" name="q" placeholder="Search movies, TV series, friends" 
 											size="30" required id="search-bar">
 										@endif
 										<input type="hidden" name="page" value="1">
