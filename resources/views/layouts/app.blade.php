@@ -164,11 +164,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 		
 		<script src="/js/jquery.barrating.min.js"></script>
+		@yield('script')
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
 		<script src="/js/app.js"></script>
 		
 		@include('footer')
-		@yield('script')
 	</body>
 </html>
