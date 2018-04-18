@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Tmdb\Laravel\Facades\Tmdb;
 
-class MoviesController extends Controller
+class MoviesController extends BaseController
 {
     public function popular()
     {
-        return response()->json(Tmdb::getDiscoverApi()->discoverMovies()['results']);
+        return $this->sendResponse(Tmdb::getDiscoverApi()->discoverMovies()['results']);
     }
 }

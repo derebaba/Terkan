@@ -1,8 +1,11 @@
 {
+	"editor.tabSize": 4,
 	"[blade]": {
 		"editor.tabSize": 2,
 	},
-	"editor.tabSize": 4,
+	"[vue]": {
+		"editor.tabSize": 2,
+	},
 	"git.enableSmartCommit": true,
 	"editor.formatOnPaste": true,
 	"editor.insertSpaces": false,
