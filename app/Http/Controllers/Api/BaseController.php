@@ -15,7 +15,7 @@ class BaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendResponse($result, $message = 'success')
+    public function sendResponse($result, $message = 'success', $code = 200)
     {
     	$response = [
             'success' => true,
@@ -24,7 +24,7 @@ class BaseController extends Controller
         ];
 
 
-        return response()->json($response, 200);
+        return response()->json($response, $code);
     }
 
 

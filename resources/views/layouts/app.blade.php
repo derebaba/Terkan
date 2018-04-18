@@ -166,6 +166,7 @@
 		<script src="/js/jquery.barrating.min.js"></script>
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
+		<script src="/js/app.js"></script>
 		
 		@include('footer')
 		@yield('script')

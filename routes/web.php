@@ -111,3 +111,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 });
 
 Route::post('/email/pipe', 'MailController@pipeEmail');
+
+//	API frontend
+Route::group(['prefix' => 'api/frontend', ], function () {
+	Route::get('/clients', function() {
+		return view('api.clients');
+	});
+	Route::get('/authorizedClients', function() {
+		return view('api.authorizedClients');
+	});
+	Route::get('/personalAccessTokens', function() {
+		return view('api.personalAccessTokens');
+	});
+});
