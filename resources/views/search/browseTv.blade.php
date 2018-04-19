@@ -82,13 +82,13 @@
 						@for ($i = 1; $i <= $max_pages; $i++)
 							@if ($i == $response['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{route('browseByGenre', ['genre' => $genre_id, 'page' => $i])}}">
+									<a class="page-link" href="{{route('browseTvByGenre', ['genre' => $genre_id, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{route('browseByGenre', ['genre' => $genre_id, 'page' => $i])}}">
+									<a class="page-link" href="{{route('browseTvByGenre', ['genre' => $genre_id, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
@@ -97,7 +97,7 @@
 						@if ($response['page'] != $max_pages)
 							<li class="page-item">
 								<a class="page-link" href=
-									"{{ route('browseByGenre', ['genre' => $genre_id, 'page' => ($response['page'] + 1)]) }}">
+									"{{ route('browseTvByGenre', ['genre' => $genre_id, 'page' => ($response['page'] + 1)]) }}">
 									Next
 								</a>
 							</li>

@@ -9,10 +9,10 @@
 	<nav class="nav nav-pills nav-fill" style="padding: 3px;">
 		<a class="nav-item nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="movie-genres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="nav-link dropdown-toggle" href="#" id="movieGenres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-film"></i> Movies
 			</a>
-			<div class="dropdown-menu" aria-labelledby="movie-genres">
+			<div class="dropdown-menu" aria-labelledby="movieGenres">
 				@foreach ($movieGenres as $genre)
 					<a href="{{ route('browseByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
 					class="dropdown-item">
@@ -22,12 +22,12 @@
 			</div>
 		</li>
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle disabled" href="#" id="movie-genres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<a class="nav-link dropdown-toggle" href="#" id="tvGenres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-tv"></i> TV shows
 			</a>
-			<div class="dropdown-menu" aria-labelledby="movie-genres">
+			<div class="dropdown-menu" aria-labelledby="tvGenres">
 				@foreach ($tvGenres as $genre)
-					<a href="{{ route('browseByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
+					<a href="{{ route('browseTvByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
 					class="dropdown-item">
 						<i class=""></i> {{ $genre['name'] }}
 					</a>
@@ -53,7 +53,7 @@
 			</div>
 			<div class="card widget">
 				<div class="card-header text-center">
-					<h4 class="card-title" aria-hidden="true"><i class="fas fa-film"></i> Latest popular reviews</h4>
+					<h4 class="card-title" aria-hidden="true"><i class="far fa-comments"></i> Latest popular reviews</h4>
 					<span class="badge badge-info" data-toggle="tooltip" data-placement="auto bottom" title="Review count" 
 						id="reviewTooltip">{{ $reviews->count() }}</span>
 				</div>

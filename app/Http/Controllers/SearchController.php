@@ -69,6 +69,45 @@ class SearchController extends Controller
 		]);
 	}
 
+	/**
+	 * Undocumented function
+	 *
+	 * @param [int] $genre_id	Tmdb id of the genre
+	 * @param [int] $page	page number of search results
+	 * @return void
+	 */
+	public function browseTvByGenre($genre_id, $page) {
+		$response = Tmdb::getDiscoverApi()->discoverTV([
+			'page' => $page,
+			'with_genres' => $genre_id,
+			'sort_by' => 'popularity.desc'
+		]);
+
+		$tvs = $response['results'];
+		foreach ($tvs as &$tv)
+			$tv['media_type'] = 'tv';
+			
+		$reviewables = $this->getReviewablesFromResults($tvs);
+
+		JavaScript::put([
+			'stars' => $reviewables->pluck('vote_average')
+		]);
+
+		$query = Tmdb::getGenresApi()->getGenre($genre_id);
+
+		$genres = Tmdb::getGenresApi()->getTvGenres();
+		$genres = collect($genres['genres']);
+		
+		return view('search.browseTv', [
+			'reviewables' => $reviewables, 
+			'query' => $query['name'],
+			'genre_id' => $genre_id,
+			'genres' =>	$genres,
+			'max_pages' => min(5, $response['total_pages']),
+			'response' => $response,
+		]);
+	}
+
 	public function searchAutocomplete(Request $request) {
 		$query =  $request->q;
 

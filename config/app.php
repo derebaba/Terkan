@@ -220,6 +220,7 @@ return [
 		//	packagelardan gelen classlar
 		'Clockwork' => Clockwork\Support\Laravel\Facade::class,
 		'Cloudder' => 'JD\Cloudder\Facades\Cloudder',
+		'Debugbar' => Barryvdh\Debugbar\Facade::class,
 		'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 		'Image' => Intervention\Image\Facades\Image::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
