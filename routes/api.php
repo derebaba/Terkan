@@ -13,7 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-	return $request->user();
-});
+Route::post('register', 'API\RegisterController@register');
 
+/*
+Route::middleware('auth:api')->group( function () {
+	Route::resource('products', 'API\ProductController');
+});
+*/
+
+Route::group(['namespace' => 'API'], function() {
+	Route::get('/movies/popular', 'MoviesController@popular');
+});

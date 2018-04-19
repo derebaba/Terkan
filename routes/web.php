@@ -99,10 +99,6 @@ Route::group(['prefix' => 'info'], function() {
 	});
 });
 
-Route::group(['namespace' => 'Api', 'prefix' => 'api'], function() {
-	Route::get('/movies/popular', 'MoviesController@popular');
-});
-
 // Admin routes
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
 	Route::get('/', ['uses' => 'AdminController@index']);
@@ -115,3 +111,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 });
 
 Route::post('/email/pipe', 'MailController@pipeEmail');
+
+//	API frontend
+/*
+Route::group(['prefix' => 'api/frontend', 'middleware' => 'auth'], function () {
+	Route::get('/clients', function() {
+		return view('api.clients');
+	});
+	Route::get('/authorizedClients', function() {
+		return view('api.authorizedClients');
+	});
+	Route::get('/personalAccessTokens', function() {
+		return view('api.personalAccessTokens');
+	});
+});
+*/

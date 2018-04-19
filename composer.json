@@ -18,6 +18,7 @@
         "jrm2k6/cloudder": "0.4.*",
         "laracasts/utilities": "~2.0",
         "laravel/framework": "5.6.*",
+        "laravel/passport": "^6.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "overtrue/laravel-follow": "^1.1",
@@ -66,7 +67,12 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ]
+		],
+		"post-install-cmd": [
+			"php artisan clear-compiled",
+			"chmod -R 777 storage",
+			"php artisan passport:keys"
+		]
     },
     "config": {
         "preferred-install": "dist",
