@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
 
 		Passport::tokensExpireIn(now()->addDays(15));
 
-		Passport::refreshTokensExpireIn(now()->addDays(30));
+		Passport::refreshTokensExpireIn(now()->addDays(365));
 	
 		//Gate::define('reviews.like', 'ReviewsController@like');
 		Gate::resource('reviews', 'ReviewPolicy');

@@ -113,6 +113,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 Route::post('/email/pipe', 'MailController@pipeEmail');
 
 //	API frontend
+/*
 Route::group(['prefix' => 'api/frontend', 'middleware' => 'auth'], function () {
 	Route::get('/clients', function() {
 		return view('api.clients');
@@ -124,3 +125,4 @@ Route::group(['prefix' => 'api/frontend', 'middleware' => 'auth'], function () {
 		return view('api.personalAccessTokens');
 	});
 });
+*/
