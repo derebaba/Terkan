@@ -25,7 +25,7 @@ class HomeController extends Controller
 		if (!Auth::check())
 			return $this->welcome();
 
-		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->take(-20)->reverse()->values();
+		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->take(-20)->get()->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 		
 		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
@@ -68,7 +68,7 @@ class HomeController extends Controller
 
 	public function welcome() {
 		//	get latest popular reviews
-		$reviews = Review::all()->reverse()->values();
+		$reviews = Review::all()->take(-20)->get()->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 
 		//	get genres for navbar
