@@ -17,9 +17,7 @@ Route::post('register', 'API\RegisterController@register');
 
 
 Route::middleware('auth:api')->group( function () {
-	Route::resource('users', 'API\UsersController')->only([
-		'show', 'update'
-	]);
+	Route::patch('/users/update', 'API\UsersController');
 });
 
 

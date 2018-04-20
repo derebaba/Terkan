@@ -25,7 +25,7 @@ class UsersController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 		return $this->sendResponse($request);
         /*$request->user()->update([
