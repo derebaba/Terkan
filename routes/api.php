@@ -17,7 +17,7 @@ Route::post('register', 'API\RegisterController@register');
 
 
 Route::middleware('auth:api')->group( function () {
-	Route::patch('/users/update', 'API\UsersController');
+	Route::patch('/users/update', 'UsersController@update');
 });
 
 
