@@ -86,3 +86,16 @@
 	</div>
 
 @endsection
+
+@section('script')
+	<script>
+		for (i = 0; i < 20; i++) {
+			$('#star-rating-' + i).barrating({
+				theme: 'fontawesome-stars-o',
+				showSelectedRating: true,
+				initialRating: window.stars[i],
+				readonly: true
+			});
+		}
+	</script>
+@endsection

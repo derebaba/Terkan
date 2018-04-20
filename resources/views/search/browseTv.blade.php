@@ -46,31 +46,6 @@
 				@endforeach	
 			</ul>
 
-				{{--
-			<div class="row">
-				
-				<div class="container-fluid text-center">
-					@foreach($reviewables as $reviewable)
-						<a href="{{ route($reviewable->type . 's.show', [$reviewable->id]) }}" 
-							title="{{ $reviewable->name }}"
-							class="poster" style="background: url('{!! $image->getUrl($reviewable->poster, "w154") !!}');">
-							<div class="overlay">
-								<p class="reviewable-name text-center">{{ $reviewable->name }}
-									<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
-										<option value=""></option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-								</p>
-							</div>
-						</a>
-
-					@endforeach
-				</div>
-			</div>--}}
 			<div class="row d-flex justify-content-center">
 				<nav aria-label="Search pagination">
 					<ul class="pagination">
@@ -111,4 +86,17 @@
 		</div>
 	</div>
 	
+@endsection
+
+@section('script')
+	<script>
+		for (i = 0; i < 20; i++) {
+			$('#star-rating-' + i).barrating({
+				theme: 'fontawesome-stars-o',
+				showSelectedRating: true,
+				initialRating: window.stars[i],
+				readonly: true
+			});
+		}
+	</script>
 @endsection

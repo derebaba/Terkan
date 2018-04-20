@@ -20,18 +20,6 @@ $('#edit-star-rating').barrating({
 	initialRating: window.stars,
 });
 
-//	search, home:news
-if ($('#star-rating-0').length) {
-	for (i = 0; i < 40; i++) {
-		$('#star-rating-' + i).barrating({
-			theme: 'fontawesome-stars-o',
-			showSelectedRating: true,
-			initialRating: window.stars[i],
-			readonly: true
-		});
-	}
-}
-
 //	home:recommendations
 if ($('#recommendation-rating-0').length) {
 	for (i = 0; i < 40; i++) {

@@ -44,17 +44,6 @@
 									{{ $loop->index + 1 }}. {{ $episode['name'] }}
 									<small>({{$episode['air_date']}})</small>
 								</h5>
-								{{--<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
-									<option value=""></option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-								<small>
-									{{ sprintf ("%.2f", $episode['vote_average'] / 2) }} / 5 ({{ $episode['vote_count'] }} votes)
-								</small>--}}
 								<p>{{ $episode['overview'] }}</p>
 							</div>
 						</div>

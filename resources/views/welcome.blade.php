@@ -119,7 +119,15 @@
 
 @section('script')
 	<script>
-		for (i = 0; i < 40; i++) {
+		for (i = 0; i < 20; i++) {
+			$('#star-rating-' + i).barrating({
+				theme: 'fontawesome-stars-o',
+				showSelectedRating: true,
+				initialRating: window.stars[i],
+				readonly: true
+			});
+		}
+		for (i = 0; i < 20; i++) {
 			$('#popular-rating-' + i).barrating({
 				theme: 'fontawesome-stars-o',
 				showSelectedRating: true,

@@ -25,7 +25,7 @@ class HomeController extends Controller
 		if (!Auth::check())
 			return $this->welcome();
 
-		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->get()->reverse()->values();
+		$reviews = Review::whereIn('user_id', Auth::user()->followings()->get()->pluck('id'))->take(-20)->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 		
 		$movies = Tmdb::getDiscoverApi()->discoverMovies()['results'];
