@@ -17,18 +17,30 @@
 	@endif
 </div>
 <div class="mic-info text-success font-weight-bold">
-	<?php $likerCount = $review->likers->count() ?>
-	@if ($likerCount > 1)
+	<?php 
+		$likers = $review->likers;
+		$likerCount = $likers->count(); 
+	?>
+	@if ($likerCount == 2)
 		@if (Auth::check() && Auth::user()->hasLiked($review))
-			You and {{$likerCount - 1}} others approve this review.
+			<?php $liker = $likers->except(Auth::user())->first(); ?>
+			You and {{ $liker->name }} approve this review.
 		@else
-			{{$likerCount}} people approve this review.
+			{{ $likers->first()->name }} and {{ $likers->last()->name }} approve this review.
 		@endif
 	@elseif ($likerCount == 1)
 		@if (Auth::check() && Auth::user()->hasLiked($review))
 			You approve this review.
 		@else
-			1 person approves this review.
+			{{ $likers->first()->name }} approves this review.
+		@endif
+	@elseif ($likerCount > 2)
+		@if (Auth::check() && Auth::user()->hasLiked($review))
+			<?php $other = $likers->except(Auth::user())->random(); ?>
+			You, {{ $other->name }}, and {{$likerCount - 2}} others approve this review.
+		@else
+			<?php $randoms = $likers->random(2); ?>
+			{{ $randoms->first()->name }}, {{ $randoms->last()->name }}, and {{ $likerCount - 2 }} others approve this review.
 		@endif
 	@endif
 </div>
