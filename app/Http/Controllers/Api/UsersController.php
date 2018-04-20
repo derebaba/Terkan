@@ -27,11 +27,11 @@ class UsersController extends BaseController
      */
     public function update(Request $request)
     {
-		return $this->sendResponse($request->getContent());
-        /*$request->user()->update([
-			'name' => $request->name
+		$body = $request->getContent();
+        $request->user()->update([
+			'name' => $body->name
 		]);
 
-		return $this->sendResponse($request->user());*/
+		return $this->sendResponse($request->user());
     }
 }
