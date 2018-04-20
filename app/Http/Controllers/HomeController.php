@@ -68,7 +68,7 @@ class HomeController extends Controller
 
 	public function welcome() {
 		//	get latest popular reviews
-		$reviews = Review::all()->take(-10)->reverse()->values();
+		$reviews = Review::all()->get()->take(-10)->reverse()->values();
 		$reviewables = $this->getReviewables($reviews);
 
 		//	get genres for navbar
