@@ -23,7 +23,7 @@
 	?>
 	@if ($likerCount == 2)
 		@if (Auth::check() && Auth::user()->hasLiked($review))
-			<?php $liker = $likers->except(Auth::user())->first(); ?>
+			<?php $liker = $likers->except(Auth::user()->id)->first(); ?>
 			You and {{ $liker->name }} approve this review.
 		@else
 			{{ $likers->first()->name }} and {{ $likers->last()->name }} approve this review.
@@ -36,7 +36,7 @@
 		@endif
 	@elseif ($likerCount > 2)
 		@if (Auth::check() && Auth::user()->hasLiked($review))
-			<?php $other = $likers->except(Auth::user())->random(); ?>
+			<?php $other = $likers->except(Auth::user()->id)->random(); ?>
 			You, {{ $other->name }}, and {{$likerCount - 2}} others approve this review.
 		@else
 			<?php $randoms = $likers->random(2); ?>
