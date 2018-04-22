@@ -27,9 +27,8 @@ class UsersController extends BaseController
      */
     public function update(Request $request)
     {
-		$body = $request->getContent();
         $request->user()->update([
-			'name' => $body->name
+			'name' => $request->input('name')
 		]);
 
 		return $this->sendResponse($request->user());
