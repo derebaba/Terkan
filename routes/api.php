@@ -13,14 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('register', 'API\RegisterController@register');
+//Route::post('register', 'API\RegisterController@register');
 
 
 Route::middleware('auth:api')->group( function () {
-	Route::patch('/users/update', 'API\UsersController@update');
+	Route::patch('users/update', 'UsersController@update');
 });
+Route::get('users/{id}', 'UsersController@show');
 
-
-Route::group(['namespace' => 'API'], function() {
-	Route::get('/movies/popular', 'MoviesController@popular');
-});
+Route::get('/movies/popular', 'MoviesController@popular');

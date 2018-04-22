@@ -1,46 +1,69 @@
 FORMAT: 1A
+HOST: https://www.terkan.me/api
 
 # Terkan
 
 Terkan API first draft.
 
+# Data Structures
+
+## User
+
++ id
++ email
++ name
++ pic
+
 # Group Users
 
 Users API
 
-## User [users/{id}]
+## Get user details [users/{id}]
 
 + Parameters
     + id: 1 (required, number) - ID of the user
 
+### GET
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            "data": {
+                "id": 1,
+                "name": "derebaba",
+                "pic": "<image_url>"
+            },
+            "message": "success"
+        }
+
 ## Update user [users/update]
 
-### Update user details [PATCH]
+Update user's name.
 
-+ name (string) - User's name
+### PATCH
 
 + Request (application/json)
 
-    + Headers
-        Accept: application/json
-        Content-Type: application/x-www-form-urlencoded
-        Authorization: Bearer {access_token}
-
-    + Attributes (user)
-        + name (string) - User's name
-
-    + Body
         { 
             "name" : "derebabuş" 
         }
 
+    + Headers
+        * Accept: application/json
+        * Content-Type: application/x-www-form-urlencoded
+        * Authorization: Bearer {access_token}
+
+    + Attributes
+        + name (string) - User's new name
+
 + Response 204 (application/json)
 
-    {
-        "success": true,
-        "data": [],
-        "message": "success"
-    }
+        {
+            "success": true,
+            "data": [],
+            "message": "success"
+        }
 
 
 # Group Movies
@@ -55,51 +78,51 @@ Get movies which are currently popular
 
 + Response 200 (application/json)
 
-    {
-        "success": true,
-        "data": [
-            {
-                "vote_count": 1386,
-                "id": 337167,
-                "video": false,
-                "vote_average": 6.0999999999999996,
-                "title": "Fifty Shades Freed",
-                "popularity": 541.50172999999995,
-                "poster_path": "/jjPJ4s3DWZZvI4vw8Xfi4Vqa1Q8.jpg",
-                "original_language": "en",
-                "original_title": "Fifty Shades Freed",
-                "genre_ids": [
-                    18,
-                    10749
-                ],
-                "backdrop_path": "/9ywA15OAiwjSTvg3cBs9B7kOCBF.jpg",
-                "adult": false,
-                "overview": "Believing they have left behind shadowy figures from their past, newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury. But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability, new threats could jeopardize their happy ending before it even begins.",
-                "release_date": "2018-02-07"
-            },
-            {
-                "vote_count": 6966,
-                "id": 269149,
-                "video": false,
-                "vote_average": 7.7000000000000002,
-                "title": "Zootopia",
-                "popularity": 320.55776800000001,
-                "poster_path": "/sM33SANp9z6rXW8Itn7NnG1GOEs.jpg",
-                "original_language": "en",
-                "original_title": "Zootopia",
-                "genre_ids": [
-                    16,
-                    12,
-                    10751,
-                    35
-                ],
-                "backdrop_path": "/mhdeE1yShHTaDbJVdWyTlzFvNkr.jpg",
-                "adult": false,
-                "overview": "Determined to prove herself, Officer Judy Hopps, the first bunny on Zootopia's police force, jumps at the chance to crack her first case - even if it means partnering with scam-artist fox Nick Wilde to solve the mystery.",
-                "release_date": "2016-02-11"
-            },
-            ...,
-        ],
-        "message": "success"
-    }
+        {
+            "success": true,
+            "data": [
+                {
+                    "vote_count": 1386,
+                    "id": 337167,
+                    "video": false,
+                    "vote_average": 6.0999999999999996,
+                    "title": "Fifty Shades Freed",
+                    "popularity": 541.50172999999995,
+                    "poster_path": "/jjPJ4s3DWZZvI4vw8Xfi4Vqa1Q8.jpg",
+                    "original_language": "en",
+                    "original_title": "Fifty Shades Freed",
+                    "genre_ids": [
+                        18,
+                        10749
+                    ],
+                    "backdrop_path": "/9ywA15OAiwjSTvg3cBs9B7kOCBF.jpg",
+                    "adult": false,
+                    "overview": "Believing they have left behind shadowy figures from their past, newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury. But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability, new threats could jeopardize their happy ending before it even begins.",
+                    "release_date": "2018-02-07"
+                },
+                {
+                    "vote_count": 6966,
+                    "id": 269149,
+                    "video": false,
+                    "vote_average": 7.7000000000000002,
+                    "title": "Zootopia",
+                    "popularity": 320.55776800000001,
+                    "poster_path": "/sM33SANp9z6rXW8Itn7NnG1GOEs.jpg",
+                    "original_language": "en",
+                    "original_title": "Zootopia",
+                    "genre_ids": [
+                        16,
+                        12,
+                        10751,
+                        35
+                    ],
+                    "backdrop_path": "/mhdeE1yShHTaDbJVdWyTlzFvNkr.jpg",
+                    "adult": false,
+                    "overview": "Determined to prove herself, Officer Judy Hopps, the first bunny on Zootopia's police force, jumps at the chance to crack her first case - even if it means partnering with scam-artist fox Nick Wilde to solve the mystery.",
+                    "release_date": "2016-02-11"
+                },
+                ...,
+            ],
+            "message": "success"
+        }
 

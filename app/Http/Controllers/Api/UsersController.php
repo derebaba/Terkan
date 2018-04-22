@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUser;
+use App\User;
 
 /**
  * @resource User
@@ -21,7 +23,11 @@ class UsersController extends BaseController
      */
     public function show($id)
     {
-        return $this->sendResponse($request->user());
+		$user = User::find($id);
+		$user->pic = Cloudder::secureShow($user->pic);
+        return $this->sendResponse($user->only([
+			'id', 'name', 'pic'
+		]));
     }
 
     /**
