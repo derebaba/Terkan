@@ -1,80 +1,105 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
 
-# terkan
+# Terkan
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Terkan API first draft.
 
-## Questions Collection [/questions]
+# Group Users
 
-### List All Questions [GET]
+Users API
 
-+ Response 200 (application/json)
+## User [users/{id}]
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
++ Parameters
+    + id: 1 (required, number) - ID of the user
 
-### Create a New Question [POST]
+## Update user [users/update]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Update user details [PATCH]
+
++ name (string) - User's name
 
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
-
-+ Response 201 (application/json)
-
     + Headers
+        Accept: application/json
+        Content-Type: application/x-www-form-urlencoded
+        Authorization: Bearer {access_token}
 
-            Location: /questions/2
+    + Attributes (user)
+        + name (string) - User's name
 
     + Body
+        { 
+            "name" : "derebabuş" 
+        }
 
++ Response 204 (application/json)
+
+    {
+        "success": true,
+        "data": [],
+        "message": "success"
+    }
+
+
+# Group Movies
+
+Movies API
+
+## Popular movies [movies/popular]
+
+Get movies which are currently popular
+
+### Get popular movies [GET]
+
++ Response 200 (application/json)
+
+    {
+        "success": true,
+        "data": [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+                "vote_count": 1386,
+                "id": 337167,
+                "video": false,
+                "vote_average": 6.0999999999999996,
+                "title": "Fifty Shades Freed",
+                "popularity": 541.50172999999995,
+                "poster_path": "/jjPJ4s3DWZZvI4vw8Xfi4Vqa1Q8.jpg",
+                "original_language": "en",
+                "original_title": "Fifty Shades Freed",
+                "genre_ids": [
+                    18,
+                    10749
+                ],
+                "backdrop_path": "/9ywA15OAiwjSTvg3cBs9B7kOCBF.jpg",
+                "adult": false,
+                "overview": "Believing they have left behind shadowy figures from their past, newlyweds Christian and Ana fully embrace an inextricable connection and shared life of luxury. But just as she steps into her role as Mrs. Grey and he relaxes into an unfamiliar stability, new threats could jeopardize their happy ending before it even begins.",
+                "release_date": "2018-02-07"
+            },
+            {
+                "vote_count": 6966,
+                "id": 269149,
+                "video": false,
+                "vote_average": 7.7000000000000002,
+                "title": "Zootopia",
+                "popularity": 320.55776800000001,
+                "poster_path": "/sM33SANp9z6rXW8Itn7NnG1GOEs.jpg",
+                "original_language": "en",
+                "original_title": "Zootopia",
+                "genre_ids": [
+                    16,
+                    12,
+                    10751,
+                    35
+                ],
+                "backdrop_path": "/mhdeE1yShHTaDbJVdWyTlzFvNkr.jpg",
+                "adult": false,
+                "overview": "Determined to prove herself, Officer Judy Hopps, the first bunny on Zootopia's police force, jumps at the chance to crack her first case - even if it means partnering with scam-artist fox Nick Wilde to solve the mystery.",
+                "release_date": "2016-02-11"
+            },
+            ...,
+        ],
+        "message": "success"
+    }
+
