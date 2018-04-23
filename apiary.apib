@@ -18,12 +18,14 @@ Terkan API first draft.
 
 Users API
 
-## Get user details [users/{id}]
+## User [/users/{id}]
+
+Get a user's profile by id.
 
 + Parameters
     + id: 1 (required, number) - ID of the user
 
-### GET
+### Get a user by id [GET]
 
 + Response 200 (application/json)
 
@@ -32,45 +34,109 @@ Users API
             "data": {
                 "id": 1,
                 "name": "derebaba",
-                "pic": "<image_url>"
+                "pic": "image_url"
             },
             "message": "success"
         }
 
-## Update user [users/update]
+## Logged-in user [/user]
 
-Update user's name.
+A user can get his own details by token.
 
-### PATCH
+### Get user's details by token [GET]
 
-+ Request (application/json)
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Accept: application/json
+                    Authorization: Bearer <access_token>
+
+    + Attributes (User)
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            "data": {
+                "id": 60,
+                "name": "derebabo",
+                "email": "example@example.com",
+                "password": "<hashed_password>",
+                "pic": "<image_url>",
+                "verified": 1,
+                "email_token": "<email_token>",
+                "created_at": "2018-04-17 10:14:54",
+                "updated_at": "2018-04-22 18:50:15",
+                "provider_id": "<string>",
+                "provider": "facebook",
+                "provider_name": "<facebookName>"
+            },
+            "message": "success"
+        }
+
+## Update user [/users/update]
+
+Update user's details.
+
+### Update user's name [PATCH]
+
++ Request (application/x-www-form-urlencoded)
 
         { 
-            "name" : "derebabuş" 
+            "name" : "derebabuş", 
         }
 
     + Headers
-        * Accept: application/json
-        * Content-Type: application/x-www-form-urlencoded
-        * Authorization: Bearer {access_token}
+
+                Accept: application/json
+                Authorization: Bearer {access_token}
 
     + Attributes
         + name (string) - User's new name
 
-+ Response 204 (application/json)
++ Response 204
 
-        {
-            "success": true,
-            "data": [],
-            "message": "success"
-        }
+# Group Oauth
 
+Authentication interface
+
+## Get access token [/oauth/token]
+
+### Get token by credentials [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+    + Body
+
+                { 
+                    "grant_type": "password",
+                    "client_id": 8,
+                    "client_secret": "jwhiEi0LmLGoshc0xiZSoUE1MRHmmpXbqKh1fgUV",
+                    "username": "<userEmail>",
+                    "password": "<password>",
+                }
+
+    + Headers
+
+                Accept: application/json
+
++ Response 200 (application/json)
+
+    + Body
+
+                {
+                    "token_type": "Bearer",
+                    "expires_in": 1295997,
+                    "access_token": "<accessToken>",
+                    "refresh_token": "<refreshToken>"
+                }
 
 # Group Movies
 
 Movies API
 
-## Popular movies [movies/popular]
+## Popular movies [/movies/popular]
 
 Get movies which are currently popular
 

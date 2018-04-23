@@ -15,6 +15,13 @@ use App\User;
  */
 class UsersController extends BaseController
 {
+
+	public function self() 
+	{
+		$user = User::find(request()->user()->id);
+		$user->pic = Cloudder::secureShow($user->pic);
+        return $this->sendResponse($user);
+	}
     /**
      * Display the specified resource.
      *
@@ -33,11 +40,6 @@ class UsersController extends BaseController
     /**
      * Update user.
      *
-	 * @response {
-	 * 	'success': true or false,
-	 * 	'data': all fields of user,
-	 * 	'message': description message (may be empty),
-	 * }
      * @param  \App\Http\Requests\UpdateUser  $request
      * @return \Illuminate\Http\Response
      */
@@ -47,6 +49,6 @@ class UsersController extends BaseController
 			'name' => $request->input('name')
 		]);
 
-		return $this->sendResponse($request->user());
+		return response()->json(null, 204);
     }
 }

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 
 
 Route::middleware('auth:api')->group( function () {
+	Route::get('user', 'UsersController@self');
 	Route::patch('users/update', 'UsersController@update');
 });
 Route::get('users/{id}', 'UsersController@show');
