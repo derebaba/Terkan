@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Review;
 use App\Http\Requests\UpdateUser;
 use App\User;
+use App\Traits\Utils;
 
 /**
  * @resource User
@@ -15,6 +17,13 @@ use App\User;
  */
 class UsersController extends BaseController
 {
+	use Utils;
+
+	public function reviews($id) {
+		$user = User::find($id);
+		$reviews = $user->reviews;
+		return $this->sendResponse($user->reviews);
+	}
 
 	public function self() 
 	{

@@ -13,13 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::post('register', 'API\RegisterController@register');
-
+Route::post('register', 'RegisterController@register');
 
 Route::middleware('auth:api')->group( function () {
 	Route::get('user', 'UsersController@self');
 	Route::patch('users/update', 'UsersController@update');
+
+	//Route::apiResource('reviews', 'ReviewsController')->except(['index', 'show']);
 });
 Route::get('users/{id}', 'UsersController@show');
+Route::get('users/{id}/reviews', 'UsersController@reviews');
 
 Route::get('/movies/popular', 'MoviesController@popular');
