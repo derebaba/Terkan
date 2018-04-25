@@ -80,7 +80,7 @@ class UsersController extends BaseController
      */
     public function update(UpdateUser $request)
     {
-        $request->user()->update([
+        request()->user()->update([
 			'name' => $request->input('name')
 		]);
 
