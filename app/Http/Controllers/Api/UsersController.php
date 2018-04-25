@@ -80,7 +80,7 @@ class UsersController extends BaseController
      */
     public function update(UpdateUser $request, $id)
     {
-		if (request()->user()->id !== $id)
+		if (request()->user()->id != $id)
 			return $this->sendError('You cannot edit this user.', [], 403);
 			
         request()->user()->update([

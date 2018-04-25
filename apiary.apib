@@ -39,6 +39,23 @@ Get a user's profile by id.
             "message": "success"
         }
 
+### Update user's name [PATCH]
+
++ Request (application/x-www-form-urlencoded)
+
+        { 
+            "name" : "derebabuş", 
+        }
+
+    + Headers
+
+                Authorization: Bearer {access_token}
+
+    + Attributes
+        + name (string) - User's new name
+
++ Response 204
+
 ## Logged-in user [/user]
 
 A user can get his own details by token.
@@ -74,24 +91,18 @@ A user can get his own details by token.
             "message": "success"
         }
 
-## Update user [/users/update]
+## Follow/Unfollow a TV show [/tvs/{id}/follow]
 
-Update user's details.
+Get a user's reviews by user id. The response includes information about the reviewed media in "reviewable" field. Note that field names differ between movie and tv.
 
-### Update user's name [PATCH]
++ Parameters
+    + id: 15 (required, number) - ID of the TV show
 
-+ Request (application/x-www-form-urlencoded)
+### Follow TV [POST]
 
-        { 
-            "name" : "derebabuş", 
-        }
++ Response 204
 
-    + Headers
-
-                Authorization: Bearer {access_token}
-
-    + Attributes
-        + name (string) - User's new name
+### Unfollow TV [DELETE]
 
 + Response 204
 

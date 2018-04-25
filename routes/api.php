@@ -18,7 +18,7 @@ Route::post('register', 'RegisterController@register');
 Route::middleware('auth:api')->group( function () {
 	Route::get('user', 'UsersController@self');
 	Route::post('/tvs/{tv_id}/follow', 'UsersController@followTv');
-	Route::delete('/tvs/{tv_id}/unfollow', 'UsersController@unfollowTv');
+	Route::delete('/tvs/{tv_id}/follow', 'UsersController@unfollowTv');
 	Route::patch('users/{id}', 'UsersController@update');
 
 	//Route::apiResource('reviews', 'ReviewsController')->except(['index', 'show']);
