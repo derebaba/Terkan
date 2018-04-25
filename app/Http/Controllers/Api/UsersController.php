@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Review;
 use Tmdb\Laravel\Facades\Tmdb;
@@ -17,6 +18,24 @@ use App\User;
  */
 class UsersController extends BaseController
 {
+	public function followTv(Request $request, $tv_id) {
+		DB::table('tv_user')->insert([
+			'user_id' => request()->user()->id,
+			'tv_id' => $tv_id
+		]);
+
+		return response()->json(null, 204);
+	}
+
+	public function unfollowTv(Request $request, $tv_id) {
+		DB::table('tv_user')->where([
+			'user_id' => request()->user()->id,
+			'tv_id' => $tv_id
+		])->delete();
+
+		return response()->json(null, 204);
+	}
+
 	public function reviews($id) {
 		$user = User::find($id);
 		$reviews = $user->reviews;
@@ -66,5 +85,25 @@ class UsersController extends BaseController
 		]);
 
 		return response()->json(null, 204);
-    }
+	}
+	
+	/*
+	public function getWatchlist($id) {
+		$watchlist = $user->getWatchlist();
+		$movies = [];
+		$tvs = [];
+		
+		foreach ($watchlist as $index => $item) {
+			if ($item->reviewable_type === 'movie') {
+				$movie = Tmdb::getMoviesApi()->getMovie($item->reviewable_id);
+				array_push($movies, $movie);
+			}
+			else {
+				$tv = Tmdb::getTvApi()->getTvshow($item->reviewable_id);
+				array_push($tvs, $tv);
+			}
+		}
+
+	}
+	*/
 }
