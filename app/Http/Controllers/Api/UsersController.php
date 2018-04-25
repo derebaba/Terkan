@@ -19,11 +19,15 @@ use App\User;
 class UsersController extends BaseController
 {
 	public function followTv(Request $request, $tv_id) {
-		DB::table('tv_user')->insert([
-			'user_id' => request()->user()->id,
-			'tv_id' => $tv_id
-		]);
-
+		try {
+			DB::table('tv_user')->insert([
+				'user_id' => request()->user()->id,
+				'tv_id' => $tv_id
+			]);
+		} catch (\Illuminate\Database\QueryException $e) {
+			if ($e->getCode() == 23505)
+				return $this->sendError('User is already following this show.', null, 409);
+		}
 		return response()->json(null, 204);
 	}
 
@@ -81,7 +85,7 @@ class UsersController extends BaseController
     public function update(UpdateUser $request, $id)
     {
 		if (request()->user()->id != $id)
-			return $this->sendError('You cannot edit this user.', [], 403);
+			return $this->sendError('You cannot edit this user.', null, 403);
 			
         request()->user()->update([
 			'name' => $request->input('name')

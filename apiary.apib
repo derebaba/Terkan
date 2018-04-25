@@ -43,9 +43,11 @@ Get a user's profile by id.
 
 + Request (application/x-www-form-urlencoded)
 
-        { 
-            "name" : "derebabuş", 
-        }
+    + Body
+
+            { 
+                "name" : "derebabuş", 
+            }
 
     + Headers
 
@@ -67,8 +69,6 @@ A user can get his own details by token.
     + Headers
 
                     Authorization: Bearer <access_token>
-
-    + Attributes (User)
 
 + Response 200 (application/json)
 
@@ -101,6 +101,15 @@ Get a user's reviews by user id. The response includes information about the rev
 ### Follow TV [POST]
 
 + Response 204
+
++ Response 409
+
+    + Body
+
+                {
+                    "success": false,
+                    "message": "User is already following this show."
+                }
 
 ### Unfollow TV [DELETE]
 
