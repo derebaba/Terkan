@@ -78,8 +78,11 @@ class UsersController extends BaseController
      * @param  \App\Http\Requests\UpdateUser  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUser $request)
+    public function update(UpdateUser $request, $id)
     {
+		if (request()->user()->id !== $id)
+			return $this->sendError('You cannot edit this user.', [], 403);
+			
         request()->user()->update([
 			'name' => $request->input('name')
 		]);
