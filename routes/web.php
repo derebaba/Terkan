@@ -73,7 +73,7 @@ Route::get('tvs/{id}', 'TvsController@show')->name('tvs.show');
 Route::get('tvs/{id}/season/{season_number?}', 'TvsController@getSeason')->name('tvs.season');
 
 //	Users
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController')->except(['index']);
 Route::get('/users/{user}/followers', 'UsersController@followers');
 Route::get('/users/{user}/watchlist', 'UsersController@watchlist')->name('users.watchlist');
 
@@ -112,18 +112,3 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 });
 
 Route::post('/email/pipe', 'MailController@pipeEmail');
-
-//	API frontend
-/*
-Route::group(['prefix' => 'api/frontend', 'middleware' => 'auth'], function () {
-	Route::get('/clients', function() {
-		return view('api.clients');
-	});
-	Route::get('/authorizedClients', function() {
-		return view('api.authorizedClients');
-	});
-	Route::get('/personalAccessTokens', function() {
-		return view('api.personalAccessTokens');
-	});
-});
-*/

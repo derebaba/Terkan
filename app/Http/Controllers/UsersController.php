@@ -18,16 +18,6 @@ use Tmdb\Laravel\Facades\Tmdb;
 class UsersController extends Controller
 {
 	use Utils;
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index()
-	{
-		$users = User::all();
-		return view('users.index', ['users' => $users]);
-	}
 
 	/**
 	 * Display the specified resource.
