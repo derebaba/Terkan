@@ -9,10 +9,10 @@ Terkan API first draft.
 
 ## User
 
-+ id
-+ email
-+ name
-+ pic
++ id (number)
++ email (string)
++ name (string)
++ pic (string)
 
 # Group Users
 
@@ -112,6 +112,64 @@ A user can get his own details by token.
 ### Unfollow TV [DELETE]
 
 + Response 204
+
+## Followings of a user [/user/{id}/followings]
+
++ Parameters
+    + id: 1 (required, number) - ID of the TV show
+
+### Followings [GET]
+
++ Response 200
+
+    + Body
+
+                {
+                    "success": true,
+                    "data": [
+                        {
+                            "id": 15,
+                            "name": "Ahmet Yıldırım",
+                            "pic": "https://graph.facebook.com/v2.10/10156326399823866/picture?type=normal"
+                        },
+                        {
+                            "id": 59,
+                            "name": "serap",
+                            "pic": null
+                        }
+                    ],
+                    "message": "success"
+                }
+
+
+## Followers of a user [/user/{id}/followers]
+
++ Parameters
+    + id: 1 (required, number) - ID of the TV show
+
+### Followers [GET]
+
++ Response 200
+
+    + Body
+
+                {
+                    "success": true,
+                    "data": [
+                        {
+                            "id": 15,
+                            "name": "Ahmet Yıldırım",
+                            "pic": "https://graph.facebook.com/v2.10/10156326399823866/picture?type=normal"
+                        },
+                        {
+                            "id": 59,
+                            "name": "serap",
+                            "pic": null
+                        }
+                    ],
+                    "message": "success"
+                }
+
 
 ## Get a user's reviews [/users/{id}/review]
 

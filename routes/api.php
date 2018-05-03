@@ -25,5 +25,7 @@ Route::middleware('auth:api')->group( function () {
 });
 Route::get('users/{id}', 'UsersController@show');
 Route::get('users/{id}/reviews', 'UsersController@reviews');
+Route::get('users/{id}/followers', 'UsersController@followers');
+Route::get('users/{id}/followings', 'UsersController@followings');
 
 Route::get('/movies/popular', 'MoviesController@popular');

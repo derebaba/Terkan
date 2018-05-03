@@ -18,6 +18,18 @@ use App\User;
  */
 class UsersController extends BaseController
 {
+	public function followers($id) {
+		return $this->sendResponse(User::find($id)->followers->map(function($user) {
+			return $user->publicInfo();
+		}));
+	}
+
+	public function followings($id) {
+		return $this->sendResponse(User::find($id)->followings->map(function($user) {
+			return $user->publicInfo();
+		}));
+	}
+
 	public function followTv(Request $request, $tv_id) {
 		try {
 			DB::table('tv_user')->insert([
@@ -70,10 +82,7 @@ class UsersController extends BaseController
     public function show($id)
     {
 		$user = User::find($id);
-		$user->pic = Cloudder::secureShow($user->pic);
-        return $this->sendResponse($user->only([
-			'id', 'name', 'pic'
-		]));
+        return $this->sendResponse($user->publicInfo());
     }
 
     /**

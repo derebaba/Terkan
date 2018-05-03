@@ -5,6 +5,7 @@ namespace App;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
+use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Support\Facades\DB;
 use Sofa\Eloquence\Eloquence;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
@@ -56,5 +57,12 @@ class User extends Authenticatable
 
 	public function isFollowingTv($tv_id) {
 		return DB::table('tv_user')->where(['user_id' => $this->id, 'tv_id' => $tv_id])->exists();
+	}
+
+	public function publicInfo() {
+		$this->pic = Cloudder::secureShow($this->pic);
+		return $this->only([
+			'id', 'name', 'pic'
+		]);
 	}
 }
