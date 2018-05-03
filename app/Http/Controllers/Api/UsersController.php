@@ -103,9 +103,9 @@ class UsersController extends BaseController
 		return response()->json(null, 204);
 	}
 	
-	/*
+	
 	public function getWatchlist($id) {
-		$watchlist = $user->getWatchlist();
+		$watchlist = User::find($id)->getWatchlist();
 		$movies = [];
 		$tvs = [];
 		
@@ -120,6 +120,9 @@ class UsersController extends BaseController
 			}
 		}
 
+		array_push($movies, $tvs);
+
+		return $this->sendResponse($movies);
 	}
-	*/
+	
 }

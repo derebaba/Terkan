@@ -27,5 +27,6 @@ Route::get('users/{id}', 'UsersController@show');
 Route::get('users/{id}/reviews', 'UsersController@reviews');
 Route::get('users/{id}/followers', 'UsersController@followers');
 Route::get('users/{id}/followings', 'UsersController@followings');
+Route::get('users/{id}/watchlist', 'UsersController@getWatchlist');
 
 Route::get('/movies/popular', 'MoviesController@popular');
