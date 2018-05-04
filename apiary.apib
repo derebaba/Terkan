@@ -229,26 +229,26 @@ Authentication interface
 
 ## Get access token [/oauth/token]
 
-Set grant_type to "password" to get token by credentials, "refresh_token" to refresh token.
+Set `grant_type` to "password" to get token by credentials, `"refresh_token"` to refresh token.
 
 ### Get or refresh access token [POST]
 
-+ Request Get token by credentials (application/x-www-form-urlencoded)
++ Request Get access token using credentials (application/x-www-form-urlencoded)
 
     + Attributes
         + client_id (required, number) - Client ID
         + client_secret (required, string) - Client secret
-        + grant_type (required, string)
-        + username (string) - User's email
-        + password (string)
+        + grant_type (required, string) - "password"
+        + username (required, string) - User's email
+        + password (required, string) - User's password
 
 + Request Refresh token (application/x-www-form-urlencoded)
 
     + Attributes
         + client_id (required, number) - Client ID
         + client_secret (required, string) - Client secret
-        + grant_type (required, string)
-        + refresh_token (string)
+        + `grant_type` (required, string) - `"refresh_token"`
+        + refresh_token (required, string)
 
 + Response 200 (application/json)
 
@@ -322,4 +322,3 @@ Get movies which are currently popular
                     ],
                     "message": "success"
                 }
-
