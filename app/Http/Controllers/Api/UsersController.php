@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Review;
+use App\Http\Resources\Review as ReviewResource;
 use Tmdb\Laravel\Facades\Tmdb;
 use App\Http\Requests\UpdateUser;
 use App\User;
@@ -33,9 +34,15 @@ class UsersController extends BaseController
 				'user_id' => request()->user()->id,
 				'tv_id' => $tv_id
 			]);
-		} catch (\Illuminate\Database\QueryException $e) {
+		} 
+		catch (\Illuminate\Database\QueryException $e) {
 			if ($e->getCode() == 23505)
 				return $this->sendError('User is already following this show.', null, 409);
+			
+			return $this->sendError('Unknown database error.');
+		}
+		catch (\Exception $e) {
+			return $this->sendError('Unknown error.');
 		}
 		return response()->json(null, 204);
 	}
@@ -51,6 +58,7 @@ class UsersController extends BaseController
 
 	public function reviews($id) {
 		$user = User::find($id);
+		/*
 		$reviews = $user->reviews;
 
 		foreach ($reviews as &$review) {
@@ -61,7 +69,8 @@ class UsersController extends BaseController
 				$review['reviewable'] = Tmdb::getTvApi()->getTvshow($review['reviewable_id']);
 			}
 		}
-		return $this->sendResponse($user->reviews);
+		*/
+		return $this->sendResponse(ReviewResource::collection($user->reviews));
 	}
 
 	public function self() 
