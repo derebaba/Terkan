@@ -20,7 +20,7 @@
       <tr>
         <th scope="row"><a href="/users/{{ $follower->id }}">{{ $follower->id }}</a></th>
         <td>{{ $follower->name }}</td>
-        <td>{{ $follower->created_at }}</td>
+        <td>{{ $follower->pivot->created_at }}</td>
       </tr>
       @endforeach
     </tbody>

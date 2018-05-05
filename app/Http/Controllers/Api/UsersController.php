@@ -10,6 +10,7 @@ use App\Review;
 use Tmdb\Laravel\Facades\Tmdb;
 use App\Http\Requests\UpdateUser;
 use App\User;
+use App\Http\Resources\User as UserResource;
 
 /**
  * @resource User
@@ -19,15 +20,11 @@ use App\User;
 class UsersController extends BaseController
 {
 	public function followers($id) {
-		return $this->sendResponse(User::find($id)->followers->map(function($user) {
-			return $user->publicInfo();
-		}));
+		return UserResource::collection(User::find($id)->followers);
 	}
 
 	public function followings($id) {
-		return $this->sendResponse(User::find($id)->followings->map(function($user) {
-			return $user->publicInfo();
-		}));
+		return UserResource::collection(User::find($id)->followings);
 	}
 
 	public function followTv(Request $request, $tv_id) {
@@ -81,8 +78,7 @@ class UsersController extends BaseController
      */
     public function show($id)
     {
-		$user = User::find($id);
-        return $this->sendResponse($user->publicInfo());
+        return new UserResource(User::find($id));
     }
 
     /**
