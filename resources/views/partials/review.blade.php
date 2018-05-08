@@ -58,7 +58,7 @@
 				</button>
 			@endif
 		</form>
-		@if (Auth::user() == $review->user)
+		@if (Auth::user() == $review->user || Auth::user()->hasRole('admin'))
 			<a href="{{ route('reviews.edit', [$review->id]) }}" type="button" 
 				class="btn btn-primary btn-sm review-button" title="Edit" style="">
 				<i class="fas fa-pencil-alt"></i> Edit
