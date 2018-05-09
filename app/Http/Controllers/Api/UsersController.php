@@ -20,6 +20,28 @@ use App\Http\Resources\User as UserResource;
  */
 class UsersController extends BaseController
 {
+	public function followUser(Request $request, $id) {
+		if (User::find($id)) {
+			request()->user()->follow($id);
+
+			return response()->json(null, 204);
+		}
+		else {
+			return $this->sendError('The user with id=' . $id . ' does not exist.');
+		}
+	}
+
+	public function unfollowUser(Request $request, $id) {
+		if (User::find($id)) {
+			request()->user()->unfollow($id);
+			
+			return response()->json(null, 204);
+		}
+		else {
+			return $this->sendError('The user with id=' . $id . ' does not exist.');
+		}
+	}
+
 	public function followers($id) {
 		return UserResource::collection(User::find($id)->followers);
 	}

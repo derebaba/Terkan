@@ -17,6 +17,8 @@ Route::post('register', 'RegisterController@register');
 
 Route::middleware('auth:api')->group( function () {
 	Route::get('user', 'UsersController@self');
+	Route::post('/users/{id}/follow', 'UsersController@followUser');
+	Route::delete('/users/{id}/follow', 'UsersController@unfollowUser');
 	Route::post('/tvs/{tv_id}/follow', 'UsersController@followTv');
 	Route::delete('/tvs/{tv_id}/follow', 'UsersController@unfollowTv');
 	Route::patch('users/{id}', 'UsersController@update');

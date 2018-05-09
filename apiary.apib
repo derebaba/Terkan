@@ -5,8 +5,8 @@ HOST: https://www.terkan.me/api
 
 Terkan API first draft.
 
-Movies and TV shows are sent in these formats:
-
+* <...> signs denote variables.
+* Movies and TV shows are sent in these formats:
 https://developers.themoviedb.org/3/movies/get-movie-details
 https://developers.themoviedb.org/3/tv/get-tv-details
 
@@ -95,6 +95,38 @@ A user can get his own details by token.
             "message": "success"
         }
 
+## Follow/Unfollow another user [/users/{id}/follow]
+
++ Parameters
+    + id: 15 (required, number) - ID of the user to follow
+
+### Follow user [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Authorization: Bearer <access_token>
++ Response 204
+
++ Response 409 (application/json)
+
+    + Body
+
+                {
+                    "success": false,
+                    "message": "You are already following this user."
+                }
+
+### Unfollow user [DELETE]
+
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Authorization: Bearer <access_token>
++ Response 204
+
 ## Follow/Unfollow a TV show [/tvs/{id}/follow]
 
 + Parameters
@@ -102,6 +134,11 @@ A user can get his own details by token.
 
 ### Follow TV [POST]
 
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Authorization: Bearer <access_token>
 + Response 204
 
 + Response 409 (application/json)
@@ -115,6 +152,11 @@ A user can get his own details by token.
 
 ### Unfollow TV [DELETE]
 
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Authorization: Bearer <access_token>
 + Response 204
 
 ## Followings of a user [/user/{id}/followings]
