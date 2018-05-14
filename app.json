@@ -50,6 +50,9 @@
 	  	"MAIL_USERNAME": {
 			"required": true
 		},
+		"PAPERTRAIL_API_TOKEN": {
+			"required": true
+		},
 		"SENDGRID_API_KEY": {
 			"required": true
 		},
