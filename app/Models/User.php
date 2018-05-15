@@ -24,7 +24,7 @@ class User extends Authenticatable implements Transformable
     use TransformableTrait;
 	use HasApiTokens, Notifiable;
 	use CanFollow, CanBeFollowed, CanLike;
-	use Eloquence;
+	use Eloquence, EntrustUserTrait;
 
 	// no need for this, but you can define default searchable columns:
 	protected $searchableColumns = ['name', 'email', 'provider_name'];
