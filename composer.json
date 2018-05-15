@@ -24,6 +24,7 @@
         "overtrue/laravel-follow": "^1.1",
         "php-tmdb/api": "~2.1",
         "php-tmdb/laravel": "~1.0",
+        "prettus/l5-repository": "^2.6",
         "ramsey/uuid-doctrine": "^1.4",
         "sendgrid/sendgrid": "~6.0",
         "sofa/eloquence-base": "^5.6",

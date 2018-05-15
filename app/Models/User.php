@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
@@ -11,9 +11,17 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class User extends Authenticatable
+/**
+ * Class User.
+ *
+ * @package namespace App\Models;
+ */
+class User extends Model implements Transformable
 {
+    use TransformableTrait;
 	use HasApiTokens, Notifiable, HasRoles;
 	use CanFollow, CanBeFollowed, CanLike;
 	use Eloquence;

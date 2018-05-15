@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\User;
+use App\Models\User;
 use App\Traits\Utils;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;

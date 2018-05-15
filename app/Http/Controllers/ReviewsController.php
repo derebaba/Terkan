@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use App\User;
+use App\Models\User;
 use App\Http\Requests\EditReview;
 use App\Traits\ShowReviewable;
 use Illuminate\Http\Request;

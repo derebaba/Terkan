@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Jobs\SendVerificationEmail;
-use App\User;
+use App\Models\User;
 
 class LoginController extends Controller
 {
