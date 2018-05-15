@@ -19,7 +19,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  *
  * @package namespace App\Models;
  */
-class User extends Model implements Transformable
+class User extends Authenticatable implements Transformable
 {
     use TransformableTrait;
 	use HasApiTokens, Notifiable, HasRoles;
