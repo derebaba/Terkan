@@ -22,7 +22,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 class User extends Authenticatable implements Transformable
 {
     use TransformableTrait;
-	use HasApiTokens, Notifiable, HasRoles;
+	use HasApiTokens, Notifiable;
 	use CanFollow, CanBeFollowed, CanLike;
 	use Eloquence;
 
