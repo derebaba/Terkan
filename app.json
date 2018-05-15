@@ -67,7 +67,8 @@
 	},
 	"addons": [
 	  "heroku-postgresql",
-	  "cloudinary"
+	  "cloudinary",
+	  "papertrail"
 	],
 	"buildpacks": [
 	  {
