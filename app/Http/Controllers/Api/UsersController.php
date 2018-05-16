@@ -90,19 +90,11 @@ class UsersController extends BaseController
 
 	public function reviews($id) {
 		$user = User::find($id);
-		/*
-		$reviews = $user->reviews;
-
-		foreach ($reviews as &$review) {
-			if ($review['reviewable_type'] == 'movie') {
-				$review['reviewable'] = Tmdb::getMoviesApi()->getMovie($review['reviewable_id']);
-			}
-			else if ($review['reviewable_type'] == 'tv') {
-				$review['reviewable'] = Tmdb::getTvApi()->getTvshow($review['reviewable_id']);
-			}
-		}
-		*/
 		return $this->sendResponse(ReviewResource::collection($user->reviews));
+	}
+
+	public function search(Request $request) {
+		return $this->sendResponse($this->repository->all());
 	}
 
 	public function self() 

@@ -6,7 +6,6 @@ use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
 use Illuminate\Support\Facades\DB;
-use Sofa\Eloquence\Eloquence;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -24,10 +23,7 @@ class User extends Authenticatable implements Transformable
     use TransformableTrait;
 	use HasApiTokens, Notifiable;
 	use CanFollow, CanBeFollowed, CanLike;
-	use Eloquence, EntrustUserTrait;
-
-	// no need for this, but you can define default searchable columns:
-	protected $searchableColumns = ['name', 'email', 'provider_name'];
+	use EntrustUserTrait;
 	
 	/**
 	 * The attributes that are mass assignable.

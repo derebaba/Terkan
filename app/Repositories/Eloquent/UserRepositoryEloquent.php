@@ -15,6 +15,12 @@ use App\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+	protected $fieldSearchable = [
+		'name' => 'ilike',
+		'email', 
+		'provider_name' => 'ilike'
+	];
+
     /**
      * Specify Model class name
      *
