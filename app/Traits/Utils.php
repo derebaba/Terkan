@@ -5,7 +5,7 @@ namespace App\Traits;
 use JD\Cloudder\Facades\Cloudder;
 use App\Review;
 use App\Models\Reviewable;
-use App\User;
+use App\Models\User;
 
 use File;
 

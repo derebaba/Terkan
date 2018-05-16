@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Review;
-use App\User;
+use App\Models\User;
 
 use App\Policies\ReviewPolicy;
 use App\Policies\UserPolicy;

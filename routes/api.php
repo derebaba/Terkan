@@ -17,6 +17,7 @@ Route::post('register', 'RegisterController@register');
 
 Route::middleware('auth:api')->group( function () {
 	Route::get('user', 'UsersController@self');
+
 	Route::post('/users/{id}/follow', 'UsersController@followUser');
 	Route::delete('/users/{id}/follow', 'UsersController@unfollowUser');
 	Route::post('/tvs/{tv_id}/follow', 'UsersController@followTv');
@@ -25,6 +26,7 @@ Route::middleware('auth:api')->group( function () {
 
 	//Route::apiResource('reviews', 'ReviewsController')->except(['index', 'show']);
 });
+Route::get('users', 'UsersController@search');	//	TODO: api
 Route::get('users/{id}', 'UsersController@show');
 Route::get('users/{id}/reviews', 'UsersController@reviews');
 Route::get('users/{id}/followers', 'UsersController@followers');

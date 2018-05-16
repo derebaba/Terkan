@@ -10,8 +10,9 @@ use App\Review;
 use App\Http\Resources\Review as ReviewResource;
 use Tmdb\Laravel\Facades\Tmdb;
 use App\Http\Requests\UpdateUser;
-use App\User;
+use App\Models\User;
 use App\Http\Resources\User as UserResource;
+use App\Contracts\Repositories\UserRepository;
 
 /**
  * @resource User
@@ -20,6 +21,15 @@ use App\Http\Resources\User as UserResource;
  */
 class UsersController extends BaseController
 {
+	/**
+     * @var UserRepository
+     */
+    protected $repository;
+
+    public function __construct(UserRepository $repository){
+        $this->repository = $repository;
+	}
+	
 	public function followUser(Request $request, $id) {
 		if (User::find($id)) {
 			request()->user()->follow($id);
@@ -80,19 +90,11 @@ class UsersController extends BaseController
 
 	public function reviews($id) {
 		$user = User::find($id);
-		/*
-		$reviews = $user->reviews;
-
-		foreach ($reviews as &$review) {
-			if ($review['reviewable_type'] == 'movie') {
-				$review['reviewable'] = Tmdb::getMoviesApi()->getMovie($review['reviewable_id']);
-			}
-			else if ($review['reviewable_type'] == 'tv') {
-				$review['reviewable'] = Tmdb::getTvApi()->getTvshow($review['reviewable_id']);
-			}
-		}
-		*/
 		return $this->sendResponse(ReviewResource::collection($user->reviews));
+	}
+
+	public function search(Request $request) {
+		return $this->sendResponse($this->repository->all());
 	}
 
 	public function self() 
@@ -109,7 +111,7 @@ class UsersController extends BaseController
      */
     public function show($id)
     {
-        return new UserResource(User::find($id));
+        return new UserResource($this->repository->find($id));
     }
 
     /**

@@ -3,17 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use App\User;
+use App\Models\User;
 use App\Traits\Utils;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
+use App\Contracts\Repositories\UserRepository;
 use Tmdb\Laravel\Facades\Tmdb;
 
 class SearchController extends Controller
 {
 	use Utils;
+
+	/**
+     * @var UserRepository
+     */
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository){
+        $this->userRepository = $userRepository;
+	}
 
 	//	TODO: Reviewable classını komple kaldır (?)
 	/**
@@ -117,7 +127,7 @@ class SearchController extends Controller
 				unset($response[$index]);
 		}
 		//	add users
-		$users = User::search($query)->get()->toArray();
+		$users = $this->userRepository->all()->toArray();
 		foreach ($users as &$user)
 			$user['media_type'] = 'user';
 		$response = array_merge($response, $users);
@@ -136,7 +146,7 @@ class SearchController extends Controller
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$peopleResults = User::search($query)->get();
+		$peopleResults = $this->userRepository->all();
 
 		$results = $movieResponse['results'];
 		foreach ($results as &$result) {
@@ -166,7 +176,7 @@ class SearchController extends Controller
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$peopleResults = User::search($query)->get();
+		$peopleResults = $this->userRepository->all();
 
 		return view('search.people', [
 			'query' => $query,
@@ -186,7 +196,7 @@ class SearchController extends Controller
 			'page' => $page,
 		]);
 
-		$peopleResults = User::search($query)->get();
+		$peopleResults = $this->userRepository->all();
 
 		$results = $tvResponse['results'];
 		foreach ($results as &$result) {

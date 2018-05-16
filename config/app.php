@@ -158,7 +158,6 @@ return [
 		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		'JD\Cloudder\CloudderServiceProvider',
-		'Sofa\Eloquence\BaseServiceProvider',
 		/*
 			* Application Service Providers...
 			*/
