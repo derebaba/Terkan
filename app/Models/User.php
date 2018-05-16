@@ -5,6 +5,7 @@ namespace App\Models;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
+use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Support\Facades\DB;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Passport\HasApiTokens;
@@ -43,6 +44,20 @@ class User extends Authenticatable implements Transformable
 		'remember_token', 'access_token'
 	];
 
+	/**
+      * @return array
+      */
+     public function transform()
+     {
+        $this->pic = Cloudder::secureShow($this->pic);
+
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'pic' => $this->pic
+        ];
+	 }
+	 
 	public function reviews() {
 		return $this->hasMany('App\Review');
 	}

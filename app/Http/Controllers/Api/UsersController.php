@@ -111,7 +111,7 @@ class UsersController extends BaseController
      */
     public function show($id)
     {
-        return new UserResource($this->repository->find($id));
+        return response()->json($this->repository->find($id));
     }
 
     /**
