@@ -127,7 +127,7 @@ class SearchController extends Controller
 				unset($response[$index]);
 		}
 		//	add users
-		$users = $this->userRepository->all()->toArray();
+		$users = $this->userRepository->skipPresenter()->all()->toArray();
 		foreach ($users as &$user)
 			$user['media_type'] = 'user';
 		$response = array_merge($response, $users);
@@ -146,8 +146,8 @@ class SearchController extends Controller
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$peopleResults = $this->userRepository->all();
-
+		$peopleResults = $this->userRepository->skipPresenter()->all();
+		
 		$results = $movieResponse['results'];
 		foreach ($results as &$result) {
 			$reviews = Review::where('reviewable_type', 'movie')->where('reviewable_id', $result['id']);
@@ -176,7 +176,7 @@ class SearchController extends Controller
 
 		$tvResponse = Tmdb::getSearchApi()->searchTv($query);
 
-		$peopleResults = $this->userRepository->all();
+		$peopleResults = $this->userRepository->skipPresenter()->all();
 
 		return view('search.people', [
 			'query' => $query,
@@ -196,7 +196,7 @@ class SearchController extends Controller
 			'page' => $page,
 		]);
 
-		$peopleResults = $this->userRepository->all();
+		$peopleResults = $this->userRepository->skipPresenter()->all();
 
 		$results = $tvResponse['results'];
 		foreach ($results as &$result) {
