@@ -26,6 +26,7 @@ class AddProviderColsToUsers extends Migration
      */
     public function down()
     {
-        //
+		$table->renameColumn('provider_id', 'facebook_id');
+		$table->dropColumn('provider');
     }
 }

@@ -24,7 +24,7 @@ class AddFacebookColumnsToUsersTable extends Migration
         Schema::table('users', function(Blueprint $table)
         {
             $table->dropColumn(
-                'facebook_user_id',
+                'facebook_id',
                 'access_token'
             );
         });
