@@ -43,6 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->commands('Prettus\Repository\Generators\Commands\CriteriaCommand');
 		$this->app->register('Prettus\Repository\Providers\EventServiceProvider');
 		$this->app->bind('App\Contracts\Repositories\UserRepository', 'App\Repositories\Eloquent\UserRepositoryEloquent');
+		$this->app->bind('App\Contracts\Repositories\ReviewRepository', 'App\Repositories\Eloquent\ReviewRepositoryEloquent');
     }
     /**
      * Get the services provided by the provider.

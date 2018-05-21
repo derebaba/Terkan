@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Review extends Model
+class Review extends Model implements Transformable
 {
-	use CanBeLiked;
+	use CanBeLiked, TransformableTrait;
 	
 	protected $fillable = [
 		'stars', 'body', 'user_id', 'reviewable_id', 'reviewable_type'
