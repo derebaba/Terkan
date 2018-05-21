@@ -8,7 +8,7 @@ use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use App\Movie;
 use Tmdb\Repository\MovieRepository;
 use Illuminate\Http\Request;
-use App\Review;
+use App\Models\Review;
 use Tmdb\Laravel\Facades\Tmdb;
 
 class MoviesController extends Controller

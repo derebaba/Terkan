@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade as JavaScript;
 use Illuminate\Http\Request;
-use App\Review;
+use App\Models\Review;
 use Tmdb\Laravel\Facades\Tmdb;
 
 class TvsController extends Controller

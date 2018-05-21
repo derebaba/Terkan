@@ -59,7 +59,7 @@ class User extends Authenticatable implements Transformable
 	 }
 	 
 	public function reviews() {
-		return $this->hasMany('App\Review');
+		return $this->hasMany('App\Models\Review');
 	}
 
 	public function getWatchlist() {

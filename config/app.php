@@ -224,7 +224,7 @@ return [
 		'Image' => Intervention\Image\Facades\Image::class,
 		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 		//	benim classlarım
-		'Review' => App\Review::class,
+		'Review' => App\Models\Review::class,
 	],
 
 	'debug_blacklist' => [

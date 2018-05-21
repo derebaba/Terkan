@@ -6,7 +6,7 @@ use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Review;
+use App\Models\Review;
 use App\Http\Resources\Review as ReviewResource;
 use Tmdb\Laravel\Facades\Tmdb;
 use App\Http\Requests\UpdateUser;

@@ -15,7 +15,7 @@ class ReviewsTableSeeder extends Seeder
 		$faker = Faker::create();
 
 		foreach(range(1,100) as $index){
-			App\Review::create([
+			App\Models\Review::create([
 				'stars' => mt_rand(1,5), 
 				'body' => $faker->text(191), 
 				'user_id' => $faker->numberBetween(1, 50),
@@ -25,7 +25,7 @@ class ReviewsTableSeeder extends Seeder
 		}
 
 		foreach(range(1,100) as $index){
-			App\Review::create([
+			App\Models\Review::create([
 				'stars' => mt_rand(1,5), 
 				'body' => $faker->text(191), 
 				'user_id' => $faker->numberBetween(1, 50),

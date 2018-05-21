@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Review;
+use App\Models\Review;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditReview extends FormRequest

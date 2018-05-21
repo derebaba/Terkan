@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Review;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Model;
 use Tmdb\Laravel\Facades\Tmdb;
 

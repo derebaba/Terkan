@@ -3,7 +3,7 @@
 namespace App\Traits;
 
 use JD\Cloudder\Facades\Cloudder;
-use App\Review;
+use App\Models\Review;
 use App\Models\Reviewable;
 use App\Models\User;
 

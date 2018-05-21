@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
+use App\Models\Review;
 use App\Models\User;
 use App\Traits\Utils;
 use Illuminate\Http\Request;

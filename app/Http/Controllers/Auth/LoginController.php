@@ -47,7 +47,7 @@ class LoginController extends Controller
 			if (Auth::user()->verified == 0) {
 				Auth::logout();
 
-				$user = User::where('email', $email);
+				$user = User::where('email', $request->email);
 				dispatch(new SendVerificationEmail($user));
 
 				return back()->withInput()->withErrors([

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Review;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +23,7 @@ class ReviewsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Review $review)
@@ -34,7 +34,7 @@ class ReviewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
     public function destroy(Review $review)

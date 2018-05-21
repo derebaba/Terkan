@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Review;
+use App\Models\Review;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReviewPolicy
@@ -14,7 +14,7 @@ class ReviewPolicy
      * Determine whether the user can view the review.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function view(User $user, Review $review)
@@ -37,7 +37,7 @@ class ReviewPolicy
      * Determine whether the user can update the review.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function update(User $user, Review $review)
@@ -49,7 +49,7 @@ class ReviewPolicy
      * Determine whether the user can delete the review.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Review  $review
+     * @param  \App\Models\Review  $review
      * @return mixed
      */
     public function delete(User $user, Review $review)
