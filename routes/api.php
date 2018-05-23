@@ -26,7 +26,7 @@ Route::middleware('auth:api')->group( function () {
 
 	//Route::apiResource('reviews', 'ReviewsController')->except(['index', 'show']);
 });
-Route::get('users', 'UsersController@search');	//	TODO: api
+Route::get('users', 'UsersController@search');
 Route::get('users/{id}', 'UsersController@show');
 Route::get('users/{id}/reviews', 'UsersController@reviews');
 Route::get('users/{id}/followers', 'UsersController@followers');

@@ -26,7 +26,8 @@ class AddProviderColsToUsers extends Migration
      */
     public function down()
     {
-		$table->renameColumn('provider_id', 'facebook_id');
-		$table->dropColumn('provider');
+		Schema::table('users', function(Blueprint $table) {
+			$table->renameColumn('provider_id', 'facebook_id');
+		});
     }
 }

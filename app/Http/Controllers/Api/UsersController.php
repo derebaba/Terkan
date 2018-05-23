@@ -94,15 +94,14 @@ class UsersController extends BaseController
 	}
 
 	public function search(Request $request) {
-		return $this->sendResponse($this->repository->all());
+		return response()->json($this->repository->all());
 	}
 
 	public function self() 
 	{
-		$user = User::find(request()->user()->id);
-		$user->pic = Cloudder::secureShow($user->pic);
-        return $this->sendResponse($user);
+        return response()->json($this->repository->skipPresenter()->find(request()->user()->id));
 	}
+	
     /**
      * Display the specified resource.
      *
