@@ -16,7 +16,6 @@
 		<!-- Styles -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
 			integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		{{--<link rel="stylesheet" href="/css/fontawesome-stars.css">  unused --}}
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
@@ -160,14 +159,11 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" 
 			integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" 
 			crossorigin="anonymous"></script>
-			
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-		
+		<script src="/js/fontawesome-all.min.js"></script>
+		<script src="/js/fa-v4-shims.min.js"></script>
 		<script src="/js/jquery.barrating.min.js"></script>
 		@include('footer')
 		@yield('script')
-		
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
 		{{--

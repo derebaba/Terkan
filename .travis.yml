@@ -14,7 +14,10 @@ before_install:
   - mysql -e 'CREATE DATABASE realworld_test;'
 
 script:
-  - phpunit
+  - phpunit --coverage-clover=coverage.xml
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 services:
   - mysql
