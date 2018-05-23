@@ -1,0 +1,23 @@
+language: php
+
+php:
+  - 7.2
+
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+
+script:
+  - php artisan key:generate
+  - vendor/bin/phpunit
+
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE realworld_test;'
+
+cache:
+  directories:
+    - node_modules
+    - vendor
