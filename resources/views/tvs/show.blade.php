@@ -59,7 +59,7 @@
 						</select>
 					</div>
 					<div class="row center-block text-center">
-						{{ $reviews->count() == 0 ? 0 : $reviews->avg('stars') }} / 5 <i>({{ $reviews->count() }} votes)</i>
+						{{ $reviews->count() == 0 ? 0 : sprintf("%.2f", $reviews->avg('stars')) }} / 5 <i>({{ $reviews->count() }} votes)</i>
 					</div>
 					<div class="row center-block text-center">
 						@auth

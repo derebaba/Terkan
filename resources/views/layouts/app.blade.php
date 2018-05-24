@@ -160,7 +160,6 @@
 			integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" 
 			crossorigin="anonymous"></script>
 		<script src="/js/fontawesome-all.min.js"></script>
-		<script src="/js/fa-v4-shims.min.js"></script>
 		<script src="/js/jquery.barrating.min.js"></script>
 		@include('footer')
 		@yield('script')
