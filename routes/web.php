@@ -95,8 +95,11 @@ Route::group(['prefix' => 'info'], function() {
 	Route::get('/contact', function () {
 		return view('info.contact');
 	});
-	Route::get('/privacypolicy', function () {
-		return view('info.privacypolicy');
+	Route::get('/cookiepolicy', function () {
+		return view('info.cookiepolicy');
+	});
+	Route::get('/terms-and-conditions', function () {
+		return view('info.terms-and-conditions');
 	});
 });
 
