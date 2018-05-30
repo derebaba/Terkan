@@ -11,5 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface ReviewRepository extends RepositoryInterface
 {
-    //
+    public function getNewsFeed($userId);
 }

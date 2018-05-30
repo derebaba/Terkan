@@ -5,23 +5,19 @@ namespace App\Models;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanLike;
-use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Support\Facades\DB;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Prettus\Repository\Contracts\Transformable;
-use Prettus\Repository\Traits\TransformableTrait;
 
 /**
  * Class User.
  *
  * @package namespace App\Models;
  */
-class User extends Authenticatable implements Transformable
+class User extends Authenticatable
 {
-    use TransformableTrait;
 	use HasApiTokens, Notifiable;
 	use CanFollow, CanBeFollowed, CanLike;
 	use EntrustUserTrait;
@@ -43,20 +39,6 @@ class User extends Authenticatable implements Transformable
 	protected $hidden = [
 		'remember_token', 'access_token'
 	];
-
-	/**
-      * @return array
-      */
-     public function transform()
-     {
-        $this->pic = Cloudder::secureShow($this->pic);
-
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'pic' => $this->pic
-        ];
-	 }
 	 
 	public function reviews() {
 		return $this->hasMany('App\Models\Review');

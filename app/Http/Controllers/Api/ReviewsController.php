@@ -2,12 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Review;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Review;
+use App\Contracts\Repositories\ReviewRepository;
 
-class ReviewsController extends Controller
+class ReviewsController extends BaseController
 {
+	/**
+     * @var ReviewRepository
+     */
+    protected $repository;
+
+    public function __construct(ReviewRepository $repository){
+        $this->repository = $repository;
+	}
+	
+	public function getNewsFeed() {
+		return response()->json($this->repository->getNewsFeed(request()->user()->id));
+	}
     /**
      * Store a newly created resource in storage.
      *

@@ -41,6 +41,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 	
 	public function presenter()
     {
-        return "Prettus\\Repository\\Presenter\\ModelFractalPresenter";
+        return "App\\Presenters\\UserPresenter";
     }
 }

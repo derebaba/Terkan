@@ -24,7 +24,7 @@ Route::middleware('auth:api')->group( function () {
 	Route::delete('/tvs/{tv_id}/follow', 'UsersController@unfollowTv');
 	Route::patch('users/{id}', 'UsersController@update');
 
-	//Route::apiResource('reviews', 'ReviewsController')->except(['index', 'show']);
+	Route::get('/reviews/feed', 'ReviewsController@getNewsFeed');
 });
 Route::get('users', 'UsersController@search');
 Route::get('users/{id}', 'UsersController@show');

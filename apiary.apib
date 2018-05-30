@@ -304,6 +304,56 @@ Set `grant_type` to "password" to get token by credentials, `"refresh_token"` to
                     "refresh_token": "<refreshToken>"
                 }
 
+# Group Reviews
+
+Reviews API
+
+## News feed [/reviews/feed]
+
+Get news feed of authenticated user. Each review also contains information about its author.
+
+### Get news feed with token
+
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+                    Authorization: Bearer <access_token>
+
++ Response 204 (application/json)
+
+    + Body
+
+                {
+                    "data": [
+                        {
+                            "id": 1,
+                            "stars": 1,
+                            "body": "Repellat sunt animi dicta illo voluptatem odio. Excepturi nulla officia ipsam vel aut et. Provident delectus non consequatur esse. Placeat et occaecati et ipsam ullam ab.",
+                            "user_id": 17,
+                            "reviewable_id": 63181,
+                            "reviewable_type": "tv",
+                            "created_at": {
+                                "date": "2018-05-18 16:43:17.000000",
+                                "timezone_type": 3,
+                                "timezone": "Europe/Istanbul"
+                            },
+                            "updated_at": {
+                                "date": "2018-05-18 16:43:17.000000",
+                                "timezone_type": 3,
+                                "timezone": "Europe/Istanbul"
+                            },
+                            "user": {
+                                "data": {
+                                    "id": 17,
+                                    "name": "Samson Vandervort",
+                                    "pic": null
+                                }
+                            }
+                        }
+                    ]
+                }
+
 # Group Movies
 
 Movies API

@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\ReviewRepository;
 use App\Models\Review;
 use App\Validators\ReviewValidator;
+use App\Models\User;
 
 /**
  * Class ReviewRepositoryEloquent.
@@ -25,8 +26,6 @@ class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepositor
         return Review::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -34,5 +33,13 @@ class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+	
+	public function presenter()
+    {
+        return "App\\Presenters\\ReviewPresenter";
+	}
+	
+	public function getNewsFeed($userId) {
+		return $this->findWhereIn('user_id', User::find($userId)->followings()->get()->pluck('id')->toArray());
+	}
 }

@@ -3,8 +3,9 @@
 	"[blade]": {
 		"editor.tabSize": 2,
 	},
-	"[vue]": {
-		"editor.tabSize": 2,
+	"[markdown]": {
+		"editor.quickSuggestions": false,
+		"editor.acceptSuggestionOnEnter": "off",
 	},
 	"git.enableSmartCommit": true,
 	"editor.formatOnPaste": true,
