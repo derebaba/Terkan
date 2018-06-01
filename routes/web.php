@@ -87,6 +87,9 @@ Route::get('/browse/genre/{genre}/{page}', 'SearchController@browseByGenre')->na
 Route::get('/browse/tv/{genre}/{page}', 'SearchController@browseTvByGenre')->name('browseTvByGenre');
 Route::get('/search/autocomplete', 'SearchController@searchAutocomplete');
 
+//	Discover
+Route::get('/discover/movie', ['uses' => 'SearchController@discoverMovies', 'as' => 'discover.movie']);
+
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');

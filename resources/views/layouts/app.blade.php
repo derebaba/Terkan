@@ -22,6 +22,9 @@
 		<link rel="stylesheet" href="/css/fontawesome-stars-o.css">
 		<link rel="stylesheet" href="/css/custom.css?v=1.2"> 
 
+		<!-- development version, includes helpful console warnings -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="/js/app.js"></script>
 		@yield('head')
 
 	</head>
@@ -167,9 +170,6 @@
 		@yield('script')
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
-		{{--
-		<script src="/js/app.js"></script>
-		--}}
 		
 	</body>
 </html>

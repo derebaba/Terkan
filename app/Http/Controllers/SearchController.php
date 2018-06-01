@@ -42,21 +42,6 @@ class SearchController extends Controller
 		$movies = $response['results'];
 		foreach ($movies as &$movie)
 			$movie['media_type'] = 'movie';
-/*
-		$tvs = Tmdb::getDiscoverApi()->discoverTV([
-			'page' => $page,
-			'with_genres' => $genre_id,
-			'sort_by' => 'popularity.desc'
-		])['results'];
-		foreach ($tvs as &$tv)
-			$tv['media_type'] = 'tv';
-			
-
-		$results = array_merge($movies, $tvs);
-
-		usort($results, function ($item1, $item2) {
-			return $item2['popularity'] <=> $item1['popularity'];
-		});*/
 		
 		$reviewables = $this->getReviewablesFromResults($movies);	// $results
 		//dd($reviewables);
@@ -215,6 +200,29 @@ class SearchController extends Controller
 			'peopleResults' => $peopleResults,
 			'tvResponse' => $tvResponse,
 			'results' => $results,
+		]);
+	}
+
+	public function discoverMovies(Request $request) {
+		$movieResponse = Tmdb::getDiscoverApi()->discoverMovies([
+			'page' => $request->page,
+		]);
+		
+		$results = $movieResponse['results'];
+		foreach ($results as &$result) {
+			$reviews = Review::where('reviewable_type', 'movie')->where('reviewable_id', $result['id']);
+			$result['vote_count'] = $reviews->count();
+			$result['vote_average'] = $reviews->avg('stars');
+		}
+
+		JavaScript::put([
+			'stars' => array_column($results, 'vote_average')
+		]);
+
+		return view('discover.movies', [
+			'results' => $results,
+			'max_pages' => min(5, $response['total_pages']),
+			'response' => $response,
 		]);
 	}
 }
