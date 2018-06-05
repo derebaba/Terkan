@@ -22,9 +22,6 @@
 		<link rel="stylesheet" href="/css/fontawesome-stars-o.css">
 		<link rel="stylesheet" href="/css/custom.css?v=1.2"> 
 
-		<!-- development version, includes helpful console warnings -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		<script src="/js/app.js"></script>
 		@yield('head')
 
 	</head>
@@ -164,11 +161,16 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" 
 			integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" 
 			crossorigin="anonymous"></script>
+
+			<!-- development version, includes helpful console warnings -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="/js/app.js"></script>
+		
 		<script src="/js/fontawesome-all.min.js"></script>
 		<script src="/js/jquery.barrating.min.js"></script>
+		<script src="/js/jquery.autocomplete.min.js"></script>
 		@include('footer')
 		@yield('script')
-		<script src="/js/jquery.autocomplete.min.js"></script>
 		<script src="/js/custom.js"></script>
 		
 	</body>

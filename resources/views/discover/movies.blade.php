@@ -6,7 +6,7 @@
 		
 		<div class="col-md-9">
 			<div class="card">
-				<div class="card-header font-weight-bold">Search results on '{{$query}}'</div>
+				<div class="card-header font-weight-bold">Discover movies</div>
 			</div>
 
 			<ul class="list-group">
@@ -50,19 +50,19 @@
 					<ul class="pagination">
 						@if ($response['page'] != 1)
 							<li class="page-item">
-								<a class="page-link" href="{{ route('discover.movie', ['genre' => $genre_id, 'page' => ($response['page'] - 1)]) }}" tabindex="-1">Previous</a>
+								<a class="page-link" href="{{ route('discover.movies', ['page' => ($response['page'] - 1)]) }}" tabindex="-1">Previous</a>
 							</li>
 						@endif
 						@for ($i = 1; $i <= $max_pages; $i++)
 							@if ($i == $response['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{route('discover.movie', ['genre' => $genre_id, 'page' => $i])}}">
+									<a class="page-link" href="{{route('discover.movies', ['page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{route('discover.movie', ['genre' => $genre_id, 'page' => $i])}}">
+									<a class="page-link" href="{{route('discover.movies', ['page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
@@ -71,7 +71,7 @@
 						@if ($response['page'] != $max_pages)
 							<li class="page-item">
 								<a class="page-link" href=
-									"{{ route('discover.movie', ['genre' => $genre_id, 'page' => ($response['page'] + 1)]) }}">
+									"{{ route('discover.movies', ['page' => ($response['page'] + 1)]) }}">
 									Next
 								</a>
 							</li>
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
-			
+			<input class="form-control" type="text" name="language" placeholder="Language" required id="search-languages">
 		</div>
 	</div>
 	
@@ -97,5 +97,22 @@
 				readonly: true
 			});
 		}
+
+		$('#search-languages').devbridgeAutocomplete({
+			dataType: 'json',
+			lookup: this.languages,
+			onSelect: function (suggestion) {
+				this.value = suggestion;
+			},
+			paramName: 'language',
+			showNoSuggestionNotice: true,
+			transformResult: function (response) {
+				return {
+					suggestions: $.map(response, function (dataItem) {
+						return { value: dataItem.english_name , data: dataItem };
+					})
+				};
+			},
+		});
 	</script>
 @endsection

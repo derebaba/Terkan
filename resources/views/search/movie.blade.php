@@ -132,12 +132,6 @@
 					class="list-group-item list-group-item-action">
 					People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 				</a>
-
-				<ul>
-					<li v-for="language in languages">
-						{{ language }}
-					</li>
-				</ul>
 			</div>
 		</div>
 	</div>

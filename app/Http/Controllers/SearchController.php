@@ -204,11 +204,11 @@ class SearchController extends Controller
 	}
 
 	public function discoverMovies(Request $request) {
-		$movieResponse = Tmdb::getDiscoverApi()->discoverMovies([
+		$response = Tmdb::getDiscoverApi()->discoverMovies([
 			'page' => $request->page,
 		]);
 		
-		$results = $movieResponse['results'];
+		$results = $response['results'];
 		foreach ($results as &$result) {
 			$reviews = Review::where('reviewable_type', 'movie')->where('reviewable_id', $result['id']);
 			$result['vote_count'] = $reviews->count();
