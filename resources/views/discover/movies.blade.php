@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
-			<input class="form-control" type="text" name="language" placeholder="Language" required id="search-languages">
+			<lang-autocomplete></lang-autocomplete>
 		</div>
 	</div>
 	
