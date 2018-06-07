@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "ajv": "^6.5.0",
+    "hoek": "^5.0.3",
     "v-autocomplete": "^1.8.2"
   }
 }
