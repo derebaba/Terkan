@@ -1,5 +1,5 @@
 <template>
-  	<v-autocomplete :items="items" v-model="item" :get-label="getLabel" :component-item='template' @update-items="updateItems" :auto-select-one-item="false" :min-len='0'>
+  	<v-autocomplete :items="languages" v-model="language" :get-label="getLabel" :component-item='template' @update-items="updateItems" :auto-select-one-item="false" :min-len='0' :input-attrs="{'name': 'language', 'value': ''}">
   	</v-autocomplete>
 </template>
 
@@ -10,12 +10,8 @@ import Languages from './languages.js'
 export default {
   	data () {
 		return {
-	  		item: {
-				"iso_639_1": "en",
-				"english_name": "English",
-				"name": "English"
-			},
-	  		items: [
+	  		language: null,
+	  		languages: [
 				{
 					"iso_639_1": "tr",
 					"english_name": "Turkish",
@@ -31,16 +27,16 @@ export default {
 		}
 	},
 	methods: {
-		getLabel (item) {
-			if (item) {
-				return item.english_name
+		getLabel (language) {
+			if (language) {
+				return language.english_name + "(" + language.iso_639_1 + ")"
 			}
 
 			return ''
 		},
 		updateItems (text) {
-			this.items = Languages.filter((item) => {
-				return (new RegExp(text.toLowerCase())).test(item.english_name.toLowerCase())
+			this.languages = Languages.filter((language) => {
+				return (new RegExp(text.toLowerCase())).test(language.english_name.toLowerCase())
 			})
 		}
 	}

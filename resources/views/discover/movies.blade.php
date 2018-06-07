@@ -80,8 +80,21 @@
 				</nav>
 			</div>
 		</div>
-		<div class="col-md-3 sidebar-offcanvas">
-			<lang-autocomplete></lang-autocomplete>
+		<div class="col-md-3">
+			<div class="card">
+				<div class="card-header">Filter results</div>
+				<div class="card-body">
+					<form class="form-horizontal" method="GET" action="{{ route("discover.movies") }}">
+						<div class="form-group">
+							<label for="language" class="control-label">Language</label>
+							<lang-autocomplete></lang-autocomplete>
+							<button type="submit" class="btn btn-primary">
+								Apply filters
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 	

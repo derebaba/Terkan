@@ -34,3 +34,6 @@ Route::get('users/{id}/followings', 'UsersController@followings');
 Route::get('users/{id}/watchlist', 'UsersController@getWatchlist');
 
 Route::get('/movies/popular', 'MoviesController@popular');
+
+//	Discover
+Route::get('/discover/movies', ['uses' => 'MoviesController@discoverMovies', 'as' => 'api.discover.movies']);

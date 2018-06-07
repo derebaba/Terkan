@@ -48234,12 +48234,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			item: {
-				"iso_639_1": "en",
-				"english_name": "English",
-				"name": "English"
-			},
-			items: [{
+			language: null,
+			languages: [{
 				"iso_639_1": "tr",
 				"english_name": "Turkish",
 				"name": "Türkçe"
@@ -48253,16 +48249,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 
 	methods: {
-		getLabel: function getLabel(item) {
-			if (item) {
-				return item.english_name;
+		getLabel: function getLabel(language) {
+			if (language) {
+				return language.english_name + "(" + language.iso_639_1 + ")";
 			}
 
 			return '';
 		},
 		updateItems: function updateItems(text) {
-			this.items = __WEBPACK_IMPORTED_MODULE_1__languages_js__["a" /* default */].filter(function (item) {
-				return new RegExp(text.toLowerCase()).test(item.english_name.toLowerCase());
+			this.languages = __WEBPACK_IMPORTED_MODULE_1__languages_js__["a" /* default */].filter(function (language) {
+				return new RegExp(text.toLowerCase()).test(language.english_name.toLowerCase());
 			});
 		}
 	}
@@ -49121,19 +49117,20 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-autocomplete", {
     attrs: {
-      items: _vm.items,
+      items: _vm.languages,
       "get-label": _vm.getLabel,
       "component-item": _vm.template,
       "auto-select-one-item": false,
-      "min-len": 0
+      "min-len": 0,
+      "input-attrs": { name: "language", value: "" }
     },
     on: { "update-items": _vm.updateItems },
     model: {
-      value: _vm.item,
+      value: _vm.language,
       callback: function($$v) {
-        _vm.item = $$v
+        _vm.language = $$v
       },
-      expression: "item"
+      expression: "language"
     }
   })
 }
