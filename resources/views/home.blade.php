@@ -9,32 +9,8 @@
 
 	<nav class="nav nav-pills nav-fill" style="padding: 3px;">
 		<a class="nav-item nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="movieGenres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-film"></i> Movies
-			</a>
-			<div class="dropdown-menu" aria-labelledby="movieGenres">
-				@foreach ($movieGenres as $genre)
-					<a href="{{ route('browseByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
-					class="dropdown-item">
-						<i class=""></i> {{ $genre['name'] }}
-					</a>
-				@endforeach
-			</div>
-		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="tvGenres" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="fas fa-tv"></i> TV shows
-			</a>
-			<div class="dropdown-menu" aria-labelledby="tvGenres">
-				@foreach ($tvGenres as $genre)
-					<a href="{{ route('browseTvByGenre', ['genre' => $genre['id'], 'page' => 1]) }}" 
-					class="dropdown-item">
-						<i class=""></i> {{ $genre['name'] }}
-					</a>
-				@endforeach
-			</div>
-		</li>
+		<a class="nav-item nav-link" href="{{ route('discover.movies') }}"><i class="fas fa-film"></i> Discover movies</a>
+		<a class="nav-item nav-link disabled" href="{{ route('discover.tv') }}"><i class="fas fa-tv"></i> Discover TV shows</a>
 	</nav>
 	
 	<div class="row">

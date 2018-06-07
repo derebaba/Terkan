@@ -6,7 +6,7 @@
 		
 		<div class="col-md-9">
 			<div class="card">
-				<div class="card-header font-weight-bold">Discover movies</div>
+				<div class="card-header font-weight-bold">Discover TV shows</div>
 			</div>
 
 			<ul class="list-group">
@@ -14,18 +14,18 @@
 					<li class="list-group-item">
 						<div class="row">
 							<div class="col-sm-4 col-lg-3 text-center">
-								<a href="{{ route('movies.show', $result['id']) }}" 
-									title="{{ $result['original_title'] }}">
+								<a href="{{ route('tvs.show', $result['id']) }}" 
+									title="{{ $result['original_name'] }}">
 									<img class="w154" src="{!! $image->getUrl($result['poster_path'], 'w154') !!}">
 								</a>
 							</div>
 							<div class="col-sm-8 col-lg-9">
 								<h5>
 									{{ $loop->index + 1 }}. 
-									<a href="{{ route('movies.show', $result['id']) }}" >
-										{{ $result['original_title'] }}
+									<a href="{{ route('tvs.show', $result['id']) }}" >
+										{{ $result['original_name'] }}
 									</a>
-									<small>({{$result['release_date']}})</small>
+									<small>(First aired on: {{$result['first_air_date']}})</small>
 								</h5>
 								<select id="star-rating-{{$loop->index}}" name="stars" autocomplete="off">
 									<option value=""></option>
@@ -50,19 +50,19 @@
 					<ul class="pagination">
 						@if ($response['page'] != 1)
 							<li class="page-item">
-								<a class="page-link" href="{{ route('discover.movies', ['page' => ($response['page'] - 1)]) }}" tabindex="-1">Previous</a>
+								<a class="page-link" href="{{ route('discover.tv', ['page' => ($response['page'] - 1)]) }}" tabindex="-1">Previous</a>
 							</li>
 						@endif
 						@for ($i = 1; $i <= $max_pages; $i++)
 							@if ($i == $response['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{route('discover.movies', ['page' => $i])}}">
+									<a class="page-link" href="{{route('discover.tv', ['page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{route('discover.movies', ['page' => $i])}}">
+									<a class="page-link" href="{{route('discover.tv', ['page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
@@ -71,7 +71,7 @@
 						@if ($response['page'] != $max_pages)
 							<li class="page-item">
 								<a class="page-link" href=
-									"{{ route('discover.movies', ['page' => ($response['page'] + 1)]) }}">
+									"{{ route('discover.tv', ['page' => ($response['page'] + 1)]) }}">
 									Next
 								</a>
 							</li>
@@ -84,7 +84,7 @@
 			<div class="card">
 				<div class="card-header">Filter results</div>
 				<div class="card-body">
-					<form class="form-horizontal" method="GET" action="{{ route("discover.movies") }}">
+					<form class="form-horizontal" method="GET" action="{{ route("discover.tv") }}">
 						<div class="form-group">
 							<label for="language" class="control-label">Language</label>
 							<lang-autocomplete></lang-autocomplete>

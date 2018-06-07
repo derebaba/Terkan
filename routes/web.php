@@ -89,6 +89,7 @@ Route::get('/search/autocomplete', 'SearchController@searchAutocomplete');
 
 //	Discover
 Route::get('/discover/movies', ['uses' => 'SearchController@discoverMovies', 'as' => 'discover.movies']);
+Route::get('/discover/tv', ['uses' => 'SearchController@discoverTv', 'as' => 'discover.tv']);
 
 // OAuth Routes
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');

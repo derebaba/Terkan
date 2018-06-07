@@ -228,4 +228,30 @@ class SearchController extends Controller
 			'response' => $response,
 		]);
 	}
+
+	public function discoverTv(Request $request) {
+		//	extract languageCode from paranthesis
+		preg_match('#\((.*?)\)#', $request->language, $languageCode);
+		$response = Tmdb::getDiscoverApi()->discoverTv([
+			'page' => $request->page,
+			'with_original_language' => empty($languageCode[1]) ? null : $languageCode[1]
+		]);
+		
+		$results = $response['results'];
+		foreach ($results as &$result) {
+			$reviews = Review::where('reviewable_type', 'tv')->where('reviewable_id', $result['id']);
+			$result['vote_count'] = $reviews->count();
+			$result['vote_average'] = $reviews->avg('stars');
+		}
+
+		JavaScript::put([
+			'stars' => array_column($results, 'vote_average')
+		]);
+
+		return view('discover.tv', [
+			'results' => $results,
+			'max_pages' => min(5, $response['total_pages']),
+			'response' => $response,
+		]);
+	}
 }
