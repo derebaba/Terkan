@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
 			integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 		{{--<link rel="stylesheet" href="/css/fontawesome-stars.css">  unused --}}
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
 		<link rel="stylesheet" href="/css/fontawesome-stars-o.css">
@@ -166,7 +167,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="/js/app.js"></script>
 		
-		<script src="/js/fontawesome-all.min.js"></script>
 		<script src="/js/jquery.barrating.min.js"></script>
 		<script src="/js/jquery.autocomplete.min.js"></script>
 		@include('footer')
