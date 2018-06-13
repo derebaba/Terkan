@@ -204,11 +204,9 @@ class SearchController extends Controller
 	}
 
 	public function discoverMovies(Request $request) {
-		//	extract languageCode from paranthesis
-		preg_match('#\((.*?)\)#', $request->language, $languageCode);
 		$response = Tmdb::getDiscoverApi()->discoverMovies([
 			'page' => $request->page,
-			'with_original_language' => empty($languageCode[1]) ? null : $languageCode[1]
+			'with_original_language' => $request->languageCode
 		]);
 		
 		$results = $response['results'];
@@ -219,6 +217,8 @@ class SearchController extends Controller
 		}
 
 		JavaScript::put([
+			'language' => $request->language,
+			'languageCode' => $request->languageCode,
 			'stars' => array_column($results, 'vote_average')
 		]);
 

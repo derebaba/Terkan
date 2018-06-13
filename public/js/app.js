@@ -47947,7 +47947,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n.v-autocomplete-list {\r\n  width: 100%;\r\n  max-height: 200px;\r\n  overflow: auto;\r\n  z-index: 9999;\r\n  border: 1px solid #eeeeee;\r\n  border-radius: 4px;\r\n  background-color: #fff;\r\n  -webkit-box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);\r\n          box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);\n}\n.v-autocomplete-list-item {\r\n  font-weight: normal;\r\n  color: #333333;\n}\n.v-autocomplete-item-active {\r\n\tcolor: #23527c;\r\n  \tbackground-color: #eeeeee;\n}\r\n", ""]);
+exports.push([module.i, "\n.v-autocomplete-input {\r\n  width: 100%;\n}\n.v-autocomplete-list {\r\n  width: 100%;\r\n  max-height: 200px;\r\n  overflow: auto;\r\n  z-index: 9999;\r\n  border: 1px solid #eeeeee;\r\n  border-radius: 4px;\r\n  background-color: #fff;\r\n  -webkit-box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);\r\n          box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.4);\n}\n.v-autocomplete-list-item {\r\n  font-weight: normal;\r\n  color: #333333;\n}\n.v-autocomplete-item-active {\r\n\tcolor: #23527c;\r\n  \tbackground-color: #eeeeee;\n}\r\n", ""]);
 
 // exports
 
@@ -48227,6 +48227,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -48234,7 +48237,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			language: null,
+			language: language,
+			languageCode: languageCode,
 			languages: [{
 				"iso_639_1": "tr",
 				"english_name": "Turkish",
@@ -48251,10 +48255,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		getLabel: function getLabel(language) {
 			if (language) {
-				return language.english_name + "(" + language.iso_639_1 + ")";
+				this.languageCode = language.iso_639_1;
+				return language.english_name;
 			}
 
 			return '';
+		},
+		itemClicked: function itemClicked(language) {
+			this.languageCode = language.iso_639_1;
 		},
 		updateItems: function updateItems(text) {
 			this.languages = __WEBPACK_IMPORTED_MODULE_1__languages_js__["a" /* default */].filter(function (language) {
@@ -49115,24 +49123,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-autocomplete", {
-    attrs: {
-      items: _vm.languages,
-      "get-label": _vm.getLabel,
-      "component-item": _vm.template,
-      "auto-select-one-item": false,
-      "min-len": 0,
-      "input-attrs": { name: "language", value: "" }
-    },
-    on: { "update-items": _vm.updateItems },
-    model: {
-      value: _vm.language,
-      callback: function($$v) {
-        _vm.language = $$v
-      },
-      expression: "language"
-    }
-  })
+  return _c(
+    "div",
+    [
+      _c("v-autocomplete", {
+        attrs: {
+          items: _vm.languages,
+          "get-label": _vm.getLabel,
+          "component-item": _vm.template,
+          "auto-select-one-item": false,
+          "min-len": 0,
+          "input-attrs": { name: "language", value: "" }
+        },
+        on: { "update-items": _vm.updateItems },
+        model: {
+          value: _vm.language,
+          callback: function($$v) {
+            _vm.language = $$v
+          },
+          expression: "language"
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model.lazy",
+            value: _vm.languageCode,
+            expression: "languageCode",
+            modifiers: { lazy: true }
+          }
+        ],
+        attrs: { type: "hidden", name: "languageCode" },
+        domProps: { value: _vm.languageCode },
+        on: {
+          change: function($event) {
+            _vm.languageCode = $event.target.value
+          }
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
