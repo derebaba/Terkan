@@ -48237,8 +48237,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
-			language: language,
-			languageCode: languageCode,
+			language: null,
+			languageCode: "",
 			languages: [{
 				"iso_639_1": "tr",
 				"english_name": "Turkish",
@@ -49133,7 +49133,11 @@ var render = function() {
           "component-item": _vm.template,
           "auto-select-one-item": false,
           "min-len": 0,
-          "input-attrs": { name: "language", value: "" }
+          "input-attrs": {
+            name: "language",
+            value: "",
+            placeholder: "Enter language"
+          }
         },
         on: { "update-items": _vm.updateItems },
         model: {
