@@ -44,7 +44,7 @@ export default {
 		},
 		updateItems (text) {
 			this.languages = Languages.filter((language) => {
-				return (new RegExp(text.toLowerCase())).test(language.english_name.toLowerCase())
+				return (new RegExp(text.toLowerCase())).test(language.english_name.toLowerCase() + language.name.toLowerCase())
 			})
 		}
 	}
