@@ -217,12 +217,21 @@ class SearchController extends Controller
 		}
 
 		JavaScript::put([
-			'language' => $request->language,
-			'languageCode' => $request->languageCode,
+			
 			'stars' => array_column($results, 'vote_average')
 		]);
 
+		$oldLanguage = null;
+		if ($request->language)
+		{
+			$oldLanguage = array(
+				'english_name' => $request->language,
+				'languageCode' => $request->languageCode,
+			);
+		}
+		
 		return view('discover.movies', [
+			'oldLanguage' => $oldLanguage,
 			'results' => $results,
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
