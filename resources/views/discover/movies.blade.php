@@ -87,7 +87,7 @@
 					<form class="form-horizontal" method="GET" action="{{ route("discover.movies") }}">
 						<div class="form-group">
 							<label for="language" class="control-label">Language</label>
-							<lang-autocomplete v-bind:old-language="{{ json_encode($oldLanguage) }}"></lang-autocomplete>
+							<lang-autocomplete v-bind:old-language='{!! json_encode($oldLanguage) !!}'></lang-autocomplete>
 							<button type="submit" class="btn btn-primary">
 								Apply filters
 							</button>
