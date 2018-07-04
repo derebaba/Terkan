@@ -27,7 +27,11 @@ class UserTransformer extends TransformerAbstract
         return [
             'id' => $model->id,
             'name' => $model->name,
-            'pic' => $model->pic
+			'pic' => $model->pic,
+			'followersCount' => $model->followers()->count(),
+			'followingUserCount' => $model->followings()->count(),
+			'followingTvCount' => $model->getFollowingTvCount(),
+			'watchlistCount' => $model->getWatchlist()->count(),
         ];
     }
 }

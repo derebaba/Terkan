@@ -99,7 +99,7 @@ class UsersController extends BaseController
 
 	public function self() 
 	{
-        return response()->json($this->repository->skipPresenter()->find(request()->user()->id));
+        return response()->json($this->repository->full(request()->user()->id));
 	}
 	
     /**

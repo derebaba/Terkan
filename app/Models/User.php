@@ -58,4 +58,8 @@ class User extends Authenticatable
 	public function isFollowingTv($tv_id) {
 		return DB::table('tv_user')->where(['user_id' => $this->id, 'tv_id' => $tv_id])->exists();
 	}
+
+	public function getFollowingTvCount() {
+		return DB::table('tv_user')->where('user_id', $this->id)->count();
+	}
 }
