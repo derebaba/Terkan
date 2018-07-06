@@ -188,7 +188,7 @@ A user can get his own details by token.
                 }
 
 
-## Followers of a user [/user/{id}/followers]
+## Followers of a user [/users/{id}/followers]
 
 + Parameters
     + id: 1 (required, number) - ID of the TV show
@@ -316,7 +316,7 @@ Reviews API
 
 Get news feed of authenticated user. Each review also contains information about its author.
 
-### Get news feed with token
+### Get news feed with token [GET]
 
 + Request (application/x-www-form-urlencoded)
 
@@ -324,7 +324,7 @@ Get news feed of authenticated user. Each review also contains information about
 
                     Authorization: Bearer <access_token>
 
-+ Response 204 (application/json)
++ Response 200 (application/json)
 
     + Body
 
