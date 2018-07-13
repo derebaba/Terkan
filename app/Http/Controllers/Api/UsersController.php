@@ -87,11 +87,6 @@ class UsersController extends BaseController
 		return response()->json(null, 204);
 	}
 
-	public function reviews($id) {
-		$user = User::find($id);
-		return $this->sendResponse(ReviewResource::collection($user->reviews));
-	}
-
 	public function search(Request $request) {
 		return response()->json($this->repository->all());
 	}
