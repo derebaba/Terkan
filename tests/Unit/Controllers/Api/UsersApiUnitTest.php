@@ -13,22 +13,5 @@ class UsersApiUnitTest extends TestCase
 	public function setUp()
     {
 		parent::setUp();
-		
-		User::create([
-			"name" => "erdem",
-			"email" => "tk@mail.com",
-			"password" => bcrypt('secret'),
-		]);
 	}
-	
-    public function testGetSelfProfileUsingToken()
-    {
-		$user = Passport::actingAs(
-			factory(User::class)->create()
-		);
-
-		$profileResponse = $this->get('/api/user');
-		
-		$profileResponse->assertStatus(200)->assertJson($user->toArray());
-    }
 }
