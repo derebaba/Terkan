@@ -43,10 +43,4 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return "App\\Presenters\\UserPresenter";
 	}
-	
-	public function full($id)
-	{
-		$user = User::find($id);
-		return $user;
-	}
 }

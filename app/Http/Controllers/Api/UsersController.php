@@ -98,7 +98,7 @@ class UsersController extends BaseController
 
 	public function self() 
 	{
-        return response()->json($this->repository->full(request()->user()->id));
+        return $this->sendResponse(User::find(request()->user()->id));
 	}
 	
     /**
