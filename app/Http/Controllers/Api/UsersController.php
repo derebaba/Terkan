@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API;
 
-use JD\Cloudder\Facades\Cloudder;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

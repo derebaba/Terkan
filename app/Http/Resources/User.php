@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class User extends JsonResource
@@ -15,12 +14,10 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
-		$this->pic = Cloudder::secureShow($this->pic);
-
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'pic' => Cloudder::secureShow($this->pic)
+            'pic' => $this->pic
         ];
     }
 }

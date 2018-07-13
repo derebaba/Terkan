@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-use JD\Cloudder\Facades\Cloudder;
 use League\Fractal\TransformerAbstract;
 use App\Models\User;
 
@@ -22,8 +21,6 @@ class UserTransformer extends TransformerAbstract
      */
     public function transform(User $model)
     {
-        $model->pic = Cloudder::secureShow($model->pic);
-
         return [
             'id' => $model->id,
             'name' => $model->name,

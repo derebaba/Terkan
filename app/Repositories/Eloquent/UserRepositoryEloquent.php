@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent;
 
-use JD\Cloudder\Facades\Cloudder;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -48,7 +47,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 	public function full($id)
 	{
 		$user = User::find($id);
-		$user->pic = Cloudder::secureShow($user->pic);
 		return $user;
 	}
 }
