@@ -16,6 +16,11 @@ use App\Models\User;
  */
 class ReviewRepositoryEloquent extends BaseRepository implements ReviewRepository
 {
+	protected $fieldSearchable = [
+		'reviewable_id',
+		'reviewable_type',
+        'user_id'
+    ];
     /**
      * Specify Model class name
      *

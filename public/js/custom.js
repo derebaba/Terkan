@@ -16,7 +16,7 @@ $('#search-bar').devbridgeAutocomplete({
 		else if (suggestion.data.media_type === 'user')
 			window.location = '/users/' + suggestion.data.id;
 	},
-	paramName: 'q',
+	paramName: 'search',
 	serviceUrl: '/search/autocomplete',
 	showNoSuggestionNotice: true,
 	transformResult: function (response) {

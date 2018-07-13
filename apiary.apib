@@ -214,44 +214,6 @@ A user can get his own details by token.
                     ]
                 }
 
-
-## Get a user's reviews [/users/{id}/review]
-
-Get a user's reviews by user id. The response includes information about the reviewed media in "reviewable" field. Note that field names differ between movie and tv.
-
-+ Parameters
-    + id: 15 (required, number) - ID of the user
-
-### Get reviews by user id [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "success": true,
-            "data": [
-                "stars": 5,
-                "body": "Excellent acting by Mr Reese. Best action scenes in history. Must watch! 10/10.",
-                "user": {
-                    "id": 1,
-                    "name": "derebaba",
-                    "pic": "<cloudinary_id>"
-                },
-                "reviewable_id": 1411,
-                "reviewable_type": "tv",
-                "created_at": {
-                    "date": "2018-02-28 16:27:18.000000",
-                    "timezone_type": 3,
-                    "timezone": "Europe/Istanbul"
-                },
-                "updated_at": {
-                    "date": "2018-04-10 14:12:08.000000",
-                    "timezone_type": 3,
-                    "timezone": "Europe/Istanbul"
-                }
-            ],
-            "message": "success"
-        }
-
 ## Get a user's watchlist [/users/{id}/watchlist]
 
 + Parameters
@@ -311,6 +273,53 @@ Set `grant_type` to "password" to get token by credentials, `"refresh_token"` to
 # Group Reviews
 
 Reviews API
+
+## Search reviews [/reviews?search=reviewable_id:{r_id}&reviewable_type:{r_type}&user_id:{u_id}]
+
+Get a collection of reviews. It is possible to search by reviewable_id, reviewable_type, and user_id. All parameters are optional.
+
++ Parameters
+    + r_id: 15 (optional, number) - ID of the reviewable
+    + r_type: 15 (optional, string) - movie or tv
+    + u_id: 15 (optional, number) - ID of the user
+
+### Search reviews [GET]
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            "data": [
+                "id": 11,
+                "stars": 5,
+                "body": "Excellent acting by Mr Reese. Best action scenes in history. Must watch! 10/10.",
+                "user_id": 15,
+                "reviewable_id": 1411,
+                "reviewable_type": "tv",
+                "created_at": {
+                    "date": "2018-02-28 16:27:18.000000",
+                    "timezone_type": 3,
+                    "timezone": "Europe/Istanbul"
+                },
+                "updated_at": {
+                    "date": "2018-04-10 14:12:08.000000",
+                    "timezone_type": 3,
+                    "timezone": "Europe/Istanbul"
+                },
+                "user": {
+                    "data": {
+                        "id": 1,
+                        "name": "derebaba",
+                        "pic": "wqzlcicaznab0xpjk9qa",
+                        "followersCount": 0,
+                        "followingUserCount": 0,
+                        "followingTvCount": 5,
+                        "watchlistCount": 4
+                    }
+                }
+            ],
+            "message": "success"
+        }
 
 ## News feed [/reviews/feed]
 

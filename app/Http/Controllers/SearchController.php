@@ -104,7 +104,7 @@ class SearchController extends Controller
 	}
 
 	public function searchAutocomplete(Request $request) {
-		$query =  $request->q;
+		$query =  $request->search;
 
 		$response = Tmdb::getSearchApi()->searchMulti($query)['results'];
 		foreach ($response as $index => $item) {
@@ -122,7 +122,7 @@ class SearchController extends Controller
 	}
 
 	public function searchMovies(Request $request) {
-		$query =  $request->q;
+		$query =  $request->search;
 		$page = $request->page;
 
 		$movieResponse = Tmdb::getSearchApi()->searchMovies($query, [
@@ -154,7 +154,7 @@ class SearchController extends Controller
 	}
 
 	public function searchPeople(Request $request) {
-		$query =  $request->q;
+		$query =  $request->search;
 		$page = $request->page;
 		
 		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);
@@ -172,7 +172,7 @@ class SearchController extends Controller
 	}
 
 	public function searchTv(Request $request) {
-		$query =  $request->q;
+		$query =  $request->search;
 		$page = $request->page;
 
 		$movieResponse = Tmdb::getSearchApi()->searchMovies($query);

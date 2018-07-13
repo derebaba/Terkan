@@ -21,6 +21,12 @@ class ReviewsController extends BaseController
 	public function getNewsFeed() {
 		return response()->json($this->repository->getNewsFeed(request()->user()->id));
 	}
+
+	public function index()
+	{
+		return response()->json($this->repository->all());
+	}
+
     /**
      * Store a newly created resource in storage.
      *

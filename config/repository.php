@@ -210,7 +210,7 @@ return [
         |
         */
         'params'             => [
-            'search'       => 'q',
+            'search'       => 'search',
             'searchFields' => 'searchFields',
             'filter'       => 'filter',
             'orderBy'      => 'orderBy',

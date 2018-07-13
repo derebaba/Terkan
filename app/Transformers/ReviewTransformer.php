@@ -23,9 +23,9 @@ class ReviewTransformer extends TransformerAbstract
     public function transform(Review $model)
     {
         return [
-            'id'         => (int) $model->id,
-			'stars'		=> (int) $model->stars, 
-			'body' => $model->body,
+            'id'	=> (int) $model->id,
+			'stars'	=> (int) $model->stars, 
+			'body'	=> $model->body,
 			'user_id' => $model->user_id,
 			'reviewable_id' => $model->reviewable_id, 
 			'reviewable_type' => $model->reviewable_type,

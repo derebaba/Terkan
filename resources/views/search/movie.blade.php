@@ -19,19 +19,19 @@
 							Jump to:
 						</li>
 						<li>
-							<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
+							<a href="{{ route('search.movie', ['page' => 1, 'search' => $query]) }}"
 								class="list-group-item list-group-item-action bar-button active">
 								Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('search.tv', ['page' => 1, 'q' => $query]) }}"
+							<a href="{{ route('search.tv', ['page' => 1, 'search' => $query]) }}"
 								class="list-group-item list-group-item-action bar-button">
 								TV shows <span class="badge badge-primary">{{$tvResponse['total_results']}}</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
+							<a href="{{ route('search.people', ['page' => 1, 'search' => $query]) }}"
 								class="list-group-item list-group-item-action bar-button">
 								People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 							</a>
@@ -96,13 +96,13 @@
 						@for ($i = 1; $i <= $movieResponse['total_pages']; $i++)
 							@if ($i == $movieResponse['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{route('search.movie', ['q' => $query, 'page' => $i])}}">
+									<a class="page-link" href="{{route('search.movie', ['search' => $query, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{route('search.movie', ['q' => $query, 'page' => $i])}}">
+									<a class="page-link" href="{{route('search.movie', ['search' => $query, 'page' => $i])}}">
 										{{ $i }}
 									</a>
 								</li>
@@ -120,15 +120,15 @@
 		<div class="col-md-3 d-none d-md-block">
 			<div class="list-group d-none d-md-block">
 				<div class="list-group-item bg-secondary text-white"> Jump to:</div>
-				<a href="{{ route('search.movie', ['page' => 1, 'q' => $query]) }}"
+				<a href="{{ route('search.movie', ['page' => 1, 'search' => $query]) }}"
 					class="list-group-item list-group-item-action active">
 					Movies <span class="badge badge-light">{{$movieResponse['total_results']}}</span>
 				</a>
-				<a href="{{ route('search.tv', ['page' => 1, 'q' => $query]) }}"
+				<a href="{{ route('search.tv', ['page' => 1, 'search' => $query]) }}"
 					class="list-group-item list-group-item-action">
 					TV shows <span class="badge badge-primary">{{$tvResponse['total_results']}}</span>
 				</a>
-				<a href="{{ route('search.people', ['page' => 1, 'q' => $query]) }}"
+				<a href="{{ route('search.people', ['page' => 1, 'search' => $query]) }}"
 					class="list-group-item list-group-item-action">
 					People <span class="badge badge-primary">{{$peopleResults->count()}}</span>
 				</a>

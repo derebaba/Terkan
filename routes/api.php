@@ -33,6 +33,7 @@ Route::get('users/{id}/followers', 'UsersController@followers');
 Route::get('users/{id}/followings', 'UsersController@followings');
 Route::get('users/{id}/watchlist', 'UsersController@getWatchlist');
 
+Route::get('reviews', 'ReviewsController@index');
 Route::get('/movies/popular', 'MoviesController@popular');
 
 //	Discover
