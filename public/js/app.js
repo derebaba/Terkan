@@ -12630,7 +12630,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 		return {
 			language: __WEBPACK_IMPORTED_MODULE_1__languages_js__["a" /* default */].find(function (item) {
-				console.log(_this.oldLanguageCode);
 				return _this.oldLanguageCode === item.iso_639_1;
 			}),
 			languageCode: this.oldLanguage ? this.oldLanguage.languageCode : "",
@@ -12650,13 +12649,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		getLabel: function getLabel(language) {
 			if (language) {
-				this.languageCode = language.iso_639_1; //	try delete this line
 				return language.english_name;
 			}
 
 			return '';
 		},
-		itemClicked: function itemClicked(language) {
+		itemSelected: function itemSelected(language) {
 			this.languageCode = language.iso_639_1;
 		},
 		updateItems: function updateItems(text) {
@@ -13530,7 +13528,10 @@ var render = function() {
           "min-len": 0,
           "input-attrs": { name: "language", placeholder: "Enter language" }
         },
-        on: { "update-items": _vm.updateItems },
+        on: {
+          "item-selected": _vm.itemSelected,
+          "update-items": _vm.updateItems
+        },
         model: {
           value: _vm.language,
           callback: function($$v) {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-autocomplete :items="languages" v-model="language" :get-label="getLabel" :component-item='template' @update-items="updateItems" :auto-select-one-item="false" :min-len='0' :input-attrs="{'name': 'language', 'placeholder': 'Enter language'}">
+		<v-autocomplete :items="languages" v-model="language" :get-label="getLabel" :component-item='template' @item-selected="itemSelected" @update-items="updateItems" :auto-select-one-item="false" :min-len='0' :input-attrs="{'name': 'language', 'placeholder': 'Enter language'}">
 		</v-autocomplete>
 		<input type="hidden" name="languageCode" v-model.lazy="languageCode">
 	</div>
@@ -38,13 +38,12 @@ export default {
 	methods: {
 		getLabel (language) {
 			if (language) {
-				this.languageCode = language.iso_639_1	//	try delete this line
 				return language.english_name
 			}
 			
 			return ''
 		},
-		itemClicked(language) {
+		itemSelected (language) {
 			this.languageCode = language.iso_639_1
 		},
 		updateItems (text) {
