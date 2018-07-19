@@ -6,12 +6,6 @@
 
 @section('content')
 	@inject('image', 'Tmdb\Helper\ImageHelper')
-
-	<nav class="nav nav-pills nav-fill" style="padding: 3px;">
-		<a class="nav-item nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
-		<a class="nav-item nav-link" href="{{ route('discover.movies') }}"><i class="fas fa-film"></i> Discover movies</a>
-		<a class="nav-item nav-link" href="{{ route('discover.tv') }}"><i class="fas fa-tv"></i> Discover TV shows</a>
-	</nav>
 	
 	<div class="row">
 		<div class="col-md-3 col-lg-2 d-none d-md-block">
@@ -91,28 +85,53 @@
 			</div>
 		</div>
 		<div class="col-md-3 sidebar-offcanvas">
+
 			<ul class="list-group">
-				<li class="list-group-item list-group-header"> Episodes aired last week</li>
-				@if (empty($newEpisodes))
+				<li class="list-group-item list-group-header"> Upcoming episodes</li>
+				@if (empty($followingTvs))
+					<li class="list-group-item">
+						You are not following any TV shows. Follow TV shows to see upcoming episodes here.
+					</li>
+				@endif
+				@foreach ($followingTvs as $followingTv)
+					@php ($nextEpisodeToAir = $followingTv["next_episode_to_air"])
+					@if ($nextEpisodeToAir)
+						<li class="list-group-item">
+							<a class="" href="{{ route('tvs.show', $followingTv['id']) }}">
+								{{ $followingTv['original_name'] }}
+							</a>
+							</br>
+							Season {{ $nextEpisodeToAir['season_number'] }}, episode {{ $nextEpisodeToAir['episode_number'] }}
+							</br>
+							Air date: {{ $nextEpisodeToAir["air_date"] }}
+						</li>
+					@endif
+				@endforeach
+			</ul>
+
+			<ul class="list-group" style="margin-top: 5px;">
+				<li class="list-group-item list-group-header"> Previous episodes</li>
+				@if (empty($followingTvs))
 					<li class="list-group-item">
 						You are not following any TV shows. Follow TV shows to see recent episodes here.
 					</li>
 				@endif
-				@foreach ($newEpisodes as $episode)
+				@foreach ($followingTvs as $followingTv)
+					@php ($lastEpisodeToAir = $followingTv["last_episode_to_air"])
 					<li class="list-group-item">
-						<a class="" href="{{ route('tvs.show', $newTvs[$loop->index]['id']) }}">
-							{{ $newTvs[$loop->index]['original_name'] }}
+						<a class="" href="{{ route('tvs.show', $followingTv['id']) }}">
+							{{ $followingTv['original_name'] }}
 						</a>
 						</br>
-						Season {{ $newTvs[$loop->index]['number_of_seasons'] }}, episode {{ $episode['episode_number'] }}
+						Season {{ $lastEpisodeToAir['season_number'] }}, episode {{ $lastEpisodeToAir['episode_number'] }}
 						</br>
-						@if ($episode['days_ago'] != 1)
-							{{ $episode['days_ago'] }} days ago
-						@else 
-							{{ $episode['days_ago'] }} day ago
-						@endif
+						Air date: {{ $lastEpisodeToAir["air_date"] }}
 					</li>
 				@endforeach
+			</ul>
+
+			
+
 		</div>
 	</div>
 @endsection

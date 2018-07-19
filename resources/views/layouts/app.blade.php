@@ -120,13 +120,17 @@
 				</div>
 			</nav>
 			<div class="container">
-				
+					<nav class="nav nav-pills nav-fill" style="padding: 3px;">
+						<a class="nav-item nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i> Home</a>
+						<a class="nav-item nav-link" href="{{ route('discover.movies') }}"><i class="fas fa-film"></i> Discover movies</a>
+						<a class="nav-item nav-link" href="{{ route('discover.tv') }}"><i class="fas fa-tv"></i> Discover TV shows</a>
+					</nav>
+
 					@include('partials.errors')
 					@include('partials.success')
 
 					@yield('content')
-					
-				
+
 			</div>
 			
 		</div>

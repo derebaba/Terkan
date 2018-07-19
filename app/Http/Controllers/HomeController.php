@@ -10,17 +10,23 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use Tmdb\Laravel\Facades\Tmdb;
 use App\Traits\Utils;
+use App\Contracts\Repositories\UserRepository;
 
 
 class HomeController extends Controller
 {
 	use Utils;
-	/*
-	public function __construct()
+
+	/**
+	 * @var UserRepository
+	 */
+	protected $userRepository;
+
+	public function __construct(UserRepository $userRepository)
 	{
-		$this->middleware('auth');
+		$this->userRepository = $userRepository;
 	}
- */
+
 	public function home() {
 		if (!Auth::check())
 			return $this->welcome();
@@ -34,23 +40,6 @@ class HomeController extends Controller
 		
 		$recommendations = $this->getReviewablesFromResults($movies);
 
-		$followingTvs = DB::table('tv_user')->where('user_id', Auth::user()->id)->get();
-		$newEpisodes = [];
-		$newTvs = [];
-		foreach ($followingTvs as $followingTv) {
-			$tv = Tmdb::getTvApi()->getTvshow($followingTv->tv_id);
-			$season = Tmdb::getTvSeasonApi()->getSeason($followingTv->tv_id, $tv['number_of_seasons']);
-			$now = new DateTime();
-			foreach ($season['episodes'] as $episode) {
-				$diff = date_diff(new DateTime($episode['air_date']), $now)->format('%r%a');
-				if ($diff < 7 && $diff > 0) {
-					$episode['days_ago'] = $diff;
-					array_push($newEpisodes, $episode);
-					array_push($newTvs, $tv);
-				}
-			}	
-		}
-
 		JavaScript::put([
 			'recommendationStars' => $recommendations->pluck('vote_average'),
 			'stars' => $reviews->pluck('stars')
@@ -59,8 +48,7 @@ class HomeController extends Controller
 		return view('home', [
 			'reviews' => $reviews,
 			'reviewables' => $reviewables,
-			'newEpisodes' => $newEpisodes,
-			'newTvs' => $newTvs,
+			'followingTvs' => $this->userRepository->getFollowingTvs(Auth::user()->id),
 			'recommendations' => $recommendations
 		]);
 		

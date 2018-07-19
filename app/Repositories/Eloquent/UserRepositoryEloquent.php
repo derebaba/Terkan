@@ -3,7 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use Prettus\Repository\Eloquent\BaseRepository;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Tmdb\Laravel\Facades\Tmdb;
 use App\Contracts\Repositories\UserRepository;
 use App\Models\User;
 use App\Validators\UserValidator;
@@ -42,5 +44,18 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 	public function presenter()
     {
         return "App\\Presenters\\UserPresenter";
+	}
+
+	public function getFollowingTvs($userId)
+	{
+		$followingTvIds = DB::table('tv_user')->where('user_id', $userId)->pluck("tv_id");
+		$followingTvs = [];
+
+		foreach ($followingTvIds as $followingTvId) {
+			$tv = Tmdb::getTvApi()->getTvshow($followingTvId);
+			array_push($followingTvs, $tv);
+		}
+
+		return $followingTvs;
 	}
 }
