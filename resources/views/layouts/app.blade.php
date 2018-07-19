@@ -167,8 +167,6 @@
 			integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" 
 			crossorigin="anonymous"></script>
 
-			<!-- development version, includes helpful console warnings -->
-		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="/js/app.js"></script>
 		
 		<script src="/js/jquery.barrating.min.js"></script>

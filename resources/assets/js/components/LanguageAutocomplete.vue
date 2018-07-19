@@ -12,11 +12,13 @@ import Languages from './languages.js'
 
 export default {
 	props: {
-		oldLanguage: Object
+		oldLanguageCode: String
 	},
   	data () {
 		return {
-			language: this.oldLanguage,
+			language: Languages.find((item) => {
+				return this.oldLanguageCode === item.iso_639_1
+			}),
 			languageCode: this.oldLanguage ? this.oldLanguage.languageCode : "",
 	  		languages: [
 				{
@@ -36,7 +38,7 @@ export default {
 	methods: {
 		getLabel (language) {
 			if (language) {
-				this.languageCode = language.iso_639_1
+				this.languageCode = language.iso_639_1	//	try delete this line
 				return language.english_name
 			}
 			
