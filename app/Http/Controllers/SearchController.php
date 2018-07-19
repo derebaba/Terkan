@@ -217,24 +217,22 @@ class SearchController extends Controller
 		}
 
 		JavaScript::put([
-			
 			'stars' => array_column($results, 'vote_average')
 		]);
 		
 		return view('discover.movies', [
 			'request' => $request,
 			'results' => $results,
+			'route' => 'movies',
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
 		]);
 	}
 
 	public function discoverTv(Request $request) {
-		//	extract languageCode from paranthesis
-		preg_match('#\((.*?)\)#', $request->language, $languageCode);
 		$response = Tmdb::getDiscoverApi()->discoverTv([
 			'page' => $request->page,
-			'with_original_language' => empty($languageCode[1]) ? null : $languageCode[1]
+			'with_original_language' => $request->languageCode
 		]);
 		
 		$results = $response['results'];
@@ -249,7 +247,9 @@ class SearchController extends Controller
 		]);
 
 		return view('discover.tv', [
+			'request' => $request,
 			'results' => $results,
+			'route' => 'movies',
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
 		]);
