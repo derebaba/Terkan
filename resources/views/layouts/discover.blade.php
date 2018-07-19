@@ -13,19 +13,19 @@
 					<ul class="pagination">
 						@if ($response['page'] != 1)
 							<li class="page-item">
-								<a class="page-link" href="{{ route('discover.' . $route, ['page' => ($response['page'] - 1)]) }}" tabindex="-1">Previous</a>
+								<a class="page-link" href="{{ route('discover.' . $route, array_merge($request->all(), ['page' => $response['page'] - 1])) }}" tabindex="-1">Previous</a>
 							</li>
 						@endif
 						@for ($i = 1; $i <= $max_pages; $i++)
 							@if ($i == $response['page'])
 								<li class="page-item active">
-									<a class="page-link" href="{{route('discover.' . $route, ['page' => $i])}}">
+									<a class="page-link" href="{{route('discover.' . $route, array_merge($request->all(), ['page' => $i])) }}">
 										{{ $i }}
 									</a>
 								</li>
 							@else
 								<li class="page-item">
-									<a class="page-link" href="{{route('discover.' . $route, ['page' => $i])}}">
+									<a class="page-link" href="{{route('discover.' . $route, array_merge($request->all(), ['page' => $i])) }}">
 										{{ $i }}
 									</a>
 								</li>
@@ -34,7 +34,7 @@
 						@if ($response['page'] != $max_pages)
 							<li class="page-item">
 								<a class="page-link" href=
-									"{{ route('discover.' . $route, ['page' => ($response['page'] + 1)]) }}">
+									"{{ route('discover.' . $route, array_merge($request->all(), ['page' => $response['page'] + 1])) }}">
 									Next
 								</a>
 							</li>
