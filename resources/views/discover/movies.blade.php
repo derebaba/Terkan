@@ -102,6 +102,16 @@
 
 @section('script')
 	<script>
+		$(document).ready(function() {
+			$(window).keydown(function(event){
+				//	if lang-autocomplete list is present, do not submit form. In this case, enter selects item from list
+				if(event.keyCode == 13 && $(".v-autocomplete-list").length) {
+					event.preventDefault();
+					return false;
+				}
+			});
+		});
+
 		for (i = 0; i < 20; i++) {
 			$('#star-rating-' + i).barrating({
 				theme: 'fontawesome-stars-o',

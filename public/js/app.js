@@ -12632,7 +12632,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			language: __WEBPACK_IMPORTED_MODULE_1__languages_js__["a" /* default */].find(function (item) {
 				return _this.oldLanguageCode === item.iso_639_1;
 			}),
-			languageCode: this.oldLanguage ? this.oldLanguage.languageCode : "",
+			languageCode: "",
 			languages: [{
 				"iso_639_1": "tr",
 				"english_name": "Turkish",
@@ -13526,7 +13526,7 @@ var render = function() {
           "component-item": _vm.template,
           "auto-select-one-item": false,
           "min-len": 0,
-          "input-attrs": { name: "language", placeholder: "Enter language" }
+          "input-attrs": { placeholder: "Enter language" }
         },
         on: {
           "item-selected": _vm.itemSelected,
