@@ -29,4 +29,5 @@
 		"borderColor": "white",
 		"borderRadius": "1px"
 	},
+	"eslint.enable": true,
 }

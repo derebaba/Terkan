@@ -26,82 +26,6 @@ class SearchController extends Controller
 	}
 
 	//	TODO: Reviewable classını komple kaldır (?)
-	/**
-	 * Undocumented function
-	 *
-	 * @param [int] $genre_id	Tmdb id of the genre
-	 * @param [int] $page	page number of search results
-	 * @return void
-	 */
-	public function browseByGenre($genre_id, $page) {
-		$response = Tmdb::getDiscoverApi()->discoverMovies([
-			'page' => $page,
-			'with_genres' => $genre_id,
-			'sort_by' => 'popularity.desc'	//	default
-		]);
-		$movies = $response['results'];
-		foreach ($movies as &$movie)
-			$movie['media_type'] = 'movie';
-		
-		$reviewables = $this->getReviewablesFromResults($movies);	// $results
-		//dd($reviewables);
-		JavaScript::put([
-			'stars' => $reviewables->pluck('vote_average')
-		]);
-
-		$query = Tmdb::getGenresApi()->getGenre($genre_id);
-
-		$genres = Tmdb::getGenresApi()->getMovieGenres();
-		$genres = collect($genres['genres']);
-		
-		return view('browse', [
-			'reviewables' => $reviewables, 
-			'query' => $query['name'],
-			'genre_id' => $genre_id,
-			'genres' =>	$genres,
-			'max_pages' => min(5, $response['total_pages']),
-			'response' => $response,
-		]);
-	}
-
-	/**
-	 * Undocumented function
-	 *
-	 * @param [int] $genre_id	Tmdb id of the genre
-	 * @param [int] $page	page number of search results
-	 * @return void
-	 */
-	public function browseTvByGenre($genre_id, $page) {
-		$response = Tmdb::getDiscoverApi()->discoverTV([
-			'page' => $page,
-			'with_genres' => $genre_id,
-			'sort_by' => 'popularity.desc'
-		]);
-
-		$tvs = $response['results'];
-		foreach ($tvs as &$tv)
-			$tv['media_type'] = 'tv';
-			
-		$reviewables = $this->getReviewablesFromResults($tvs);
-
-		JavaScript::put([
-			'stars' => $reviewables->pluck('vote_average')
-		]);
-
-		$query = Tmdb::getGenresApi()->getGenre($genre_id);
-
-		$genres = Tmdb::getGenresApi()->getTvGenres();
-		$genres = collect($genres['genres']);
-		
-		return view('search.browseTv', [
-			'reviewables' => $reviewables, 
-			'query' => $query['name'],
-			'genre_id' => $genre_id,
-			'genres' =>	$genres,
-			'max_pages' => min(5, $response['total_pages']),
-			'response' => $response,
-		]);
-	}
 
 	public function searchAutocomplete(Request $request) {
 		$query =  $request->search;
@@ -249,7 +173,7 @@ class SearchController extends Controller
 		return view('discover.tv', [
 			'request' => $request,
 			'results' => $results,
-			'route' => 'movies',
+			'route' => 'TV',
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
 		]);

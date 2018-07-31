@@ -83,8 +83,6 @@ Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('/search/movie', ['uses' => 'SearchController@searchMovies', 'as' => 'search.movie']);
 Route::get('/search/people', ['uses' => 'SearchController@searchPeople', 'as' => 'search.people']);
 Route::get('/search/tv', ['uses' => 'SearchController@searchTv', 'as' => 'search.tv']);
-Route::get('/browse/genre/{genre}/{page}', 'SearchController@browseByGenre')->name('browseByGenre');
-Route::get('/browse/tv/{genre}/{page}', 'SearchController@browseTvByGenre')->name('browseTvByGenre');
 Route::get('/search/autocomplete', 'SearchController@searchAutocomplete');
 
 //	Discover
