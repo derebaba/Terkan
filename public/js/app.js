@@ -13640,17 +13640,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
-		oldGenres: Array
+		oldGenres: Array,
+		route: String
 	},
 	data: function data() {
 		return {
+			selectedGenres: oldGenres,
 			genres: []
 		};
 	},
 	mounted: function mounted() {
 		var _this = this;
 
-		axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=3e910cad37d9074e8158d711279976a0&language=en-US').then(function (response) {
+		axios.get('https://api.themoviedb.org/3/genre/' + this.route + '/list?api_key=3e910cad37d9074e8158d711279976a0&language=en-US').then(function (response) {
 			_this.genres = response.data.genres;
 		}).catch(function (e) {
 			_this.errors.push(e);
@@ -13676,8 +13678,8 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.oldGenres,
-            expression: "oldGenres"
+            value: _vm.selectedGenres,
+            expression: "selectedGenres"
           }
         ],
         staticClass: "form-control",
@@ -13692,7 +13694,7 @@ var render = function() {
                 var val = "_value" in o ? o._value : o.value
                 return val
               })
-            _vm.oldGenres = $event.target.multiple
+            _vm.selectedGenres = $event.target.multiple
               ? $$selectedVal
               : $$selectedVal[0]
           }

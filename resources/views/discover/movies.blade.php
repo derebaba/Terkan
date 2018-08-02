@@ -41,5 +41,5 @@
 @endsection
 
 @section("filters")
-	<genre-filter v-bind:old-genres="{{ json_encode($request->genres) }}"></genre-filter>
+	<genre-filter v-bind:old-genres="{{ json_encode($request->genres) }}" route="movie"></genre-filter>
 @endsection

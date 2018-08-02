@@ -132,7 +132,7 @@ class SearchController extends Controller
 		$response = Tmdb::getDiscoverApi()->discoverMovies([
 			'page' => $request->page,
 			'with_original_language' => $request->languageCode,
-			'with_genres' => implode(",", $request->genres)	//	array to comma separated string
+			'with_genres' => $request->genres ? implode(",", $request->genres) : []	//	array to comma separated string
 		]);
 		
 		$results = $response['results'];
@@ -158,7 +158,8 @@ class SearchController extends Controller
 	public function discoverTv(Request $request) {
 		$response = Tmdb::getDiscoverApi()->discoverTv([
 			'page' => $request->page,
-			'with_original_language' => $request->languageCode
+			'with_original_language' => $request->languageCode,
+			'with_genres' => $request->genres ? implode(",", $request->genres) : []
 		]);
 		
 		$results = $response['results'];
@@ -175,7 +176,7 @@ class SearchController extends Controller
 		return view('discover.tv', [
 			'request' => $request,
 			'results' => $results,
-			'route' => 'TV',
+			'route' => 'tv',
 			'max_pages' => min(5, $response['total_pages']),
 			'response' => $response,
 		]);

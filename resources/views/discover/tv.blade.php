@@ -39,3 +39,7 @@
 	</ul>
 
 @endsection
+
+@section("filters")
+	<genre-filter v-bind:old-genres="{{ isset($request->genres) ? json_encode($request->genres) : '[-1]'}}" route="tv"></genre-filter>
+@endsection
