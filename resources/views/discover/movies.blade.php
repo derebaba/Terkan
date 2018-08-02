@@ -39,3 +39,7 @@
 	</ul>
 
 @endsection
+
+@section("filters")
+	<genre-filter v-bind:old-genres="{{ json_encode($request->genres) }}"></genre-filter>
+@endsection

@@ -51,11 +51,15 @@
 					<form class="form-horizontal" method="GET" action="{{ route("discover." . $route) }}">
 						<div class="form-group">
 							<label for="language" class="control-label">Language</label>
+
 							<lang-autocomplete old-language-code="{{ $request->languageCode }}"></lang-autocomplete>
-							<button type="submit" class="btn btn-primary">
-								Apply filters
-							</button>
 						</div>
+
+						@yield("filters")
+					
+						<button type="submit" class="btn btn-primary">
+							Apply filters
+						</button>
 					</form>
 				</div>
 			</div>

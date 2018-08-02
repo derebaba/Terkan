@@ -17,6 +17,8 @@ Vue.use(Autocomplete)
 
 Vue.component('lang-autocomplete', require('./components/LanguageAutocomplete.vue'));
 
+Vue.component("genre-filter", require("./components/GenreFilter.vue"));
+
 const app = new Vue({
 	el: '#app',
 	data: { }

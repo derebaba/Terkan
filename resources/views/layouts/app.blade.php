@@ -167,6 +167,7 @@
 			integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" 
 			crossorigin="anonymous"></script>
 
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="/js/app.js"></script>
 		
 		<script src="/js/jquery.barrating.min.js"></script>

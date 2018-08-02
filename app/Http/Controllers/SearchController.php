@@ -128,9 +128,11 @@ class SearchController extends Controller
 	}
 
 	public function discoverMovies(Request $request) {
+		clock($request->genres);
 		$response = Tmdb::getDiscoverApi()->discoverMovies([
 			'page' => $request->page,
-			'with_original_language' => $request->languageCode
+			'with_original_language' => $request->languageCode,
+			'with_genres' => implode(",", $request->genres)	//	array to comma separated string
 		]);
 		
 		$results = $response['results'];
