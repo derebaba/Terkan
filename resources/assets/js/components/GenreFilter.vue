@@ -15,7 +15,7 @@
 		},
 		data () {
 			return {
-				selectedGenres: oldGenres,
+				selectedGenres: this.oldGenres ? this.oldGenres : [],
 				genres: []
 			}
 		},

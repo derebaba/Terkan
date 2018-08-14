@@ -13645,7 +13645,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	data: function data() {
 		return {
-			selectedGenres: oldGenres,
+			selectedGenres: this.oldGenres ? this.oldGenres : [],
 			genres: []
 		};
 	},
