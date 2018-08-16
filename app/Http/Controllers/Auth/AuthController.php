@@ -35,6 +35,8 @@ class AuthController extends Controller
 	{
 		$user = Socialite::driver($provider)->user();
 		
+		if (empty($user)) return redirect("/")->withErrors(["You denied permissions."]);
+
 		$authUser = $this->findOrCreateUser($user, $provider);
 
 		$authUser->access_token = $user->token;
