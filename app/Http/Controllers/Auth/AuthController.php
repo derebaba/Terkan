@@ -39,7 +39,7 @@ class AuthController extends Controller
 		{
 			$user = Socialite::driver($provider)->stateless()->user();
 		}
-		catch (GuzzleHttp\Exception\ClientException $e)
+		catch (\GuzzleHttp\Exception\ClientException $e)
 		{
 			if ($request->error_code == 200)
 			{
