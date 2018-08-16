@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use JD\Cloudder\Facades\Cloudder;
 use File;
+use Illuminate\Http\Request;
 use Socialite;
 use App\Traits\Utils;
 
@@ -31,11 +32,28 @@ class AuthController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function handleProviderCallback($provider)
+	public function handleProviderCallback($provider, Request $request)
 	{
-		$user = Socialite::driver($provider)->user();
-		
-		if (empty($user)) return redirect("/")->withErrors(["You denied permissions."]);
+		$user;
+		try
+		{
+			$user = Socialite::driver($provider)->user();
+		}
+		catch (GuzzleHttp\Exception\ClientException $e)
+		{
+			if ($request->error_code == 200)
+			{
+				return redirect("/register")->withErrors(["You denied permissions from" . $provider]);
+			}
+			else
+			{
+				$response = $e->getResponse();
+				$result = $response->getBody();
+
+				return redirect("/register")->withErrors([$result]);
+			}
+			
+		}
 
 		$authUser = $this->findOrCreateUser($user, $provider);
 
