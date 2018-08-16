@@ -37,7 +37,7 @@ class AuthController extends Controller
 		$user;
 		try
 		{
-			$user = Socialite::driver($provider)->user();
+			$user = Socialite::driver($provider)->stateless()->user();
 		}
 		catch (GuzzleHttp\Exception\ClientException $e)
 		{
