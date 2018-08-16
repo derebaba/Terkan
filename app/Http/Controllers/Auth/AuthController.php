@@ -43,7 +43,7 @@ class AuthController extends Controller
 		{
 			if ($request->error_code == 200)
 			{
-				return redirect("/register")->withErrors(["You denied permissions from" . $provider]);
+				return redirect("/register")->withErrors(["You denied permissions from " . ucfirst($provider)]);
 			}
 			else
 			{
