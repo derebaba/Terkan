@@ -9,7 +9,7 @@
             "tab"
         ],
         "linebreak-style": [
-            "error",
+            2,
             "windows"
         ],
         "quotes": [

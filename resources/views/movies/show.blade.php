@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section("head")
+<style>
+.list-inline-item
+{
+	margin-left: 1rem;
+	padding-right: 0.75rem;
+}
+</style>
+@endsection
 @section('content')
 	@inject('image', 'Tmdb\Helper\ImageHelper')
 	<div class="jumbotron">
@@ -8,6 +17,12 @@
 			<div class="col-sm-7 col-lg-9">
 				<h1>{{ $movie['original_title'] }}</h1>
 				<p>{{ $movie['overview'] }}</p>
+				<ul class="list-inline">
+					<li class="list-inline-item">{{ $movie["release_date"] }}</li>|
+					<li class="list-inline-item">{{ $movie["runtime"] }} minutes</li>|
+					<li class="list-inline-item">{{ implode(", ", array_column($movie["genres"], "name")) }}
+					</li>
+				</ul>
 				@auth
 					@if (!Auth::user()->hasWatchlisted($movie['id'], 'movie'))
 						<form method="POST" action="/addToWatchlist" class="review-form" style="">
